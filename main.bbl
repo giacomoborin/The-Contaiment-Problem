@@ -1,0 +1,85 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.0 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global}
+  \entry{AMCD}{book}{}
+    \name{author}{2}{}{%
+      {{hash=AMF}{%
+         family={{Atiyah}},
+         familyi={A\bibinitperiod},
+         given={Michael\bibnamedelima F.},
+         giveni={M\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=MIG}{%
+         family={{Macdonald}},
+         familyi={M\bibinitperiod},
+         given={I.\bibnamedelima G.},
+         giveni={I\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+    }
+    \list{language}{1}{%
+      {English}%
+    }
+    \list{publisher}{1}{%
+      {Boulder: Westview Press}%
+    }
+    \strng{namehash}{AMFMIG1}
+    \strng{fullhash}{AMFMIG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{edition}{Student economy edition}
+    \field{isbn}{978-0-8133-5018-9/print; 978-0-8133-4544-4/ebook}
+    \field{pages}{ix + 128}
+    \field{title}{{Introduction to commutative algebra. Student economy
+  edition}}
+    \field{year}{2016}
+  \endentry
+
+  \entry{Reid}{book}{}
+    \name{author}{1}{}{%
+      {{hash=RM}{%
+         family={{Reid}},
+         familyi={R\bibinitperiod},
+         given={Miles},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{language}{1}{%
+      {English}%
+    }
+    \list{publisher}{1}{%
+      {Cambridge: Cambridge Univ. Press}%
+    }
+    \strng{namehash}{RM1}
+    \strng{fullhash}{RM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{isbn}{0-521-45889-7/pbk; 0-521-45255-4/hbk}
+    \field{issn}{0963-1631}
+    \field{pages}{xiii + 153}
+    \field{title}{{Undergraduate commutative algebra}}
+    \field{volume}{29}
+    \field{journaltitle}{{Lond. Math. Soc. Stud. Texts}}
+    \field{year}{1995}
+  \endentry
+\enddatalist
+\endinput

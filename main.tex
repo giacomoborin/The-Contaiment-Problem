@@ -1,8 +1,64 @@
 \documentclass[]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amssymb,amsmath,amsthm,mathtools} 
+\usepackage{tikz-cd,wrapfig}
+\usepackage{tcolorbox}
+
+
+% Theorem definitons 
+\theoremstyle{plain}
+\newtheorem{teo}{Theorem}[section]
+\newtheorem{lem}[teo]{Lemma}
+\newtheorem{prop}[teo]{Proposition}
+\newtheorem{cor}[teo]{Corollary}
+\newtheorem*{form}{Formula}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newtheorem{rems}[rem]{Remarks}
+
+\theoremstyle{definition}
+\newtheorem{deff}[teo]{Definiton}
+\newtheorem{idea}{Idea}
+\newtheorem*{nota}{Notation}
+
+%Bibliography
+\usepackage[style=numeric, maxnames=4,backend=bibtex]{biblatex}
+% other styles: numeric authortitle
+\addbibresource{biblio.bib}
+\usepackage{hyperref}
+
+% Commands 
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\ZZ}[1]{\mathbb{Z}_{#1}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\q}{\mathfrak{q}}
+\newcommand{\A}{\mathfrak{a}}
+\newcommand{\B}{\mathfrak{b}}
+\newcommand{\Cc}{\mathfrak{c}}
+
+
+\DeclareMathOperator*{\eqb }{=}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Ass}{Ass}
+
+
 
 %opening
 \title{The Containment Problem}
-\author{GB}
+\author{Giacomo Borin}
+
+
 
 \begin{document}
 
@@ -13,20 +69,149 @@
 \end{abstract}
 
 \section{Inroduction}
+%TODO Should I say that R is always commutative with unity
+
 
 \subsection{Associated primes}
 
-\subsubsection{Primary decomposition}
+Let $ R $ be a commutative ring with unity, and $ \A $,$ \B $ two ideal, we say that the ideal
+\begin{equation*}
+	(\A : \B) = \{ x \in R \,|\, x\B \subseteq \A  \}
+\end{equation*}
+ \nocite{AMCD}
+is the \textit{ideal quotient}. For the case in which $ \A $  is the null ideal $ 0 $ we define the \textbf{annihilator} of $ \B $ as:
+\begin{equation*}
+	\Ann_R(\B) = (0 : \B) = \{ x \in R \,|\, x\B = 0  \}
+\end{equation*}
+We can obviously omit the index $ R $ if it is clear by the context. In general given an $ R  $-module $ M $ and a set $ S \subseteq M $ non empty we can define its annihilator as:
+\begin{equation*}
+	\Ann_R (S) = \{ x \in R \,| xS = 0  \} = \{ x \in R \,|\, \forall s \in S \; xs = 0  \}
+\end{equation*}
+
+\begin{deff}[Associated Prime]
+Let $ M $ be an $ R $-module. A prime ideal $ \p \subseteq R $ is an \textbf{associated prime} of $ M $ if there exists a non-zero element $ a \in M $ such that $ \p = \Ann_R (a)$. \\
+We define $ \Ass_R(M) $ as the set of the associated primes of $ M $.\\
+For an ideal $ I $ we say that a prime is associated to $ I $ if it is associated to the $ R $-module $ R/I $.
+\end{deff}
+
+\begin{rem}
+	Another name for associated ideal used by the Bourbaki group is \textit{assasin}, a word play between associated and annihilator. %todo check this
+\end{rem}
+
+
+
+\subsection{Primary decomposition}
+
+%TODO Mettici qualcosa di meglio dai
+We would like to have some sort of factorization for the ideals of a ring, more general than the \textit{unique factorization domains}, in fact this is useful only for principal ideals. With this objective \textbf{primary decomposition} was introduced. 
+
+Now I will recall some of the principal result on this topics, contained in \cite[Section 7]{Reid} and \cite[Section 4 and Page 83]{AMCD}
+
+\begin{deff}
+	An ideal $ \A $ in a ring $ R $ is said primary if $ R/\A$ is different from zero and all its zerodivisors are nilpotent, otherwhise we can express this as:
+	\begin{equation*}
+		fg \in \aa \Longrightarrow f \in \A \text{ or } g^n \in \A \text{ for some } n >0
+	\end{equation*}
+\end{deff}
+
+It is obvious that the radical of a primary ideal is a prime ideal, infact given $ fg \in \rad(\A)  $ we have $ (fg)^m = f^m g^m \in \A $ for $ m>0 $, and so $ f^m \in \A \Rightarrow f \in \rad(\A)$ or exists $ n>0 $ such that $ g^{mn} \in \A \Rightarrow g \in \rad(\A) $.
+
+If $ \A $ is a primary ideal such that $ \rad(\A) = \p $ we say that $ \A $ is {$ \p $-primary}.
+
+\begin{rems} \label{rem:power_primary} \quad 
+	\begin{enumerate}
+	\item The power of a prime ideal isn't always primary, for example if in $ R = \K[x,y,z] / (xy - z^2) $ we consider the prime ideal $ \p = (x,z) $ (it is prime since $ R / \p \simeq \K[y]$ that is an integral domain) we have that $ y $ is a zero divisor in $R/\p $ (since $ x $ is not zero and $ yx = z^2 = 0 $, since $z^2 \in \p^2 $) but it is not nilpotent since $ y^k \not \in \p^2 $ for all $ k>0 $
+	\end{enumerate}
+\end{rems}
+
+We say tha an ideal $ \A \subseteq R $ has a \textbf{primary decomposition}  if there exists a finite set of primary ideal $ \{ \q_1 , ... , \q_n\} $ such that:
+\begin{equation*}
+	\A = \bigcap_{i=1}^n \q_i
+\end{equation*}
+
+In general such structure does not exists, but for $ R $ noetherian we can prove, using Noetherian induction and the concept of irreducible ideal, that every proper ideal has a primary decomposition.
+
+\begin{deff}
+	We say that a proper ideal $ \A $ is irreducible if it cannot be written as a proper intersection of ideal, i.e. :
+	\begin{equation*}
+		\A = \B \cap \Cc \Longrightarrow (\A = \B \text{ or } \A = \Cc)
+	\end{equation*}
+\end{deff}
+
+\begin{lem}
+	A proper ideal in a Noetherian ring $ R $ is always the intersection of a finite number of irreducible ideals.
+\end{lem}
+
+\begin{proof}
+	Let $ \mathfrak{F} $ be the set of proper ideal such that the lemma is false. Let $ \A $ be a maximal ideal of $ \mathfrak{F} $, since it cannot be irreducible there exists $ \B $, $ \Cc $ strictly greater than $ \A $ ( so not in $ \mathfrak{F} $) such that $ \A = \B \cap \Cc $. This is absurd and so $ \mathfrak{F} $ is empty.
+\end{proof}
+
+\begin{lem}
+	In a Noetherian ring every irreducible ideal is primary
+\end{lem}
+
+\begin{proof}
+Modulo working in the quotient ring we can assume to work with the zero ideal. So we assume that the ideal $ 0 $ is irreducible and we consider $ x$, $y $ such that $ xy = 0 $ with $ y\neq 0 $, then $ x $ is a zerodivisor. So we have that $ y \in \Ann(x) $\footnote{For $ \Ann(x) $ we mean the annihilator of the principal ideal $ (x) $} and we consider the chain:
+$$ \Ann(x)  \subseteq \Ann(x^2) \subseteq ...$$
+And for the ascending chain condition there exists $ m $ with $ \Ann(x^m)= \Ann(x^{m+1})$. \\
+Now consider $ a \in (x^m)\cap (y) $, then $ a = bx^m $ and $ a = cy $, so since $ y \in \Ann(x) $ we have $ 0 = cyx = ax = bx^m x=  bx^{m+1}$, so $ b \in  \Ann(x^{m+1}) = \Ann(x^m) $, then $ a = bx^n = 0 $. So $ (x^m)\cap (y)=0 $ and since $ 0 $ is irreducible and $ y\neq 0 $ then $ x^m=0 $. 
+\end{proof}
+
+Combining this two lemmas we have that the decomposition for Noetherian ring.
+
+Now we need to achive some kind of uniqueness. First of all we say that a decomposition $ \A = \bigcap_{i=1}^n \q_i $ is \textbf{minimal} if:
+\begin{enumerate}
+\item $ \rad(\q_i) $ are all distinct
+\item for all $ i $ we have $ \q_i \not \subseteq \bigcap_{j\neq i} \q_j $
+\end{enumerate}
+
+We can easly prove that from every decomposition we can obtain a minimal one using the following lemma:
+
+\begin{lem}
+If $ \A $ and $ \B $ are $ \p $-primary then $ \A \cap \B $ is $ \p $-primary
+\end{lem}
+
+Infact we can group the primaty ideal to get $ 1. $ and omit the superfluous terms to get $ 2. $
+
+So we have two theorem of uniqueness for the prime \textit{associated}\footnote{not a random word} to a particular decomposition. 
+
+\begin{teo}[First uniqueness theorem]
+Let $ R $ be a Noetherian ring and $ \A $ an ideal with minimal decomposition $ \bigcap_{i=1}^n \q_i $, where $ \q_i $ is $ \p_i $-primary, then:
+\[ \Ass(R/ \A) = \{ \p_1 , ... , \p_n \} \]
+and so the set of primes $ \{ \p_1 , ... , \p_n \} $ is uniquely determined by the ideal
+
+\end{teo}
+
+\begin{teo}[Second uniqueness theorem]
+Let $ R $ be a ring and $ \A $ an ideal with minimal decomposition $ \bigcap_{i=1}^n \q_i $, where $ \q_i $ is $ \p_i $-primary, then if $ p_i $ is a minimal element of $ \{ \p_1 , ... , \p_n \} $ $ \q_i $ is uniquely determined by the ideals $ \A $ and $ \p_i $.
+%TODO Non so se lasciare sta roba tanto non serve
+In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection (where $ S = R \setminus \p_i $) we have
+\[ 
+\q_i = \phi ^{-1} ( S^{-1} \A  )
+\]
+
+\end{teo}
+
 
 \subsection{Sybolic power}
 
-\subsubsection{Zarisky-Nagata Theorem}
+\begin{deff}
+	Let $ R $ be a noetherian ring and $ I $ an ideal. Given an integer $ m $ we define the \textbf{$ m $-th symbolic power} of $ I $ as:
+	\begin{equation}\label{key}
+		I^{(m)} = \bigcap_{\p \in \Ass(R/I) } (I^m R_\p \cap R)
+	\end{equation}
+\end{deff}
 
-\subsection{$ I^r \subset I^{(m)}$ }
+\subsection{Zarisky-Nagata Theorem}
+Why do we studty symbolic power? The Zarisky-Nagata Theorem give a geometric interpretation of its significance.
+
+\subsection{$ I^r \subseteq I^{(m)}$ }
 
 \section{The Containment Problem}
 
 \subsection{The Waldschmidt constant}
 
+\newpage
+\printbibliography
 
 \end{document}
