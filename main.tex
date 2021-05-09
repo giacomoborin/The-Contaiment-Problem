@@ -41,6 +41,7 @@
 
 \newcommand{\p}{\mathfrak{p}}
 \newcommand{\q}{\mathfrak{q}}
+\newcommand{\mm}{\mathfrak{m}}
 \newcommand{\A}{\mathfrak{a}}
 \newcommand{\B}{\mathfrak{b}}
 \newcommand{\Cc}{\mathfrak{c}}
@@ -157,8 +158,11 @@ And for the ascending chain condition there exists $ m $ with $ \Ann(x^m)= \Ann(
 Now consider $ a \in (x^m)\cap (y) $, then $ a = bx^m $ and $ a = cy $, so since $ y \in \Ann(x) $ we have $ 0 = cyx = ax = bx^m x=  bx^{m+1}$, so $ b \in  \Ann(x^{m+1}) = \Ann(x^m) $, then $ a = bx^n = 0 $. So $ (x^m)\cap (y)=0 $ and since $ 0 $ is irreducible and $ y\neq 0 $ then $ x^m=0 $. 
 \end{proof}
 
-Combining this two lemmas we have that the decomposition for Noetherian ring.
+Combining this two lemmas we have that the decomposition for Noetherian ring. In literature we say that a commutative ring is a \textbf{Lasker Ring} if every ideal has a primary decomposition, so we can state that:
 
+\begin{teo}[Lasker-Noether]
+A Noetherian Ring is also a Lasker Ring
+\end{teo}
 Now we need to achive some kind of uniqueness. First of all we say that a decomposition $ \A = \bigcap_{i=1}^n \q_i $ is \textbf{minimal} if:
 \begin{enumerate}
 \item $ \rad(\q_i) $ are all distinct
@@ -182,6 +186,8 @@ and so the set of primes $ \{ \p_1 , ... , \p_n \} $ is uniquely determined by t
 
 \end{teo}
 
+This theorem show the strong ralation that we have between the associated prime ideal and the primary decomposition for Noetherian ring
+
 \begin{teo}[Second uniqueness theorem]
 Let $ R $ be a ring and $ \A $ an ideal with minimal decomposition $ \bigcap_{i=1}^n \q_i $, where $ \q_i $ is $ \p_i $-primary, then if $ p_i $ is a minimal element of $ \{ \p_1 , ... , \p_n \} $ $ \q_i $ is uniquely determined by the ideals $ \A $ and $ \p_i $.
 %TODO Non so se lasciare sta roba tanto non serve
@@ -195,6 +201,10 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 
 \subsection{Sybolic power}
 
+	Lets consider an homogeneous polynomial ring $ k[x_0 , ... , x_n] $, it is easy to se that if we consider a variety $ X $ with it's coordinate ring $ R = k[X] $ and a point $ p \in X $ (associated to the maximal ideal $ \mm_p $)  we have that:
+	\[ 
+		\mm^n = \{ f \in k[X] \text{ such that } f \text{ vanishes in } p \text{ with multiplicity } n\}
+	\]
 \begin{deff}
 	Let $ R $ be a noetherian ring and $ I $ an ideal. Given an integer $ m $ we define the \textbf{$ m $-th symbolic power} of $ I $ as:
 	\begin{equation}\label{key}
