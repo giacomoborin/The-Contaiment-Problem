@@ -53,7 +53,8 @@
 \DeclareMathOperator{\Ann}{Ann}
 \DeclareMathOperator{\Ass}{Ass}
 
-
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
 
 %opening
 \title{The Containment Problem}
@@ -203,17 +204,40 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 
 	Lets consider an homogeneous polynomial ring $ k[x_0 , ... , x_n] $, it is easy to se that if we consider a variety $ X $ with it's coordinate ring $ R = k[X] $ and a point $ p \in X $ (associated to the maximal ideal $ \mm_p $)  we have that:
 	\[ 
-		\mm^n = \{ f \in k[X] \text{ such that } f \text{ vanishes in } p \text{ with multiplicity } n\}
+		\mm_p^n = \{ f \in k[X] \text{ such that } f \text{ vanishes in } p \text{ with multiplicity } n\}
 	\]
+	
+	For general ideal we don't have similiar properties for the normal power of ideal, so we define the \textbf{symbolic power}. %TODO Qualcosa di più qui
+	First of all given a prime ideal $ \p $ in a Noetherian Ring $ R $ we can define the $ n $-th symbolic power of $ \p $ as:
+	\begin{equation}\label{eq:sym_pow_p1}
+		\p^{(n)} = \{ r \in R \text{ such that exists } s \in R \setminus \p \text{ with } sr \in \p^n \}
+	\end{equation}
+	This definition show clearly the idea between the symbolic power, but is not easy to work with. We can have another equivalent definition that use the localization on the prime ideal $ R_\p $. Infact we can see it as the contraction of $ \p^n R_\p $ over $ R $:
+	\begin{equation}\label{eq:sym_pow_p2}
+		\p^{(n)} = \p^n R_\p \cap R
+	\end{equation}
+	In general the generic and symbolic power are different concept. It is obvious that $ \p^{n} \subset \p^{(n)} $ since $ 1 \not \in \p $. For the other direction we can costruct a counter example with the following proposition:
+	\begin{prop}
+		$ \p^{(n)} $ is the smallest $ \p $-primary ideal that contain $ \p^n $
+	\end{prop}
+	\begin{proof}
+		If $ xy \in  \p^{(n)}$ with $ x \not \in  \p^{(n)}$ we have that exists $ s \not \in \p $ with $ sxy \in \p^n $. Suppose that $ sy \not \in \p $, so $ (sy)x \in \p^n $ and then $ x \in \p^{(n)} $ that is absurd, so $ sy \in \p \Rightarrow (sy)^n \in \p^n \Rightarrow s^n y^n \in \p^n$. Since $ \p $ is prime $ s^n \not \in \p $ and so $ y^n \in \p^{(n)} $. \\
+		
+	\end{proof}
+	
 \begin{deff}
 	Let $ R $ be a noetherian ring and $ I $ an ideal. Given an integer $ m $ we define the \textbf{$ m $-th symbolic power} of $ I $ as:
-	\begin{equation}\label{key}
+	\begin{equation}\label{eq:sym_pow_def}
 		I^{(m)} = \bigcap_{\p \in \Ass(R/I) } (I^m R_\p \cap R)
 	\end{equation}
 \end{deff}
 
 \subsection{Zarisky-Nagata Theorem}
 Why do we studty symbolic power? The Zarisky-Nagata Theorem give a geometric interpretation of its significance.
+
+\begin{teo}[Zarisky-Nagata Theorem]
+	
+\end{teo}
 
 \subsection{$ I^r \subseteq I^{(m)}$ }
 
