@@ -52,6 +52,7 @@
 \DeclareMathOperator{\rad}{rad}
 \DeclareMathOperator{\Ann}{Ann}
 \DeclareMathOperator{\Ass}{Ass}
+\DeclareMathOperator{\Spec}{Spec}
 
 \newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
 \newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
@@ -203,9 +204,10 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 \subsection{Sybolic power}
 
 	Lets consider an homogeneous polynomial ring $ k[x_0 , ... , x_n] $, it is easy to se that if we consider a variety $ X $ with it's coordinate ring $ R = k[X] $ and a point $ p \in X $ (associated to the maximal ideal $ \mm_p $)  we have that:
-	\[ 
+	
+	\begin{equation}\label{eq:max_pow}
 		\mm_p^n = \{ f \in k[X] \text{ such that } f \text{ vanishes in } p \text{ with multiplicity } n\}
-	\]
+	\end{equation}
 	
 	For general ideal we don't have similiar properties for the normal power of ideal, so we define the \textbf{symbolic power}. %TODO Qualcosa di più qui
 	First of all given a prime ideal $ \p $ in a Noetherian Ring $ R $ we can define the $ n $-th symbolic power of $ \p $ as:
@@ -217,14 +219,26 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 		\p^{(n)} = \p^n R_\p \cap R
 	\end{equation}
 	In general the generic and symbolic power are different concept. It is obvious that $ \p^{n} \subset \p^{(n)} $ since $ 1 \not \in \p $. For the other direction we can costruct a counter example with the following proposition:
-	\begin{prop}
+	\begin{prop}\label{prop:sym_is_primary}
 		$ \p^{(n)} $ is the smallest $ \p $-primary ideal that contain $ \p^n $
 	\end{prop}
-	\begin{proof}
-		If $ xy \in  \p^{(n)}$ with $ x \not \in  \p^{(n)}$ we have that exists $ s \not \in \p $ with $ sxy \in \p^n $. Suppose that $ sy \not \in \p $, so $ (sy)x \in \p^n $ and then $ x \in \p^{(n)} $ that is absurd, so $ sy \in \p \Rightarrow (sy)^n \in \p^n \Rightarrow s^n y^n \in \p^n$. Since $ \p $ is prime $ s^n \not \in \p $ and so $ y^n \in \p^{(n)} $. \\
-		
+	\begin{proof}\quad \\
+		\textit{Primary}: If $ xy \in  \p^{(n)}$ with $ x \not \in  \p^{(n)}$ we have that exists $ s \not \in \p $ with $ sxy \in \p^n $. Suppose that $ sy \not \in \p $, so $ (sy)x \in \p^n $ and then $ x \in \p^{(n)} $ that is absurd, so $ sy \in \p \Rightarrow (sy)^n \in \p^n \Rightarrow s^n y^n \in \p^n$. Since $ \p $ is prime $ s^n \not \in \p $ and so $ y^n \in \p^{(n)} $. \\
+		\textit{$p$-primary}: Infact $ \p^{(n)} \subset \p $ and so $  \rad  (\p^{(n)} )\subset \rad (\p) = \p$. Also if $ x \in \p $ we have $ x^n \in \p^n \subset \p^{(n)}  $ and so $ x \in \p^{(n)}  $.\\
+		\textit{Minimal}: If $ \q $ is $ \p $-primary and contains $ \p^n $, then for $ r \in \p^{(n)}  $ there exists $ s \not \in \p \supset \q $ with $ sr \in \p^{(n)}  \subset \q $, and so since $ s \not \in \q  $ exists $ k $ such that $ r^k \in \q $. If $ k=1 $ we have finished otherwhise we terminate by induction using $ r r^{k-1} \in \q $.
 	\end{proof}
+	Using the same example from Remark \ref{rem:power_primary} we can observe that necessarly $ p^2 \neq \p^{(2)}  $ since the first one isn't prymary. 
 	
+	\begin{rems}
+		\begin{itemize}
+		\item The proposition \ref{prop:sym_is_primary} establish a new equivalent definition for the symbolic power, more in line to the use of this ideal in the Zarisky-Nakata Theorem.
+		\item Using the properties of localization, like \cite[Proposition 4.8]{AMCD} and working with the contraction we would have speed up the proof.
+		%TODO Motiva perchè non lo hai fatto/di che lo farai dopo
+		\end{itemize}
+	\end{rems}
+	
+Now we can see the actual definition of this concept for a general ideal.
+
 \begin{deff}
 	Let $ R $ be a noetherian ring and $ I $ an ideal. Given an integer $ m $ we define the \textbf{$ m $-th symbolic power} of $ I $ as:
 	\begin{equation}\label{eq:sym_pow_def}
@@ -232,12 +246,22 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 	\end{equation}
 \end{deff}
 
+
+
 \subsection{Zarisky-Nagata Theorem}
-Why do we studty symbolic power? The Zarisky-Nagata Theorem give a geometric interpretation of its significance.
+Why do we study symbolic power? The Zarisky-Nagata Theorem give a geometric interpretation of its significance.
 
 \begin{teo}[Zarisky-Nagata Theorem]
-	
+	If $ R = k[x_0 , ... , x_n] $ is a polynomial ring and $ \p $ is a prime ideal then:
+	\begin{equation}\label{eq:zar_nag_teo}
+	\p^{(m)} = \bigcap_{\substack{ \mm \in \mm\Spec (R)\\ \p \subset \mm}} \mm ^n
+	\end{equation}
 \end{teo}
+
+Using the equation \ref{eq:max_pow} we can see that in this case the $ n $-th symbolic power of a prime ideal represents the ideal composed by all the polynomials vanishing on the variety with a multiplicity of $ n $, also indicated with the notation:
+\begin{equation}\label{eq:ideal_vanish}
+	I^{\left<n\right>} = \{ f \in R \text{ that vanishes on } \mathcal{V}(I) \text{ with multiplicity } n\}
+\end{equation}
 
 \subsection{$ I^r \subseteq I^{(m)}$ }
 
