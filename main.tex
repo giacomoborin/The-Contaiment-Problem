@@ -251,7 +251,7 @@ Now we can see the actual definition of this concept for a general ideal.
 \subsection{Zarisky-Nagata Theorem}
 Why do we study symbolic power? The Zarisky-Nagata Theorem give a geometric interpretation of its significance.
 
-\begin{teo}[Zarisky-Nagata Theorem]
+\begin{teo}[Zarisky-Nagata Theorem \cite{Zar49, Nagata62}]
 	If $ R = k[x_0 , ... , x_n] $ is a polynomial ring and $ \p $ is a prime ideal then:
 	\begin{equation}\label{eq:zar_nag_teo}
 	\p^{(m)} = \bigcap_{\substack{ \mm \in \mm\Spec (R)\\ \p \subset \mm}} \mm ^n
@@ -263,7 +263,35 @@ Using the equation \ref{eq:max_pow} we can see that in this case the $ n $-th sy
 	I^{\left<n\right>} = \{ f \in R \text{ that vanishes on } \mathcal{V}(I) \text{ with multiplicity } n\}
 \end{equation}
 
-\subsection{$ I^r \subseteq I^{(m)}$ }
+%TODO Posso prendere roba dagli articoli
+
+
+%TODO Actual computation of symbolic powers
+
+\subsection{Relation between normal and symbolic power}
+A natural question that arises is the relation between the two powers.
+
+
+\begin{teo}
+	If $ R $ is a Noetherian reduced ring then $ I^r \subseteq I^{(m)}$  if and only if $ r \geq m $
+\end{teo}
+\begin{proof}
+	Since if $ I=0 $ it is obvious we assume it to be non zero.\\
+	The first implication is easy, infact for all $ \p $ we have that $ I^m \subset I^mR_\p \cap R $ since $ I \subset \p $\footnote{So nothing become zero} and $ 1 \not \in \p $.\\
+	Suppose now that $ I^r \subseteq I^{(m)}$ and $ r < m $. Consider an associated prime $ \p $, then if we consider the localization $ I_\p $ we have:
+	\begin{itemize}
+	\item $ (I_\p)^r = (I^r)_\p $ it is obvious
+	%TODO Sono la stessa notazione I_\p e IR_\p ??????
+	\item $ (I_\p)^m \supset (I^{(m)})_\p $, because $ I^{(m)} \subset I^mR_\p \cap R = I^m_\p \cap R $ and thus passing to the localization (again for the second term) we get the containment.
+	\end{itemize}
+	So composing this with the containment hypotesis (localized) we get $ (I_\p)^r = (I^r)_\p \subset (I^{(m)})_\p \subset (I_\p)^m $. Since the other inclusion is obvious we have $ I_\p^m= I_\p^r $, considering the intermediary power we have that $ I_\p I_\p^r =I_\p^r $, thus we can use the Nakayama Lemma:
+	
+	\begin{lem}[Nakayama]
+		Given an ideal $ \A $ of a commutative ring with unity $ A $ and $ M $ a finetely-generated module over $ A $ with $ IM = M $, then there exists a $ x \in A $ such that $ a \equiv 1 \mod I $ and $ rM = 0 $
+	\end{lem}
+	%TODO Scolta non è che l'estensione di I in R_\p e l'estensione non sono la stessa cosa?
+	In our case the ring is $ R_\p $, the ideal is $ I_\p $ and the module is $ I_\p^{r} $. So since $ R_p $ is a local ring with maximal ideal the localization of $ \p $, that is also the Jacobson Ideal, and $ I_\p ^r $ is contained in it. So for the characterization of the Jacobson ideal the element $ x $ is invertible and then $ I_\p^r = 0 $, but since we inherit that $ R_\p $ is a reduced ring this is possible only if $ I_\p = 0$. Since this is true for all the prime ideal (for the non associated one it is obvious since they intersect $ R \setminus I $) and this is a local property (\cite[Proposition 3.8]{AMCD}) we have $ I = 0 $, absurd.
+\end{proof} 
 
 \section{The Containment Problem}
 

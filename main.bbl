@@ -52,6 +52,33 @@
     \field{year}{2016}
   \endentry
 
+  \entry{Nagata62}{book}{}
+    \name{author}{1}{}{%
+      {{hash=NM}{%
+         family={{Nagata}},
+         familyi={N\bibinitperiod},
+         given={Masayoshi},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{language}{1}{%
+      {English}%
+    }
+    \list{publisher}{1}{%
+      {Interscience Publishers, New York, NY}%
+    }
+    \strng{namehash}{NM1}
+    \strng{fullhash}{NM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{title}{{Local rings}}
+    \field{volume}{13}
+    \field{journaltitle}{{Intersci. Tracts Pure Appl. Math.}}
+    \field{year}{1962}
+  \endentry
+
   \entry{Reid}{book}{}
     \name{author}{1}{}{%
       {{hash=RM}{%
@@ -80,6 +107,37 @@
     \field{volume}{29}
     \field{journaltitle}{{Lond. Math. Soc. Stud. Texts}}
     \field{year}{1995}
+  \endentry
+
+  \entry{Zar49}{article}{}
+    \name{author}{1}{}{%
+      {{hash=ZO}{%
+         family={Zariski},
+         familyi={Z\bibinitperiod},
+         given={Oscar},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZO1}
+    \strng{fullhash}{ZO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \verb{doi}
+    \verb 10.1007/BF02413926
+    \endverb
+    \field{isbn}{1618-1891}
+    \field{number}{1}
+    \field{pages}{187\bibrangedash 198}
+    \field{title}{A fundamental lemma from the theory of holomorphic functions
+  on an algebraic variety}
+    \verb{url}
+    \verb https://doi.org/10.1007/BF02413926
+    \endverb
+    \field{volume}{29}
+    \field{journaltitle}{Annali di Matematica Pura ed Applicata}
+    \field{year}{1949}
   \endentry
 \enddatalist
 \endinput
