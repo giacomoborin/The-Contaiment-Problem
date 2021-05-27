@@ -1,11 +1,10 @@
-\documentclass[]{article}
+\documentclass[]{book}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{amssymb,amsmath,amsthm,mathtools} 
 \usepackage{tikz-cd,wrapfig}
 \usepackage{tcolorbox}
-
 
 % Theorem definitons 
 \theoremstyle{plain}
@@ -24,11 +23,13 @@
 \newtheorem{idea}{Idea}
 \newtheorem*{nota}{Notation}
 
+
 %Bibliography
 \usepackage[style=numeric, maxnames=4,backend=bibtex]{biblatex}
 % other styles: numeric authortitle
 \addbibresource{biblio.bib}
 \usepackage{hyperref}
+
 
 % Commands 
 \newcommand{\Z}{\mathbb{Z}}
@@ -38,6 +39,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\PP}{\mathbb{P}}
 
 \newcommand{\p}{\mathfrak{p}}
 \newcommand{\q}{\mathfrak{q}}
@@ -54,28 +56,34 @@
 \DeclareMathOperator{\Ass}{Ass}
 \DeclareMathOperator{\Spec}{Spec}
 
+
+%Environment
 \newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
 \newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
 
+
+
 %opening
-\title{The Containment Problem}
+\title{The Containment Problem, 
+\\a general introduction and 
+\\the particular case of Steiner configurations ideals}
 \author{Giacomo Borin}
 
 
 
 \begin{document}
 
+\frontmatter
 \maketitle
+\tableofcontents
 
-\begin{abstract}
-	Stuff x 3
-\end{abstract}
 
-\section{Inroduction}
+\mainmatter
+\chapter{Inroduction and Symbolic Powers}
 %TODO Should I say that R is always commutative with unity
 
 
-\subsection{Associated primes}
+\section{Associated primes}
 
 Let $ R $ be a commutative ring with unity, and $ \A $,$ \B $ two ideal, we say that the ideal
 \begin{equation*}
@@ -103,7 +111,7 @@ For an ideal $ I $ we say that a prime is associated to $ I $ if it is associate
 
 
 
-\subsection{Primary decomposition}
+\section{Primary decomposition}
 
 %TODO Mettici qualcosa di meglio dai
 We would like to have some sort of factorization for the ideals of a ring, more general than the \textit{unique factorization domains}, in fact this is useful only for principal ideals. With this objective \textbf{primary decomposition} was introduced. 
@@ -201,7 +209,7 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 \end{teo}
 
 
-\subsection{Sybolic power}
+\section{Sybolic power}
 
 	Lets consider an homogeneous polynomial ring $ k[x_0 , ... , x_n] $, it is easy to se that if we consider a variety $ X $ with it's coordinate ring $ R = k[X] $ and a point $ p \in X $ (associated to the maximal ideal $ \mm_p $)  we have that:
 	
@@ -248,7 +256,7 @@ Now we can see the actual definition of this concept for a general ideal.
 
 
 
-\subsection{Zarisky-Nagata Theorem}
+\section{Zarisky-Nagata Theorem}
 Why do we study symbolic power? The Zarisky-Nagata Theorem give a geometric interpretation of its significance.
 
 \begin{teo}[Zarisky-Nagata Theorem \cite{Zar49, Nagata62}]
@@ -266,11 +274,45 @@ Using the equation \ref{eq:max_pow} we can see that in this case the $ n $-th sy
 %TODO Posso prendere roba dagli articoli
 
 
+\section{Fat Points}
+
+Let's consider now an object of interest, that has particular relations with the symbolic powers.\\
+Let $ k $ be a field and $ \PP^N$ the $ N $-th projective space over $ k $, consider now the distincts points $ p_1, ... ,p_k \in  \PP^N$ and some positive integers $ m_1 , ... ,m_k $. If we consider the defining ideals $ I(p_1), ... , I(p_k)  \subset k [\PP^N]$, representing the homogeneous polynomials vanishing on the point (before we have also used the notation $ \mm_{p_i}$ that emphasise their role as maximal ideals) we can define another ideal:
+\begin{equation}\label{eq:fat_pt}
+	I = \bigcap_{i=1}^k I(p_i)^m_i \subset k [\PP^N]
+\end{equation}
+Since is intersection of homogenous ideals $ I $ is also homogeneous and we can use it to define a $ 0 $ dimensional subscheme $ Z \subset \PP^N $, called \textbf{fat point subscheme} and indicated as 
+\[
+Z = m_1 p_1 + ... +  m_k p_k
+\]
+And we will denote $ I $ as $ I(Z) $. This ideal represents the homogeneous polynomials that vanishes on $ p_i $ with multiplicity $ m_i $ for all $ i = 1, ... , k $. The support of the scheme is the set of points $ \{ p_1 , ... , p_k\} $.\\
+The simbolic power of $ I(Z) $ has the particular from:
+\[
+I(Z)^{(m)} = \bigcap_{i=1}^k I(p_i)^{m_im}
+\]
+and so clearly represents the functions vanishing on $ p_i $ with multiplicity $ mm_i $ for all $ i = 1, ... , k $. 
+
+%TODO Scrivere dove li useremo
+
+\begin{tcolorbox}
+Potrebbe servirmi l'articolo \cite{Gimigliano89} ma per ora non lo trovo (forse).
+Esiste un modo per provare che è 0 dimensionale? %TODO Sono sicuro di sapere cosa vuol dire?
+\end{tcolorbox}
+
+
+\section{Computation of Symbolic powers}
+
 %TODO Actual computation of symbolic powers
 
-\subsection{Relation between normal and symbolic power}
-A natural question that arises is the relation between the two powers.
+\section{Relation between normal and symbolic power}
+\begin{tcolorbox}
 
+\textbf{Cosa trovata nell'intrdouduzione di \cite{BocciHrabourne10} , sarebbe carino riprendere un discorso simile}
+
+Consider a homogeneous ideal I in a polynomial ring k[PN ]. Taking powers of I is a natural algebraic construction, but it can be difficult to understand their structure geometrically (for example, knowing generators of Ir does not make it easy to know its primary decomposition). On the other hand, symbolic powers of I are more natural geometrically than algebraically. For example, if I is a radical ideal defining a finite set of points p 1, . . . , ps  PN , then its mth symbolic power I(m) is generated by all forms vanishing to order at least m at each point pi, but it is not easy to write down specific generators for I(m), even if one has generators for I.
+
+A natural question that arises is the relation between the two powers.
+\end{tcolorbox}
 
 \begin{teo}
 	If $ R $ is a Noetherian reduced ring then $ I^r \subseteq I^{(m)}$  if and only if $ r \geq m $
@@ -294,11 +336,19 @@ A natural question that arises is the relation between the two powers.
 \end{proof} 
 Sadly the other direction of the containment isn't that easy, and it's an open question and in the last years was studied for some classes of ideals.
 
-\section{The Containment Problem}
+\chapter{The Containment Problem}
 
-\subsection{The Waldschmidt constant}
+\section{The Waldschmidt constant}
 
-\newpage
+\chapter{Some conjectures for the Containment Problem}
+
+\chapter{Steiner Configuration ideal}
+Interesting ideals, am example is the Fano Plane
+
+\chapter{Coloration of Steiner Configuration ideal}
+Fun fuct, I can use the cp to check if there exists a colorarion
+
+
+\backmatter
 \printbibliography
-
 \end{document}
