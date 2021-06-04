@@ -19,6 +19,8 @@
 \newtheorem{rem}{Remark}
 \newtheorem{rems}[rem]{Remarks}
 \newtheorem{que}[rem]{Question}
+\newtheorem{ex}[rem]{Example}
+\newtheorem{exs}[rem]{Examples}
 
 \theoremstyle{definition}
 \newtheorem{deff}[teo]{Definiton}
@@ -30,7 +32,14 @@
 \usepackage[style=numeric, maxnames=4,backend=bibtex]{biblatex}
 % other styles: numeric authortitle
 \addbibresource{biblio.bib}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{frenchlinks=true}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = gray, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor   = green %Colour of citations
+}
 
 
 % Commands 
@@ -50,7 +59,7 @@
 \newcommand{\B}{\mathfrak{b}}
 \newcommand{\Cc}{\mathfrak{c}}
 
-\newcommand{\cont}[2]{ I^{(#1)} \subset I^{#2}}
+\newcommand{\cont}[2]{ I^{(#1)} \subseteq I^{#2}}
 
 
 \DeclareMathOperator*{\eqb }{=}
@@ -127,7 +136,7 @@ Between the associated primes of an ideal we distinguish the minimal elements, t
 
 We can define also the concept of minimal primes of ideal $ I $, that are the minimal ones that contains $ I $. In Noetherian rings these concepts are redundant, infact with the following proposition we have that minimal and isolated are equivalent. 
 
-\begin{prop}
+\begin{prop} \label{prop:minprimes}
 	For a Noetherian ring $ R$, the minimal primes of $ R $ are among the associated primes of $ R $
 \end{prop}
 
@@ -288,7 +297,7 @@ Now we can see the actual definition of this concept for a general ideal.
 \section{Zarisky-Nagata Theorem}
 Why do we study symbolic power? The Zarisky-Nagata Theorem give a geometric interpretation of its significance.
 
-\begin{teo}[Zarisky-Nagata Theorem \cite{Zar49, Nagata62}]
+\begin{teo}[Zarisky-Nagata Theorem \cite{Zar49, Nagata62}] \label{teo:zarnaga}
 	If $ R = k[x_0 , ... , x_n] $ is a polynomial ring and $ \p $ is a prime ideal then:
 	\begin{equation}\label{eq:zar_nag_teo}
 	\p^{(m)} = \bigcap_{\substack{ \mm \in \mm\Spec (R)\\ \p \subset \mm}} \mm ^n
@@ -369,9 +378,10 @@ A natural question that arises is the relation between the two powers.
 Sadly the other direction of the containment isn't that easy, and it's an open question and in the last years was studied for some classes of ideals.
 
 \chapter{The Containment Problem}
+	\section*{}
 	As stated before the Containment Problem, is an open question in Algebraic Geometry and Commutative Algebra. The general form of the problem is:
 	\begin{que} \label{que:cont}
-		Given a Noetherian Ring $ R $ and an ideal $ I $, for which $ m,r $ positive integers we have the containment:
+		Given a (\textbf{Noetherian ???}) Ring $ R $ and an ideal $ I $, for which $ m,r $ positive integers we have the containment:
 		$$ I^{(m)} \subset I^r $$
 	\end{que}
 	The problem posed in Question \ref{que:cont} is quite general and does not seem to have a unique and simple answer (as for the inverse one of theorem \ref{teo:inv_cont}). Usually we need to specify a particular ring and a particular ideal. Also we consider some precise pairs, like $ 3,2 $, or a subset given by a disequation. 
@@ -393,26 +403,72 @@ Sadly the other direction of the containment isn't that easy, and it's an open q
 		\p_0 \subsetneq \p_1 \subsetneq ... \subsetneq \p_{h} = \p
 	\end{equation}
 	The concept of is equivalent to the codimension of the ideal $ \p $, that is the (Krull) dimension of the localization $ R_\p $ (looking at the definition it is easy to see that they are the same). Similarly we can define the coheight of $ \p $ as the dimension of the ideal $ \p $ (the supremum of the lenght of chanis ascending from $ \p $). \\
-	For a general ideal $ I $ we define the height of $ I $ as the minimum height of its prime ideals and the \textbf{big height of $ I $} as the maximal height of its associated primes. \\
+	For a general ideal $ I $ we define the height of $ I $ as the minimum height of its prime ideals (for proposition \ref{prop:minprimes} we can consider only the associated ones) and the \textbf{big height of $ I $} as the maximal height of its associated primes. \\
+	An example of a non trivial use of theorem \ref{teo:cont:bigh} on a fat-point subscheme came directly from \cite[2.3]{EinLazSmi01}:
+	
+	\begin{ex}
+	Consider a reduced\footnote{A scheme is reduced if and only if the associated ideal is radical} fat point subscheme $ Z = m_1 p_1 + ... +  m_k p_k$ (o more simply a finite set of points) in $ \PP^2 $, since the subscheme has dimension $ 0 $ the ideal has big height $ 2 $, so we have $ \cont{2m}{m} $ for $ I = I(Z) $. Using Theorem \ref{teo:zarnaga} this implies that all $ F $ with multiplicity $ \geq 2m $ (greater or equal than $ 2m_im $ for all the points $ p_i $) stays in $ I(Z)^m $. 
+	\end{ex}
+	
 	Given that $ k[x_0, ... , x_N] $ is a regular ring (this is a consequence of the Hilbert's syzygy theorem \textbf{? ? ?}) and that obviously the big hieght of every homogeneous ideal $ I $ is less than the dimension of the ring ($ N $) we have a more geometrically form of theorem \ref{teo:cont:bigh}, that states $ \cont{Nm}{m} $ for all positive $ m $. %TODO Posso farlo per la varietà?
 	
 	
 	 
 	\begin{tcolorbox}
-		Nell'atricolo di Szemberg nel teorema 1.3 non richiede che I sia radicale, mi sono perso qualcosa? Mentre lo chiedono nell'articolo di Ein quando fa il discorso per la dimensione della varietà n= dim(X)\\
+		Nell'atricolo di Szemberg nel teorema 1.3 non richiede che I sia radicale (può essere che assuma essere l'ideale di uno schema ridotto), mi sono perso qualcosa? Mentre lo chiedono nell'articolo di Ein quando fa il discorso per la dimensione della varietà n= dim(X)\\
 		Why associated?\\
 		Are them the minimal\\
 		And embedded primes from def 2.6 of Grifo symbolic power\\
 		Should I insert the definition of Krull dimension??
 	\end{tcolorbox}
 
+\section{The resurgence}
+To mesure the containment property we can some constants associated to the ideal $ I $, on of them is the \textbf{resurgence}, proposed in \cite{Boc09resurgence}:
+\begin{deff}
+	For a proper non-zero ideal $ I $ in a commutative ring $ R $ we define the resurgence of $ I $ as:
+	\begin{equation*}
+		\rho(I)= \sup \left\lbrace \frac{m}{r} \, | \, I^{(m)} \not \subseteq I^r \right\rbrace 
+	\end{equation*}
+\end{deff}
+Bounding the resurgence of an ideal means finding a constant such that for $ \frac{m}{r} > \rho $ mean that $ \cont{m}{r} $ holds.
+For example using this quantity we can express the Theorem \ref{teo:cont:bigh} as:
+\begin{teo}
+	For a radical nonzero ideal in a regular ring $ \rho(I) \leq h $ where $ h $ is the big height of $ I $
+\end{teo}
+In general this is not an optimal bound and since it is difficult to directly evaluate $ \rho(I) $ we can pose the question when the resurgence is strictly less than the big height. 
+
+Another constant, closely related to $ \rho $, is the \textbf{asymptotich resurgence} (introduced in \cite{Guardo2012}), defined as:
+\begin{deff}
+	For a homogeneous nonzero proper ideal $ I $ of $ k[x_0 , ... , x_n] $ the asymptotic resurgence $ \rho_a(I) $ is:
+	\[ \rho_a(I) = \sup \left\lbrace \frac{m}{r} \, | \, I^{(mt)} \not \subseteq I^{rt} \text{ for all } t \gg 0 \right\rbrace \]
+\end{deff}
+
+
 	
 \section{The Waldschmidt constant}
 
-\chapter{Some conjectures for the Containment Problem}
+\begin{deff}
+content...
+\end{deff}
+
+\section{Some conjectures for the Containment Problem}
+
+
 
 \chapter{Steiner Configuration ideal}
-Interesting ideals, am example is the Fano Plane
+
+\begin{tcolorbox}
+Introduzione sugli steiner configurations and their use (maybe)
+\end{tcolorbox}
+
+A \textbf{Steiner system} $ (V,B) $ of type $ S(t,n,v) $ is an \textit{hypergraph} with $ |V|=v $ and all the elements of $ B $, called blocks, are $ n $-subsets (of $ V $) such that every $ t $-tuple of elements in $ V $ is contained in only one block of $ B $. \\
+To be more clear we recall that an hypergraph $ (V,B) $ is a generalization of the normal graph, in which $ V $ is a finite set and $ B $ contains non-empty subset of $ V $ called hyperedges (a normal graph conatins only pairs) such that they cover $ V $ ($ \bigcup_{H \in B} H = V $).
+
+\begin{deff}
+A finite set of points $ Z \subset \PP^n $ is a \textbf{star configuaration of points} of degree $ d \geq n $ if there exists $ d $ general hyperplanes such that the points of $ Z $ exactly the ones that are intersection of $ n $ of these hyperplanes.
+\end{deff}
+By general position we mean that any group of $ n $ hyperplanes intersect in only one point and there is no point belonging to more than $ n $ hyperplanes. It also used the notation $ d $-star to emphasize the degree. 
+
 
 \chapter{Coloration of Steiner Configuration ideal}
 Fun fuct, I can use the cp to check if there exists a colorarion
