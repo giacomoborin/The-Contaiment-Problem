@@ -360,8 +360,8 @@ A natural question that arises is the relation between the two powers.
 	\end{itemize}
 	So composing this with the containment hypotesis (localized) we get $ (I_\p)^r = (I^r)_\p \subset (I^{(m)})_\p \subset (I_\p)^m $. Since the other inclusion is obvious we have $ I_\p^m= I_\p^r $, considering the intermediary power we have that $ I_\p I_\p^r =I_\p^r $, thus we can use the Nakayama Lemma:
 	
-	\begin{lem}[Nakayama]
-		Given an ideal $ \A $ of a commutative ring with unity $ A $ and $ M $ a finetely-generated module over $ A $ with $ IM = M $, then there exists a $ x \in A $ such that $ a \equiv 1 \mod I $ and $ rM = 0 $
+	\begin{lem}[Nakayama] \label{lem:naka}
+		Given an ideal $ I $ of a commutative ring with unity $ A $ and $ M $ a finetely-generated module over $ A $ with $ IM = M $, then there exists a $ x \in A $ such that $ x \equiv 1 \mod I $ and $ xM = 0 $
 	\end{lem}
 	%TODO Scolta non è che l'estensione di I in R_\p e l'estensione non sono la stessa cosa?
 	In our case the ring is $ R_\p $, the ideal is $ I_\p $ and the module is $ I_\p^{r} $. So since $ R_p $ is a local ring with maximal ideal the localization of $ \p $, that is also the Jacobson Ideal, and $ I_\p ^r $ is contained in it. So for the characterization of the Jacobson ideal the element $ x $ is invertible and then $ I_\p^r = 0 $, but since we inherit that $ R_\p $ is a reduced ring this is possible only if $ I_\p = 0$. Since this is true for all the prime ideal (for the non associated one it is obvious since they intersect $ R \setminus I $) and this is a local property (\cite[Proposition 3.8]{AMCD}) we have $ I = 0 $, absurd.
@@ -385,7 +385,7 @@ Sadly the other direction of the containment isn't that easy, and it's an open q
 	\end{teo} 
 	
 	To understand this theorem we need two concepts.
-	For a Noetherian local ring $ (R,\mm) $ we say that it is regular local ring if the minimal number of generators of the maximal ideal is equal to the dimension of $ R $. The name came from a Zarisky's result: for an algebraic variety a point $ p $ is non singular (regolar) if and only if the ring of germs in $ p $ is regular. \\
+	For a Noetherian local ring $ (R,\mm) $ we say that it is regular local ring if the minimal number of generators of the maximal ideal is equal to the dimension of $ R $. The name came from a Zarisky's result: for an algebraic variety a point $ p $ is non singular (regular) if and only if the ring of germs in $ p $ is regular (\cite{Zar40}). Is possible to see this in a more modern way , infact for lemma \ref{lem:naka} (in a different form) is possible to show that $ R $ is regular if and only if $ \dim(\mm / \mm^2 ) = \dim (R) $, and from algebraic geometry $ \mm /\mm^2 $ is the cotangent space of the point corresponding to $ \mm $, so the tangent space has same dimension of the variety if and only if the localization is regular.\\
 	In general we say that a Noetherian ring is \textbf{regular} if the localization at every prime ideal is a regular local ring. Also a geometrical interpretation of this definition is that for an affine variety $ V $ its ring of regular functions $ \mathcal{O}_V $ is a regular ring if and only if $ V $ is a non singualr variety. 
 	
 	Instead to define the height of a prime ideal ($\hgt ( \p )$) in a Noetherian Ring $ R $ is the supremum of the lenghts $ h $ of prime ideals chains descending from $ \p $:
