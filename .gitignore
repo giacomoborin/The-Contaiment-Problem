@@ -292,5 +292,6 @@ TSWLatexianTemp*
 .DS_Store
 .DS_Store
 
-# Cartella con study files
+# Folders
 Study\ files/* 
+images/*

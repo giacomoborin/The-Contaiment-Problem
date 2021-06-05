@@ -6,6 +6,9 @@
 \usepackage{tikz-cd,wrapfig}
 \usepackage{tcolorbox}
 
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
 % Theorem definitons 
 \theoremstyle{plain}
 \newtheorem{teo}{Theorem}[section]
@@ -340,6 +343,13 @@ Esiste un modo per provare che è 0 dimensionale? %TODO Sono sicuro di sapere co
 
 \section{Computation of Symbolic powers}
 
+\begin{tcolorbox}
+Topics in commutative algebra:
+Symbolic Powers
+Eloìsa Grifo, 1.5 \\
+\fullcite{Grifo17computation}\\
+Macaulay 2 package Symbolic Power
+\end{tcolorbox}
 %TODO Actual computation of symbolic powers
 
 \subsection{Symbolic Powers and saturation of ideals}
@@ -462,7 +472,20 @@ Introduzione sugli steiner configurations and their use (maybe)
 \end{tcolorbox}
 
 A \textbf{Steiner system} $ (V,B) $ of type $ S(t,n,v) $ is an \textit{hypergraph} with $ |V|=v $ and all the elements of $ B $, called blocks, are $ n $-subsets (of $ V $) such that every $ t $-tuple of elements in $ V $ is contained in only one block of $ B $. \\
-To be more clear we recall that an hypergraph $ (V,B) $ is a generalization of the normal graph, in which $ V $ is a finite set and $ B $ contains non-empty subset of $ V $ called hyperedges (a normal graph conatins only pairs) such that they cover $ V $ ($ \bigcup_{H \in B} H = V $).
+To be more clear we recall that an hypergraph $ (V,B) $ is a generalization of the normal graph, in which $ V $ is a finite set and $ B $ contains non-empty subset of $ V $ called hyperedges (a normal graph conatins only pairs) such that they cover $ V $ ($ \bigcup_{H \in B} H = V $).\\
+Geometrically the blocks can be seen as linear subspace in a projective spce that contains points in $ V $, in particular this interpretation is useful for \textbf{Steiner triple sistem}, that are Steiner system with $ t=2 $ and $ n=3 $, also indicated with $ STS(v) $. 
+
+\begin{ex}
+	The most known example of Steiner is of type $ STS(7) $ and, up to isomorphism, is the Fano Plane ($ \PP_{\mathbb{F}^2}^3 $). It has as blocks all the lines (hypeplanes):
+	\[B := \{\{1, 2, 3\}, \{3, 4, 5\}, \{3, 6, 7\}, \{1, 4, 7\}, \{2, 4, 6\}, \{2, 5, 7\}, \{1, 5, 6\}\}\].
+\end{ex}
+
+\begin{figure}
+\includegraphics{fano_plane}
+\caption{Fano plane}
+\label{fig:fanoplane}
+\end{figure}
+
 
 \begin{deff}
 A finite set of points $ Z \subset \PP^n $ is a \textbf{star configuaration of points} of degree $ d \geq n $ if there exists $ d $ general hyperplanes such that the points of $ Z $ exactly the ones that are intersection of $ n $ of these hyperplanes.
