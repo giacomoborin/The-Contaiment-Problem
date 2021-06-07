@@ -46,6 +46,8 @@
 
 
 % Commands 
+
+\newcommand{\parder}[2]{ \frac{\partial #1}{\partial #2} }
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\K}{\mathbb{K}}
@@ -55,6 +57,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\PP}{\mathbb{P}}
 \newcommand{\HH}{\mathcal{H}}
+\newcommand{\MM}{\mathcal{M}}
 
 \newcommand{\p}{\mathfrak{p}}
 \newcommand{\q}{\mathfrak{q}}
@@ -433,12 +436,9 @@ Sadly the other direction of the containment isn't that easy, and it's an open q
 		Should I insert the definition of Krull dimension??
 	\end{tcolorbox}
 	
-	Is possible to improve Example \ref{es:P2points}? Infact in this case we know for $ n=1 $ that $  \cont{4}{2}$, but another question is if $ \cont{3}{2} $
-	\begin{conj}[Harbourne]
-	\end{conj}
 
 \section{The resurgence}
-To mesure the containment property we can some constants associated to the ideal $ I $, on of them is the \textbf{resurgence}, proposed in \cite{Boc09resurgence}:
+To mesure the containment property we can some constants associated to the ideal $ I $, one of them is the \textbf{resurgence}, proposed in \cite{Boc09resurgence}:
 \begin{deff}
 	For a proper non-zero ideal $ I $ in a commutative ring $ R $ we define the resurgence of $ I $ as:
 	\begin{equation*}
@@ -446,7 +446,7 @@ To mesure the containment property we can some constants associated to the ideal
 	\end{equation*}
 \end{deff}
 Bounding the resurgence of an ideal means finding a constant such that for $ \frac{m}{r} > \rho $ mean that $ \cont{m}{r} $ holds.
-For example using this quantity we can express the Theorem \ref{teo:cont:bigh} as:
+For example using this quantity we can express the Theorem \ref{teo:cont:bigh} (in a sligtly weaker version) as:
 \begin{teo}
 	For a radical nonzero ideal in a regular ring $ \rho(I) \leq h $ where $ h $ is the big height of $ I $
 \end{teo}
@@ -462,15 +462,79 @@ Another constant, closely related to $ \rho $, is the \textbf{asymptotich resurg
 	
 \section{The Waldschmidt constant}
 
-\begin{deff}
-content...
+\begin{deff}\label{def:walds}
+Given an homogeneous ideal $ I = \oplus_{d>0} I_d$ we can define the Waldschmidt constant as:
+\[
+\hat{\alpha}(I) = \lim_{m \to \infty} \frac{\alpha (I^{(m)})   }{m}
+\]
+
+where $ \alpha(I) $ is the least degree of a generator of $ I $, that is the smallest integer $ d $ such that $ I_d \neq 0 $.
 \end{deff}
 
-\section{Some conjectures for the Containment Problem}
+This constant was introduced for the first time in the 1970' in \cite{Wald77}. And is of particular interest for ideal of fat points. 
 
+\section{Some conjectures and questions for the Containment Problem}
+	A possible question arises from Example \ref{es:P2points}: in this case we know (using $ n=1 $) that $  \cont{4}{2}$, but from several example arises the question:
+	\begin{que}[Huneke] \label{que:32}
+	Let I be a saturated ideal of a reduced finite set of points in $ \PP^2 $, does the containment:
+	\[ \cont{3}{2} \]
+	hold?
+	\end{que}
+	
+	\begin{tcolorbox}
+	Trovare esempi e controesempi\\
+	Contro: Fermat cofiguaration and others in \cite{DSTG13}. 
+	Esempi: Star configuartions of points \cite{Har11}.
+	\end{tcolorbox}
+	
+	Another good question is if it is possible to improve the result from theorem \ref{teo:cont:bigh}. Since there is no known example for which the bound is optimal a new conjecture have been posed:
+	
+	\begin{conj}[Harbourne]\label{conj:harb}
+		Given a nonzero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m > 0 $:
+		\[
+		\cont{hm - h +1}{m}
+		\]
+	\end{conj}
+	
+	Trying to solve this problem directly has been shown to be quite difficult, so there are several  sharper version of the Conjecture \ref{conj:harb}, in particular the following one does not request the containment to hold in general, but only asymptotically:
+	
+	\begin{conj}[Stable Harbourne]\label{conj:stabharb}
+			Given a nonzero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m >> 0 $:
+			\[
+			\cont{hm - h +1}{m}
+			\]
+	\end{conj} 
+	
+	Another way to modify the Harbourne Conjecture is to use the irrelevant ideal $ \MM=\left\langle x_0 , ... ,x_n \right> $ (also said graded maximal ideal) : 
+	
+	\begin{conj}[Stable Harbourne-Huneke]\label{conj:stabharbhun}
+	Given a nonzero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m >> 0 $:
+	\begin{itemize}
+	\item $ I^{(hm)} \subset \MM^{r(h-1)} I^r$
+	\item $ I^{(hm - h +1 )} \subset \MM^{(r-1)(h-1)} I^r $
+	\end{itemize}
+	\end{conj}
+	
+	One simple example of why do we use the graded maximal ideal is:
+	
+	\begin{prop} \label{prop:eulid}
+	Given a $ r>0 $ and a nonzero, proper, homogeneous ideal $ I \subset k[x_0 , ... , x_n] $, with $ k $ of characteristic $ 0 $ we have:
+	\[ I^{(r+1)}   \subseteq \MM I^{(r)}\]
+	\end{prop}
+	\begin{proof}
+	This is a straight application of Euler identity for homegeneous polynomial:
+	\[ (\deg{F})F = \sum_{i=0}^{n} x_i \parder{F}{x_i} \]
+	, infact if $ F \in I^{(r+1)} $ we have $ \parder{F}{x_i} \in I^{(r)} $ for Zarisky-Nagata theorem (\ref{teo:zarnaga}) and the thesis follows.
+ 	\end{proof}
+ 	
+ 	
+ 	
+ 	
+	
 
 
 \chapter{Steiner Configuration ideal}
+\section*{}
 \begin{tcolorbox}
 Introduzione sugli steiner configurations and their use (maybe)
 \end{tcolorbox}
@@ -524,8 +588,61 @@ In our case we consider v-star configuartions in $ \PP^n $: let $ \HH  = \{ H_1 
  \end{deff}
  Please notice that these costructions are more general, so to obtain a Steiner Sytem we assign $ \mathcal{F}=B $, obtaining $ X_{\HH , B} $ and $  I_{X_{\HH , B}} $. 
  We call  $ X_{\HH , B} $ the \textbf{Steiner configuration of points} associated to the Steiner system $ (V , B) $ of type $ S(t , n,v) $ with respect to $ \HH $. \\
- Also we indicate $ C_{(n,v)} $ as the family of all the n-subset of $ V $ and we can costruct the Complement of a Steiner configuration of points with respect to $ \HH $ as the scheme $ X_{\HH , C_{(n,v)} \setminus B} $ (said C-Steiner too).
+ Also we indicate $ C_{(n,v)} $ as the family of all the n-subset of $ V $ and we can costruct the \textbf{Complement of a Steiner configuration} of points with respect to $ \HH $ as the scheme $ X_{\HH , C_{(n,v)} \setminus B} $ (said C-Steiner and indicated $ X_C $ too).
+Now we obtain some interesting results for this particular scheme. 
  
+ \section{Containment problem for C-Steiner System}
+ 
+ First of all we recall some results from \cite{Bal20Steiner} in partlicular the Theorem 3.9:
+ 
+ \begin{teo} \label{teo:alphaXC}
+Consider a Steiner system $ (V,B) $ of type $ S(t,n,v) $, let $ X_C \subset \PP^n$ be the corrispondent C-Steiner configuaration and $ I_{X_C} $ its ideal, then:
+\begin{enumerate}
+\item $ \alpha(I_{X_C}) = v- n $
+\item $ \alpha(I_{X_C}^{(q)}) = v- n +q  $ for $ q \in [2,n) $
+\item $ \alpha(I_{X_C}^{(m)}) = \alpha(I_{X_C}^{(q)}) + pv $ where $ m=pn + q $ and $ q \in [0,n) $
+\end{enumerate}
+ \end{teo}
+ 
+ \begin{tcolorbox}
+ Spiega l'idea dietro la dimostrazione\\
+ Utilizzo simplicial complex\\
+ $ I_{X_C}^{(m)} $ e $ I_{\Delta_C}^{(m)} $ hanno le stesse invarianti omologiche\\
+ Appendice die Eisenbud
+  \end{tcolorbox}
+  
+\begin{rem}\label{rem:alphaXC}
+We can use the results from theorem \ref{teo:alphaXC} to get some situation in which the containment problem fails, infact for nonzero, proper, homogeneous ideals $ I $ and $ J $ is straightforward that if $ \alpha(I) < \alpha(J) $ then $ I \not\subseteq J $, infact $ I_{ \alpha(I) } \neq 0$ but $ J_{ \alpha(I) } = 0 $. 
+\end{rem}
+
+\begin{cor}\label{cor:alphaXC}
+In the same hypothesis of theorem \ref{teo:alphaXC} we have $ I_{X_C}^{(m)} \not \subseteq I_{X_C}^d $ for any pair $ (m,d) $ such that:
+\begin{equation}\label{eq:cor:alphaXC:1}
+	m \equiv 1 \mod n \text{ and } d > 1 + \frac{ (m-1)v }{ n(v-n)}
+\end{equation}
+or 
+\begin{equation}\label{eq:cor:alphaXC:2}
+	m \not \equiv 1 \mod n \text{ and } d > 1  + \frac{ m - n }{ n } + \frac{ m }{ v - n }
+\end{equation}
+
+ In particular if $ v > 2n $ we have $ I_{X_C}^{(n)} \not \subseteq I_{X_C}^2  $
+ \end{cor}
+  
+ \begin{proof}
+ Using $ 1. $ from Theorem \ref{teo:alphaXC} and simple algebra we have $ \alpha({I_{X_C}}^d) = d\alpha(I_{X_C}) = d(v- n) $, than from remark \ref{rem:alphaXC} is enought to prove:
+ \begin{equation}\label{eq:proof:alphaXC}
+ \alpha(I_{X_C}^{(m)}) < d(v-n)
+ \end{equation}
+ \begin{itemize}
+ \item[$m \equiv 1$ : ] we have $ m = pn + 1 $ with $ p $ integer, so using $ 3. $ and $ 1. $ of theorem \ref{teo:alphaXC} for $ q = 1 $ we have $  \alpha(I_{X_C}^{(m)}) \eqb \alpha(I_{X_C} ) + pv \eqb (v-n) + \frac{m-1}{n}v  $. Grouping by the factor $ (n-v) $ and using the second part of \ref{eq:cor:alphaXC:1} we get \ref{eq:proof:alphaXC}. 
+ \item[$m \not\equiv 0,1$ : ] we have $ m = pn + q $ with $ q = 0 $ or $ 2 \leq q < n $ so using $ 3. $ and $ 2. $ of theorem \ref{teo:alphaXC} we get  $  \alpha(I_{X_C}^{(m)}) \eqb \alpha(I_{X_C}^{(q)} ) + pv \eqb v - n + q  +pv = (v - n) + m -pn +pv = (1 + p)(v - n) + m $. We can now simply osserve that $ p = \frac{m-q}{n} \geq \frac{m-n}{n} $ and then group again by $ v-n $ to use the second part of \ref{eq:cor:alphaXC:2} hence we get \ref{eq:proof:alphaXC}.
+ \item[$ m\equiv 0 $ : ] we have $ m=pn $, then \ref{eq:cor:alphaXC:2} became with simple algebra $ d > \frac{pv}{v-n} $, and hence for $ 3. $ of theorem \ref{teo:alphaXC} $  \alpha(I_{X_C}^{(m)})= pv < d(v-n)$, that satisfy \ref{eq:proof:alphaXC}. 
+ \end{itemize}
+ In particular if $ m=n $ and if $ v > 2n $ we have 
+ \[ 1 +\frac{ m - n }{ n } + \frac{ m }{ v - n } = 1 + \frac{ n }{ v - n }= \frac{ v }{ v - n } <2 \]
+ and hence $ I_{X_C}^{(n)} \not \subseteq I_{X_C}^2  $
+ 
+ \end{proof}
  
 
 \chapter{Coloration of Steiner Configuration ideal}
