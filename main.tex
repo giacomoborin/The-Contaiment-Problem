@@ -7,7 +7,7 @@
 \usepackage{tcolorbox}
 
 \usepackage{graphicx}
-\graphicspath{ {./images/} }
+%\graphicspath{ {images/} }
 
 % Theorem definitons 
 \theoremstyle{plain}
@@ -54,6 +54,7 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\PP}{\mathbb{P}}
+\newcommand{\HH}{\mathcal{H}}
 
 \newcommand{\p}{\mathfrak{p}}
 \newcommand{\q}{\mathfrak{q}}
@@ -416,7 +417,7 @@ Sadly the other direction of the containment isn't that easy, and it's an open q
 	For a general ideal $ I $ we define the height of $ I $ as the minimum height of its prime ideals (for proposition \ref{prop:minprimes} we can consider only the associated ones) and the \textbf{big height of $ I $} as the maximal height of its associated primes. \\
 	An example of a non trivial use of theorem \ref{teo:cont:bigh} on a fat-point subscheme came directly from \cite[2.3]{EinLazSmi01}:
 	
-	\begin{ex}
+	\begin{ex}\label{es:P2points}
 	Consider a reduced\footnote{A scheme is reduced if and only if the associated ideal is radical} fat point subscheme $ Z = m_1 p_1 + ... +  m_k p_k$ (o more simply a finite set of points) in $ \PP^2 $, since the subscheme has dimension $ 0 $ the ideal has big height $ 2 $, so we have $ \cont{2m}{m} $ for $ I = I(Z) $. Using Theorem \ref{teo:zarnaga} this implies that all $ F $ with multiplicity $ \geq 2m $ (greater or equal than $ 2m_im $ for all the points $ p_i $) stays in $ I(Z)^m $. 
 	\end{ex}
 	
@@ -431,6 +432,10 @@ Sadly the other direction of the containment isn't that easy, and it's an open q
 		And embedded primes from def 2.6 of Grifo symbolic power\\
 		Should I insert the definition of Krull dimension??
 	\end{tcolorbox}
+	
+	Is possible to improve Example \ref{es:P2points}? Infact in this case we know for $ n=1 $ that $  \cont{4}{2}$, but another question is if $ \cont{3}{2} $
+	\begin{conj}[Harbourne]
+	\end{conj}
 
 \section{The resurgence}
 To mesure the containment property we can some constants associated to the ideal $ I $, on of them is the \textbf{resurgence}, proposed in \cite{Boc09resurgence}:
@@ -466,32 +471,62 @@ content...
 
 
 \chapter{Steiner Configuration ideal}
-
 \begin{tcolorbox}
 Introduzione sugli steiner configurations and their use (maybe)
 \end{tcolorbox}
 
 A \textbf{Steiner system} $ (V,B) $ of type $ S(t,n,v) $ is an \textit{hypergraph} with $ |V|=v $ and all the elements of $ B $, called blocks, are $ n $-subsets (of $ V $) such that every $ t $-tuple of elements in $ V $ is contained in only one block of $ B $. \\
 To be more clear we recall that an hypergraph $ (V,B) $ is a generalization of the normal graph, in which $ V $ is a finite set and $ B $ contains non-empty subset of $ V $ called hyperedges (a normal graph conatins only pairs) such that they cover $ V $ ($ \bigcup_{H \in B} H = V $).\\
-Geometrically the blocks can be seen as linear subspace in a projective spce that contains points in $ V $, in particular this interpretation is useful for \textbf{Steiner triple sistem}, that are Steiner system with $ t=2 $ and $ n=3 $, also indicated with $ STS(v) $. 
+Geometrically the blocks can be seen as linear subspace in a projective spce that contains points in $ V $, in particular this interpretation is useful for \textbf{Steiner triple sistem}, that are Steiner system with $ t=2 $ and $ n=3 $, also indicated with $ STS(v) $. Later we will use again algebraic geometry, but with a different approach.
 
 \begin{ex}
-	The most known example of Steiner is of type $ STS(7) $ and, up to isomorphism, is the Fano Plane ($ \PP_{\mathbb{F}^2}^3 $). It has as blocks all the lines (hypeplanes):
+	The most known example of Steiner is of type $ STS(7) $ and, up to isomorphism, is the Fano Plane ($ \PP_{\mathbb{F}_2}^3 $). It has as blocks all the lines (hypeplanes):
 	\[B := \{\{1, 2, 3\}, \{3, 4, 5\}, \{3, 6, 7\}, \{1, 4, 7\}, \{2, 4, 6\}, \{2, 5, 7\}, \{1, 5, 6\}\}\].
 \end{ex}
 
+\begin{verbatim*}
+%Bho non va
 \begin{figure}
-\includegraphics{fano_plane}
+\includegraphics{images/fano_plane}
 \caption{Fano plane}
 \label{fig:fanoplane}
 \end{figure}
+\end{verbatim*}
 
+In general the existence of a Stiner system depends on the parameters, for instance a for a Steiner Triple system ($ t=2, n=3 $) we need $ v \equiv 1,3 \mod 6 $. There are not known sufficient existance conditions, but only necessary, for example if it exists a $ S(t,n,v) $ Steiner system we need: 
+\[
+	|B| = \frac{\binom{v}{t}}{\binom{n}{t}}
+\]
+This is simply combinatorics, infact every $ t $-tuple of vertices is contained in only one block and each one of these contains $ \binom{n}{t} $ $ t $-tuples. 
 
-\begin{deff}
-A finite set of points $ Z \subset \PP^n $ is a \textbf{star configuaration of points} of degree $ d \geq n $ if there exists $ d $ general hyperplanes such that the points of $ Z $ exactly the ones that are intersection of $ n $ of these hyperplanes.
+\section[Ideal of Steyner configuartion]{An algebraic representation of Steiner systems}
+
+As said before is possible to use algebraic geometry to represents the Steiner systems, in particular the concept of star configuaration of points:
+
+%Star configuarations
+\begin{deff} \label{def:starconf}
+A finite set of points $ Z \subset \PP^n $ is a \textbf{star configuaration of points} of degree $ d \geq n $ if there exists $ d $ general hyperplanes such that the points of $ Z $ are exactly the ones that are intersection of $ n $ of these hyperplanes.
 \end{deff}
 By general position we mean that any group of $ n $ hyperplanes intersect in only one point and there is no point belonging to more than $ n $ hyperplanes. It also used the notation $ d $-star to emphasize the degree. 
 
+In our case we consider v-star configuartions in $ \PP^n $: let $ \HH  = \{ H_1 , ... , H_v\}$ be general hyperplanes in $ \PP^n $, with $ H_i $ defined by the linear form $ l_i $ ( a linear map from $ \PP^n $ to the field of scalars $ \C $ \textbf{? ? ?}). Given an $ n $-subset of $ V $\footnote{Since $ V $ is finite we can index it using natual numbers and assume $ V = \{ 1 , ... , v\} $} $ \sigma : = \{ \sigma_1 , ... , \sigma_v\}$ we can associate to it a point $ P_{\HH, \sigma }= \cap_{\sigma_i \in \sigma} H_{\sigma_i}$, that has as vanishing ideal $ I_{P_{\HH, \sigma}} = \left< l_{\sigma_1} , ... , l_{\sigma_v} \right\rangle $.\\
+ Observe that in this case the vertices are represented by $( n-1 )$-linear space and the blocks by points.\\
+ Also we can define:
+ \begin{deff}\label{def:gensys}
+ Given a finite set $ V $ and a collection of non empty subset $ \mathcal{F} $ we can define, using the previous notation we can define the set of points:
+ \begin{equation}\label{eq:X}
+ X_{\HH , \mathcal{F}}:= \bigcup_{\sigma \in \mathcal{F} } P_{\HH, \sigma }
+ \end{equation}
+ and its defining ideal:
+ \begin{equation}\label{eq:I}
+ I_{X_{\HH , \mathcal{F}}}:= \bigcap_{\sigma \in \mathcal{F} } I_{\HH, \sigma }
+ \end{equation}
+ \end{deff}
+ Please notice that these costructions are more general, so to obtain a Steiner Sytem we assign $ \mathcal{F}=B $, obtaining $ X_{\HH , B} $ and $  I_{X_{\HH , B}} $. 
+ We call  $ X_{\HH , B} $ the \textbf{Steiner configuration of points} associated to the Steiner system $ (V , B) $ of type $ S(t , n,v) $ with respect to $ \HH $. \\
+ Also we indicate $ C_{(n,v)} $ as the family of all the n-subset of $ V $ and we can costruct the Complement of a Steiner configuration of points with respect to $ \HH $ as the scheme $ X_{\HH , C_{(n,v)} \setminus B} $ (said C-Steiner too).
+ 
+ 
 
 \chapter{Coloration of Steiner Configuration ideal}
 Fun fuct, I can use the cp to check if there exists a colorarion
