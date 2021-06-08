@@ -527,7 +527,10 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 	, infact if $ F \in I^{(r+1)} $ we have $ \parder{F}{x_i} \in I^{(r)} $ for Zarisky-Nagata theorem (\ref{teo:zarnaga}) and the thesis follows.
  	\end{proof}
  	
- 	
+
+\section{Some results on the Containment problem}
+
+	
  	
  	
 	
@@ -543,7 +546,7 @@ A \textbf{Steiner system} $ (V,B) $ of type $ S(t,n,v) $ is an \textit{hypergrap
 To be more clear we recall that an hypergraph $ (V,B) $ is a generalization of the normal graph, in which $ V $ is a finite set and $ B $ contains non-empty subset of $ V $ called hyperedges (a normal graph conatins only pairs) such that they cover $ V $ ($ \bigcup_{H \in B} H = V $).\\
 Geometrically the blocks can be seen as linear subspace in a projective spce that contains points in $ V $, in particular this interpretation is useful for \textbf{Steiner triple sistem}, that are Steiner system with $ t=2 $ and $ n=3 $, also indicated with $ STS(v) $. Later we will use again algebraic geometry, but with a different approach.
 
-\begin{ex}
+\begin{ex} \label{ex:fano1}
 	The most known example of Steiner is of type $ STS(7) $ and, up to isomorphism, is the Fano Plane ($ \PP_{\mathbb{F}_2}^3 $). It has as blocks all the lines (hypeplanes):
 	\[B := \{\{1, 2, 3\}, \{3, 4, 5\}, \{3, 6, 7\}, \{1, 4, 7\}, \{2, 4, 6\}, \{2, 5, 7\}, \{1, 5, 6\}\}\].
 \end{ex}
@@ -638,11 +641,21 @@ or
  \item[$m \not\equiv 0,1$ : ] we have $ m = pn + q $ with $ q = 0 $ or $ 2 \leq q < n $ so using $ 3. $ and $ 2. $ of theorem \ref{teo:alphaXC} we get  $  \alpha(I_{X_C}^{(m)}) \eqb \alpha(I_{X_C}^{(q)} ) + pv \eqb v - n + q  +pv = (v - n) + m -pn +pv = (1 + p)(v - n) + m $. We can now simply osserve that $ p = \frac{m-q}{n} \geq \frac{m-n}{n} $ and then group again by $ v-n $ to use the second part of \ref{eq:cor:alphaXC:2} hence we get \ref{eq:proof:alphaXC}.
  \item[$ m\equiv 0 $ : ] we have $ m=pn $, then \ref{eq:cor:alphaXC:2} became with simple algebra $ d > \frac{pv}{v-n} $, and hence for $ 3. $ of theorem \ref{teo:alphaXC} $  \alpha(I_{X_C}^{(m)})= pv < d(v-n)$, that satisfy \ref{eq:proof:alphaXC}. 
  \end{itemize}
- In particular if $ m=n $ and if $ v > 2n $ we have 
- \[ 1 +\frac{ m - n }{ n } + \frac{ m }{ v - n } = 1 + \frac{ n }{ v - n }= \frac{ v }{ v - n } <2 \]
+ In particular for $ m=n $ and $ v > 2n $ we have 
+ \[ 1 +\frac{ m - n }{ n } + \frac{ m }{ v - n } = 1 + \frac{ n }{ v - n }= \frac{ v }{ v - n } < 2 \]
  and hence $ I_{X_C}^{(n)} \not \subseteq I_{X_C}^2  $
- 
  \end{proof}
+ 
+ \begin{ex}\label{ex:fano2}
+ Consider now Steiner system of type $ S(2,3,7) $ as in example \ref{ex:fano1}, given $ \HH = \{ H_1 , ... , H_7 \} $ a collection of 7 hyperplanes in general position in $ \PP^3 $ we can use them to costruct the C-Steiner configuaration $ X_{\HH , C_{(3,7)} \setminus B} $ , it has:
+ \[
+ \binom{v}{n} - |B| = \binom{v}{n} -  \frac{\binom{v}{t}}{\binom{n}{t}} = \binom{7}{3} -  \frac{\binom{7}{2}}{\binom{3}{2}} = 28
+ \]
+ points in $ \PP^3 $. Its defining ideal is  $ I_{X_C} $. \\
+ Using the corollary \ref{cor:alphaXC} we get $ I_{X_C}^{(3)}  \not \subseteq I_{X_C}^2$, that is a new counterexample for question \ref{que:32}. 
+ 
+ 
+ \end{ex}
  
 
 \chapter{Coloration of Steiner Configuration ideal}
