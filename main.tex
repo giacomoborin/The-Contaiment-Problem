@@ -109,6 +109,7 @@
 \item Computazione potenze simboliche 
 \item Cosa vuol dire comparare le topologie
 \item Trovare quando è stato proposto 
+\item \textit{Reduction to characteristic p}
 \end{itemize}
 \end{tcolorbox}
 
@@ -299,6 +300,15 @@ Now we can see the actual definition of this concept for a general ideal.
 	\end{equation}
 \end{deff}
 
+\begin{rems} \label{rem:symb_basic}
+Working on the localization over the associate ideals $ \Ass(R/I) $ is possible to show some simple properties for the symbolic power:
+\begin{enumerate}
+\item $ I^{(1)}=I $
+\item $ I^{(a)} \subseteq I^{(b)} $ for all $ a > b $
+\item $ I^{(a)}I^{(b)}\subseteq I^{(a+b)} $ for all $ a,b $ positive integers
+\end{enumerate}
+\end{rems}
+
 
 
 \section{Zarisky-Nagata Theorem}
@@ -315,7 +325,7 @@ Using the equation \ref{eq:max_pow} we can see that in this case the $ n $-th sy
 \begin{equation}\label{eq:ideal_vanish}
 	I^{\left<n\right>} = \{ f \in R \text{ that vanishes on } \mathcal{V}(I) \text{ with multiplicity } n\}
 \end{equation}
-
+This is an astonishing result that emphasize a purely geometric significance of the symbolic power, in opposition to the normal one. 
 %TODO Posso prendere roba dagli articoli
 
 
@@ -392,7 +402,7 @@ A natural question that arises is the relation between the two powers.
 Sadly the other direction of the containment isn't that easy, and it's an open question and in the last years was studied for some classes of ideals.
 
 \chapter{The Containment Problem}
-	\section*{}
+\section*{}
 	As stated before the Containment Problem, is an open question in Algebraic Geometry and Commutative Algebra. The general form of the problem is:
 	\begin{que} \label{que:cont}
 		Given a (\textbf{Noetherian ???}) Ring $ R $ and an ideal $ I $, for which $ m,r $ positive integers we have the containment:
@@ -416,8 +426,13 @@ Sadly the other direction of the containment isn't that easy, and it's an open q
 	\begin{equation}\label{eq:chain}
 		\p_0 \subsetneq \p_1 \subsetneq ... \subsetneq \p_{h} = \p
 	\end{equation}
-	The concept of is equivalent to the codimension of the ideal $ \p $, that is the (Krull) dimension of the localization $ R_\p $ (looking at the definition it is easy to see that they are the same). Similarly we can define the coheight of $ \p $ as the dimension of the ideal $ \p $ (the supremum of the lenght of chanis ascending from $ \p $). \\
-	For a general ideal $ I $ we define the height of $ I $ as the minimum height of its prime ideals (for proposition \ref{prop:minprimes} we can consider only the associated ones) and the \textbf{big height of $ I $} as the maximal height of its associated primes. \\
+	The concept of height is equivalent to the codimension of the ideal $ \p $, that is the (Krull) dimension of the localization $ R_\p $ (looking at the definition it is easy to see that they are the same). Similarly we can define the coheight of $ \p $ as the dimension of the ideal $ \p $ (the supremum of the lenght of chanis ascending from $ \p $). \\
+	For a general ideal $ I $ we define the height of $ I $ as the minimum height of its prime ideals (for proposition \ref{prop:minprimes} we can consider only the associated ones) and the \textbf{big height of $ I $} as the maximal height of its associated primes. 
+	
+	\begin{tcolorbox}
+	Largest analytic spread in the localization ???
+	\end{tcolorbox}
+	
 	An example of a non trivial use of theorem \ref{teo:cont:bigh} on a fat-point subscheme came directly from \cite[2.3]{EinLazSmi01}:
 	
 	\begin{ex}\label{es:P2points}
@@ -499,7 +514,7 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 	Trying to solve this problem directly has been shown to be quite difficult, so there are several  sharper version of the Conjecture \ref{conj:harb}, in particular the following one does not request the containment to hold in general, but only asymptotically:
 	
 	\begin{conj}[Stable Harbourne]\label{conj:stabharb}
-			Given a nonzero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m >> 0 $:
+			Given a nonzero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m \gg 0 $:
 			\[
 			\cont{hm - h +1}{m}
 			\]
@@ -508,7 +523,7 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 	Another way to modify the Harbourne Conjecture is to use the irrelevant ideal $ \MM=\left\langle x_0 , ... ,x_n \right> $ (also said graded maximal ideal) : 
 	
 	\begin{conj}[Stable Harbourne-Huneke]\label{conj:stabharbhun}
-	Given a nonzero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m >> 0 $:
+	Given a nonzero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m \gg 0 $:
 	\begin{itemize}
 	\item $ I^{(hm)} \subset \MM^{r(h-1)} I^r$
 	\item $ I^{(hm - h +1 )} \subset \MM^{(r-1)(h-1)} I^r $
@@ -530,8 +545,39 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 
 \section{Some results on the Containment problem}
 
-	
- 	
+We recall some results on the Containment problem that we will use. First of all a generalization of theorem \ref{teo:cont:bigh}:
+
+\begin{teo}[Theorem 4.4 of \cite{John14}]\label{teo:cont:bighgen}
+Let $ R $ be a regular ring containing a field e let $ I $ be an ideal with big height $ h $, for all intgers $ n \geq 1 $, $ s \geq 0 $ and $ 0 \leq s_1 \leq  ... \leq s_n $ such that $ s = s_1 +  ... + s_n $ we have:
+\begin{equation}\label{eq:cont:bighgen}
+	I^{(s + nh)} \subseteq \prod_{i=1}^{n} I^{(s_i + 1)}
+\end{equation}
+\end{teo}
+
+For $ s=0 $ we obtain $ I^{(nh)} \subseteq \prod_{i=1}^{n} I^{(1)} = ( I^{(1)} )^n = I^n$ (theorem \ref{teo:cont:bigh}). Observe that \ref{eq:cont:bighgen} is the other direction of point $ 3. $ in Remarks \ref{rem:symb_basic} and as it happened for the cotainment problem only one of the two directions is elementary. 
+
+
+
+Here there are some sufficent conditions for the Stable Harbourne Conjecture (\ref{conj:stabharb}) to hold, discovered by Eloìsa Grifo in \cite{Grifo20}. 
+
+
+\begin{teo} \label{teo:grifo}
+Let $ I $ be a radical ideal of big height $ h $ in a regular ring $ R $, suppose that one of this conditions holds:
+\begin{enumerate}
+\item if exists $ m>0 $ such that $ \cont{hm - h}{m} $
+\item if exists $ m>0 $ such that $ \cont{hm - h +1 }{m} $ and for all $ r \geq m $ we have $ \cont{n+h }{ }I^{(n)}$
+\item if the resurgence of the ideal satisfy $ \rho(I) < h $
+\end{enumerate}
+then for $ n \gg 0  $ we have $ \cont{hn - h +1}{n} $
+\end{teo}
+
+
+\begin{tcolorbox}
+Dimostrazioni di alcuni di questi punti\\
+Potrei anche inserire la dimostrazione del teorema \ref{teo:cont:bigh} in caratteristica finita\\
+Qualcosa sulla \textit{reduction to characteristic p}
+\end{tcolorbox}
+
  	
 	
 
@@ -653,6 +699,7 @@ or
  \]
  points in $ \PP^3 $. Its defining ideal is  $ I_{X_C} $. \\
  Using the corollary \ref{cor:alphaXC} we get $ I_{X_C}^{(3)}  \not \subseteq I_{X_C}^2$, that is a new counterexample for question \ref{que:32}. 
+ 
  
  
  \end{ex}
