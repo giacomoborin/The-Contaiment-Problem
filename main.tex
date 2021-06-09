@@ -68,6 +68,8 @@
 
 \newcommand{\cont}[2]{ I^{(#1)} \subseteq I^{#2}}
 
+\newcommand{\proposta}{colback=red!50!white, colframe=red!50!white}
+
 
 \DeclareMathOperator*{\eqb }{=}
 \DeclareMathOperator{\ord}{ord}
@@ -439,8 +441,10 @@ Sadly the other direction of the containment isn't that easy, and it's an open q
 	Consider a reduced\footnote{A scheme is reduced if and only if the associated ideal is radical} fat point subscheme $ Z = m_1 p_1 + ... +  m_k p_k$ (o more simply a finite set of points) in $ \PP^2 $, since the subscheme has dimension $ 0 $ the ideal has big height $ 2 $, so we have $ \cont{2m}{m} $ for $ I = I(Z) $. Using Theorem \ref{teo:zarnaga} this implies that all $ F $ with multiplicity $ \geq 2m $ (greater or equal than $ 2m_im $ for all the points $ p_i $) stays in $ I(Z)^m $. 
 	\end{ex}
 	
+\begin{tcolorbox}[colback=red!20!white, colframe=red!50!white]
 	Given that $ k[x_0, ... , x_N] $ is a regular ring (this is a consequence of the Hilbert's syzygy theorem \textbf{? ? ?}) and that obviously the big hieght of every homogeneous ideal $ I $ is less than the dimension of the ring ($ N $) we have a more geometrically form of theorem \ref{teo:cont:bigh}, that states $ \cont{Nm}{m} $ for all positive $ m $. %TODO Posso farlo per la varietà?
 	
+\end{tcolorbox}
 	
 	 
 	\begin{tcolorbox}
@@ -548,9 +552,9 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 We recall some results on the Containment problem that we will use. First of all a generalization of theorem \ref{teo:cont:bigh}:
 
 \begin{teo}[Theorem 4.4 of \cite{John14}]\label{teo:cont:bighgen}
-Let $ R $ be a regular ring containing a field e let $ I $ be an ideal with big height $ h $, for all intgers $ n \geq 1 $, $ s \geq 0 $ and $ 0 \leq s_1 \leq  ... \leq s_n $ such that $ s = s_1 +  ... + s_n $ we have:
+Let $ R $ be a regular ring containing a field and let $ I $ be an ideal with big height $ h $, for all intgers $ n \geq 1 $, $ s \geq -nh $ and $ s_1 \leq  ... \leq s_n $ integers such that $ s = s_1 +  ... + s_n $ we have:
 \begin{equation}\label{eq:cont:bighgen}
-	I^{(s + nh)} \subseteq \prod_{i=1}^{n} I^{(s_i + 1)}
+	I^{(nh + s)} \subseteq \prod_{i=1}^{n} I^{(s_i + 1)}
 \end{equation}
 \end{teo}
 
@@ -561,7 +565,7 @@ For $ s=0 $ we obtain $ I^{(nh)} \subseteq \prod_{i=1}^{n} I^{(1)} = ( I^{(1)} )
 Here there are some sufficent conditions for the Stable Harbourne Conjecture (\ref{conj:stabharb}) to hold, discovered by Eloìsa Grifo in \cite{Grifo20}. 
 
 
-\begin{teo} \label{teo:grifo}
+\begin{teo} \label{teo:cont:grifo0}
 Let $ I $ be a radical ideal of big height $ h $ in a regular ring $ R $, suppose that one of this conditions holds:
 \begin{enumerate}
 \item if exists $ m>0 $ such that $ \cont{hm - h}{m} $
@@ -571,8 +575,31 @@ Let $ I $ be a radical ideal of big height $ h $ in a regular ring $ R $, suppos
 then for $ n \gg 0  $ we have $ \cont{hn - h +1}{n} $
 \end{teo}
 
+The first condition is a direct consequence of this theorem, using that $ \cont{f+1}{(f)} $ for all $ f $:
+
+\begin{teo}[Theorem 2.5 of \cite{Grifo20}] \label{teo:cont:grifo1}
+Let R be a regular ring containing a field, and let $ I $ be a radical ideal with big height $ h $, if it exists $ m>1 $ with $ \cont{hm -h}{m} $ then for all $ k \geq hm $ we have:
+$$ \cont{hk - h}{k} $$
+\end{teo}
+
+\begin{proof}
+For a $ k\geq hm  $ we can write $ k = hm + t $ with $ t\geq 0 $. Then the idea of this proof is to use theorem \ref{teo:cont:bighgen}, with $ n= h+ t $, $ s = h^2m - h^2 - h$ and 
+\begin{equation}\label{eq:defsi}
+s_i = \begin{cases}
+hm-h-1 & \text{for } i = 1 , ... ,h\\
+0 &\text{for }  i =h+1 , ..., h + t
+\end{cases}
+\end{equation}
+thus we have $ hn + s = h(h+t) + h(hm-h-1)= h^2 + ht + h^2m - h^2 - h = h(hm + t) - h = hk - h$. Hence using the theorem:
+\begin{equation}\label{eq:teo:grifo1}
+I^{ ( hk - h)} = I^{ (hn + s)} \subseteq {( I^{ (mh -h ) } )}^h {I}^t \stackrel{*}{\subseteq} (I^m)^h I^t = I^{ mh +t} = I^k
+\end{equation}
+Where in $\ast$ we use the hypotesis $ \cont{hm-h}{m} $.
+\end{proof}
+
 
 \begin{tcolorbox}
+Nel teo \ref{teo:cont:bighgen} va bene s? o serve $ s\geq 0 $?\\
 Dimostrazioni di alcuni di questi punti\\
 Potrei anche inserire la dimostrazione del teorema \ref{teo:cont:bigh} in caratteristica finita\\
 Qualcosa sulla \textit{reduction to characteristic p}
@@ -699,10 +726,42 @@ or
  \]
  points in $ \PP^3 $. Its defining ideal is  $ I_{X_C} $. \\
  Using the corollary \ref{cor:alphaXC} we get $ I_{X_C}^{(3)}  \not \subseteq I_{X_C}^2$, that is a new counterexample for question \ref{que:32}. 
- 
- 
- 
  \end{ex}
+ 
+Another useful results from \cite{Bal20Steiner} is the calculation of the largest degree in a minimal homogeneous set of generators of the ideal $ I_{X_C} $, i.e. the integer $ \omega (I_{X_	C}) $ such that given a minimal set of generators $\{ f_1 ,... , f_k\} $ of $ I_{X_	C} $ we are granted to have $ \deg (f_i) \leq \omega (I_{X_	C}) $ for all $ i $ and the bound is reached by at least one element. %TODO Dovrei dimostrare che è definito bene?
+
+\begin{prop}[Corollary 4.7 in \cite{Bal20Steiner}]
+\label{prop:largdeg}
+For a Steiner system of type $ S(t,n,v) $ we have:
+\begin{equation}\label{eq:largdeg}
+\omega (I_{X_	C}) = 
+\begin{cases}
+\alpha (I_{X_	C})=v-n     & \text{ if } t = n-1\\
+\alpha (I_{X_	C})+1=v-n +1 & \text{ if } t < n-1
+\end{cases}
+\end{equation}
+\end{prop}
+
+Here we prove one of the main result of the article \cite{Bal21Steiner}:
+\begin{teo}\label{teo:cont:csteiner}
+
+Let $ I_{X_C} \subset k[x_0 , ... , x_n]$ be the defining ideal of a Complement of a Steiner configuaration of points in $ \PP^n_k $, then it satisfies:
+\begin{itemize}
+\item Stable Harbourne-Huneke Conjecture (\ref{conj:stabharbhun})
+\item Stable Harbourne Conjecture (\ref{conj:stabharb})
+\end{itemize}
+\end{teo}
+
+\begin{proof}
+\begin{itemize}
+\item \begin{tcolorbox}
+Non ho ben capito da dove venga $ \cont{n(r-1)}{r} $
+\end{tcolorbox}
+\item Using theorem \ref{teo:cont:grifo0}, condition $ 1. $, and having $ \cont{n(r-1)}{r} $ we get for $ r \gg 0 $ the containment $ \cont{hn - h +1}{n} $
+\end{itemize}
+\end{proof}
+
+
  
 
 \chapter{Coloration of Steiner Configuration ideal}
