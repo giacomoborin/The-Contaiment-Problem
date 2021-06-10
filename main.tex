@@ -5,6 +5,7 @@
 \usepackage{amssymb,amsmath,amsthm,mathtools} 
 \usepackage{tikz-cd,wrapfig}
 \usepackage{tcolorbox}
+\tcbuselibrary{skins}
 
 \usepackage{graphicx}
 %\graphicspath{ {images/} }
@@ -88,14 +89,25 @@
 
 \newtcolorbox{tboxprop}[1][]
 {
+title=Possibile aggiunta,
 colback=red!20!white, 
 colframe=red!50!white
 }
 \newtcolorbox{tboxque}[1][]
 {
-colback=green!20!white, 
-colframe=green!50!white
+title=Domanda,
+colback=blue!20!white, 
+colframe=blue!50!white
 }
+
+\newtcolorbox{tboxtodo}[1][]
+{
+title=TODO,
+coltitle=white,
+colback=yellow!20!white, 
+colframe=orange!50!white
+}
+
 
 
 %opening
@@ -116,7 +128,10 @@ colframe=green!50!white
 \mainmatter
 
 \section*{Cose da fare}
-\begin{tcolorbox}
+\tcbset{colframe=red!75!black,fonttitle=\bfseries}
+\begin{tcolorbox}[enhanced,title=My title,
+  interior style={left color=red!20!white,
+                  right color=yellow!50!white}]
 \begin{itemize}
 \item Decidere bene su quali anelli si sta lavorando
 \item Computazione potenze simboliche 
@@ -129,6 +144,8 @@ colframe=green!50!white
 \item Sono dei fat points quindi hanno dimensione 0 e codimensione $ n $
 \end{enumerate}
 \end{itemize}
+\tcblower
+Lower part
 \end{tcolorbox}
 
 
@@ -375,13 +392,13 @@ Esiste un modo per provare che è 0 dimensionale? %TODO Sono sicuro di sapere co
 
 \section{Computation of Symbolic powers}
 
-\begin{tcolorbox}
+\begin{tboxtodo}
 Topics in commutative algebra:
 Symbolic Powers
 Eloìsa Grifo, 1.5 \\
 \fullcite{Grifo17computation}\\
 Macaulay 2 package Symbolic Power
-\end{tcolorbox}
+\end{tboxtodo}
 %TODO Actual computation of symbolic powers
 
 \subsection{Symbolic Powers and saturation of ideals}
@@ -447,9 +464,10 @@ Sadly the other direction of the containment isn't that easy, and it's an open q
 	The concept of height is equivalent to the codimension of the ideal $ \p $, that is the (Krull) dimension of the localization $ R_\p $ (looking at the definition it is easy to see that they are the same). Similarly we can define the coheight of $ \p $ as the dimension of the ideal $ \p $ (the supremum of the lenght of chanis ascending from $ \p $). \\
 	For a general ideal $ I $ we define the height of $ I $ as the minimum height of its prime ideals (for proposition \ref{prop:minprimes} we can consider only the associated ones) and the \textbf{big height of $ I $} as the maximal height of its associated primes. 
 	
-	\begin{tcolorbox}
-	Largest analytic spread in the localization ???
-	\end{tcolorbox}
+	\begin{tboxtodo}
+	Largest analytic spread in the localization ???\\
+	Dovrebbe essere lo stesso dell'altezza, ma voglio controllare e aggiungerlo
+	\end{tboxtodo}
 	
 	An example of a non trivial use of theorem \ref{teo:cont:bigh} on a fat-point subscheme came directly from \cite[2.3]{EinLazSmi01}:
 	
@@ -462,13 +480,11 @@ Sadly the other direction of the containment isn't that easy, and it's an open q
 \end{tboxprop}
 	
 	 
-	\begin{tcolorbox}
+	\begin{tboxque}
 		Nell'atricolo di Szemberg nel teorema 1.3 non richiede che I sia radicale (può essere che assuma essere l'ideale di uno schema ridotto), mi sono perso qualcosa? Mentre lo chiedono nell'articolo di Ein quando fa il discorso per la dimensione della varietà n= dim(X)\\
-		Why associated?\\
-		Are them the minimal\\
 		And embedded primes from def 2.6 of Grifo symbolic power\\
 		Should I insert the definition of Krull dimension??
-	\end{tcolorbox}
+	\end{tboxque}
 	
 
 \section{The resurgence}
@@ -515,11 +531,11 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 	hold?
 	\end{que}
 	
-	\begin{tcolorbox}
+	\begin{tboxprop}
 	Trovare esempi e controesempi\\
 	Contro: Fermat cofiguaration and others in \cite{DSTG13}. 
 	Esempi: Star configuartions of points \cite{Har11}.
-	\end{tcolorbox}
+	\end{tboxprop}
 	
 	Another good question is if it is possible to improve the result from theorem \ref{teo:cont:bigh}. Since there is no known example for which the bound is optimal a new conjecture have been posed:
 	
@@ -613,12 +629,12 @@ Where in $\ast$ we use the hypotesis $ \cont{hm-h}{m} $.
 \end{proof}
 
 
-\begin{tcolorbox}
+\begin{tboxque}
 Nel teo \ref{teo:cont:bighgen} va bene s? o serve $ s\geq 0 $?\\
 Dimostrazioni di alcuni di questi punti\\
 Potrei anche inserire la dimostrazione del teorema \ref{teo:cont:bigh} in caratteristica finita\\
 Qualcosa sulla \textit{reduction to characteristic p}
-\end{tcolorbox}
+\end{tboxque}
 
  	
 	
@@ -626,9 +642,9 @@ Qualcosa sulla \textit{reduction to characteristic p}
 
 \chapter{Steiner Configuration ideal}
 \section*{}
-\begin{tcolorbox}
+\begin{tboxtodo}
 Introduzione sugli steiner configurations and their use (maybe)
-\end{tcolorbox}
+\end{tboxtodo}
 
 A \textbf{Steiner system} $ (V,B) $ of type $ S(t,n,v) $ is an \textit{hypergraph} with $ |V|=v $ and all the elements of $ B $, called blocks, are $ n $-subsets (of $ V $) such that every $ t $-tuple of elements in $ V $ is contained in only one block of $ B $. \\
 To be more clear we recall that an hypergraph $ (V,B) $ is a generalization of the normal graph, in which $ V $ is a finite set and $ B $ contains non-empty subset of $ V $ called hyperedges (a normal graph conatins only pairs) such that they cover $ V $ ($ \bigcup_{H \in B} H = V $).\\
@@ -695,12 +711,12 @@ Consider a Steiner system $ (V,B) $ of type $ S(t,n,v) $, let $ X_C \subset \PP^
 \end{enumerate}
  \end{teo}
  
- \begin{tcolorbox}
+ \begin{tboxprop}
  Spiega l'idea dietro la dimostrazione\\
  Utilizzo simplicial complex\\
  $ I_{X_C}^{(m)} $ e $ I_{\Delta_C}^{(m)} $ hanno le stesse invarianti omologiche\\
  Appendice die Eisenbud
-  \end{tcolorbox}
+  \end{tboxprop}
   
 \begin{rem}\label{rem:alphaXC}
 We can use the results from theorem \ref{teo:alphaXC} to get some situation in which the containment problem fails, infact for nonzero, proper, homogeneous ideals $ I $ and $ J $ is straightforward that if $ \alpha(I) < \alpha(J) $ then $ I \not\subseteq J $, infact $ I_{ \alpha(I) } \neq 0$ but $ J_{ \alpha(I) } = 0 $. 
@@ -761,19 +777,20 @@ Here we prove one of the main result of the article \cite{Bal21Steiner}:
 \begin{teo}\label{teo:cont:csteiner}
 
 Let $ I_{X_C} \subset k[x_0 , ... , x_n]$ be the defining ideal of a Complement of a Steiner configuaration of points in $ \PP^n_k $, then it satisfies:
-\begin{itemize}
+\begin{enumerate}
 \item Stable Harbourne-Huneke Conjecture (\ref{conj:stabharbhun})
 \item Stable Harbourne Conjecture (\ref{conj:stabharb})
-\end{itemize}
+\end{enumerate}
 \end{teo}
 
 \begin{proof}
-\begin{itemize}
-\item \begin{tcolorbox}
+\begin{enumerate}
+\item \quad \\
+\begin{tboxque}
 Non ho ben capito da dove venga $ \cont{n(r-1)}{r} $
-\end{tcolorbox}
-\item Using theorem \ref{teo:cont:grifo0}, condition $ 1. $, and having $ \cont{n(r-1)}{r} $ we get for $ r \gg 0 $ the containment $ \cont{hn - h +1}{n} $
-\end{itemize}
+\end{tboxque}
+\item Using theorem \ref{teo:cont:grifo0}, condition \textit{1.} , and having $ \cont{n(r-1)}{r} $ we get for $ r \gg 0 $ the containment $ \cont{hn - h +1}{n} $
+\end{enumerate}
 \end{proof}
 
 
