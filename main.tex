@@ -129,7 +129,7 @@ colframe=orange!50!white
 
 \section*{Cose da fare}
 \tcbset{colframe=red!75!black,fonttitle=\bfseries}
-\begin{tcolorbox}[enhanced,title=My title,
+\begin{tcolorbox}[enhanced,title=Domande e dubbi,
   interior style={left color=red!20!white,
                   right color=yellow!50!white}]
 \begin{itemize}
@@ -630,7 +630,7 @@ Where in $\ast$ we use the hypotesis $ \cont{hm-h}{m} $.
 
 
 \begin{tboxque}
-Nel teo \ref{teo:cont:bighgen} va bene s? o serve $ s\geq 0 $?\\
+Nel teo \ref{teo:cont:bighgen} va bene $ s \in \Z $? o serve $ s\geq 0 $?\\
 Dimostrazioni di alcuni di questi punti\\
 Potrei anche inserire la dimostrazione del teorema \ref{teo:cont:bigh} in caratteristica finita\\
 Qualcosa sulla \textit{reduction to characteristic p}
@@ -655,14 +655,13 @@ Geometrically the blocks can be seen as linear subspace in a projective spce tha
 	\[B := \{\{1, 2, 3\}, \{3, 4, 5\}, \{3, 6, 7\}, \{1, 4, 7\}, \{2, 4, 6\}, \{2, 5, 7\}, \{1, 5, 6\}\}\].
 \end{ex}
 
-\begin{verbatim*}
-%Bho non va
+
 \begin{figure}
-\includegraphics{images/fano_plane}
+\includegraphics{images/fanoplane}
 \caption{Fano plane}
 \label{fig:fanoplane}
 \end{figure}
-\end{verbatim*}
+
 
 In general the existence of a Stiner system depends on the parameters, for instance a for a Steiner Triple system ($ t=2, n=3 $) we need $ v \equiv 1,3 \mod 6 $. There are not known sufficient existance conditions, but only necessary, for example if it exists a $ S(t,n,v) $ Steiner system we need: 
 \[
@@ -830,32 +829,90 @@ We say that a hypergraph $ H $ is m-cromatic if it is $ m $-colourable, but no $
 
 We see now a stronger definition, that also require at every block to have vertices of every colour:
 
-\begin{deff}
-A hypergraph $ H = (V,E) $ is said $ c $-coverable if there exists a partition in $ c $ subset of $ V = U_1 \sqcup ... \sqcup U_m $ such that for every edge $ \beta \in B $ we have $ \beta \cap U_i \neq \emptyset$ for all $ i = 1, ... , m $
+\begin{deff} \label{def:cover}
+A hypergraph $ H = (V,E) $ is said \textit{$ c $-coverable} if there exists a partition in $ c $ subset of $ V = U_1 \sqcup ... \sqcup U_m $ such that every $ U_i $ is a \textbf{vertex cover}, which means  that for all $ \beta \in E $ we have $ \beta \cap U_i \neq \emptyset $ ($ U_i $ meets all the edges). 
 \end{deff}
 
 \section{Edge between algebra and colouring theory}
 
-vertex cover and indipendent set
+An 
 
-\begin{deff}\label{def:coverideal}
-Edge ideal and cover ideal
+This concepts where introduced for graph in \cite{Villa90} and for hypergraph in \cite{Ha08}.
+
+\begin{deff}\label{def:edgecoverideal}
+Given a hypergraph $ H = (V,E) $, let $ V = \{ x_1 , ... , x_v \} $ and $ k $ be a field, thus we can identify the vertices as variables in $ k[x_1 , ... , x_v] $ (also indicated $ k[V] $), then we can define the \textbf{edge ideal}:
+\begin{equation}\label{eq:edgeideal}
+I(H) := \left\langle x_{i_1} \cdots x_{i_r} \,|\, \{ x_{i_1} , ... , x_{i_r}\} \in E \right\rangle 
+\end{equation}
+and the \textbf{cover ideal} as:
+\begin{equation}\label{eq:coverideal}
+J(H) := \left\langle x_{j_1} \cdots x_{j_r} \,|\, \{ x_{j_1} , ... , x_{j_r}\} \text{ is a vertex cover of } H \right\rangle 
+\end{equation}
 \end{deff}
 
-Possibility of a different definition of cover ideal
+The notion of edge ideal is of relevance for several reasons, for example there is a natural bijection between simple hypergraph over $ V $ and squarefree monomial ideal of $ k[V] $:
+\begin{align} \label{eq:bij}
+\left\{\begin{array}{c}
+\text { simple hypergraphs } \\
+H=(V, E)
+\end{array}\right\}
+&  \leftrightarrow\left 
+\{\begin{array}{c}
+\text { squarefree monomial } \\
+\text { ideals } I \subseteq k\left[V \right]
+\end{array}\right\} \\
+(\beta = \{ x_{i_1} , ... , x_{i_r}\} \in E )
+&  \leftrightarrow  
+(x_{i_1} \cdots x_{i_r} \in I)
+\end{align}
+
+Where I recall that a \textit{simple hypergraph} is an hypergraph without loops (edges with a single element) and without repeated edges (i.e. if $ \beta, \gamma \in E$ and $ \beta \subseteq \gamma $ then $ \beta = \gamma $). 
+
+Is possible to give a different definition of cover ideal that focuses more on its primary decomposition, infact we can define for every $ \beta = \{ x_{i_1} , ... , x_{i_r}\} \in E  $ the ideal:
+\begin{equation}\label{eq:prime}
+\p_\beta = \left\langle  x_{i_1} , ... , x_{i_r} \right\rangle \subseteq k[V]
+\end{equation}
+then it is obvious that for every squarefree monomial element $ x_{i_1} \cdots x_{i_r} $ it stays in $ J(H) $ if and only if it stays in $ \p_\beta $ for all $ \beta \in E $ (because this means it intersect every edge), so we can also characterize: 
+\begin{equation}\label{eq:coverideal2}
+J(H) = \bigcap_{\beta \in E} \p_\beta
+\end{equation}
+
+\begin{tboxtodo}
+Spiegare meglio perchè sono primi associati, è ovvio che i primi associati debbano avere la forma $  \left\langle  x_{i_1} , ... , x_{i_r} \right\rangle $, ma dovrebbe essere valido anche per potenze di ideali monomiali (monomial ideals), ma non ho idee di come mostrarlo
+\end{tboxtodo}
+
+
+
 
 \begin{teo}[Theorem 3.2 of \cite{Fran10Colourings}] \label{teo:col:chi}
 content...
 \end{teo}
 
+For a hypergraph $ H = (V,B) $ we define $ \tau (H) $ as the smallest cardinality for a set $ \min_{\beta \in B} \{ |\beta |\}$, we can use this number to show a link, introduced in \cite{Bal21Steiner}, between the coloring properties of $ H $ and when the Containment Problem fail for the cover ideal:
+
 \begin{teo}[Theorem 4.8 of \cite{Bal21Steiner}] \label{teo:col:cont}
-content...
+Let $ H = (V,B) $ be a hypergraph, if $ H $ is not $ d $-coverable then $ J(H)^{(\tau(H))} \not \subseteq J(H)^d $
 \end{teo}
 
+\begin{proof}
+Let $\tau = \tau (H)$, $ J = J(H) $ and $ \mm_V = x_1 \cdots x_v $, then we have:\\
+since for each $ \beta \in B $ the ideal $ \p_\beta $ has $ |\beta | \geq \tau $ elements, we have $ \mm_V \in \p_\beta $ (it is enought to use $\tau$ of the $ |b| $ variables and complete with the missing one). Then using Zarisky-Nagata theorem \ref{teo:zarnaga} we get $ \mm_V \in J^{(\tau)} $.\\
+Suppose now that $ \mm_V \in J^d $, then there exists $ m_1 , ... , m_d \in J $ with $ \mm_V = m_1 \cdots m_d $. We want to use them to costruct a partition: $ U_i := \{ x_u \in V \,|\, x_u \text{ divides } m_i\} $. $ U_1 , ... ,U_d $ is a partition because $ \mm_V $ is squarefree (so no repetition) and it is divided by all the vertices of $ V $. Since for all $ i $  $ m_i $ is a squarefree monomial in $ J $, by using the definition $ \ref{eq:coverideal} $ of cover ideal we have that $ U_i $ must be a vertex cover, and then we have a partition that satisfies definition \ref{def:cover} of $ d $-coverable, absurd. 
+\end{proof}
 
+We can use this theorem to prove the failure of Question \ref{que:32} for cover ideals of Steiner Triple System $ STS(v) $
 \begin{prop}
-Failure of $ 32 $ for cover ideal
+If $ v>3 $ and $ S = (V,B) $ is a Steiner Triple System $ S(2,3,v) $, then $ J(S)^{(3)}  \not \subseteq J(S)^2$
 \end{prop}
+
+\begin{proof}
+Obviously $ \tau(S)=n=3 $, so we need only to prove that $ S $ is not $ 2 $-coverable. Assume that there exists a partition of vertex covers $ U_1 \sqcup U_2 = V $, so for all triple $ \{ i , j, k\} \in B $ we have $ \{ i , j, k\} \cap U_1 \neq \emptyset $ and $ \{ i , j, k\} \cap U_2 \neq \emptyset $, this means that for every edges there are exactly $ 2 $ colors. This characteristic is called $ 2 $-bicolourable, that \textbf{???}. 
+\begin{tboxque}
+Non so bene perchè dovrebbe essere assurdo e purtroppo non trovo l'articolo \textit{Steiner triple systems and their chromatic number, Rosa A.}
+\end{tboxque}
+\end{proof}
+
+
 \backmatter
 \printbibliography
 \end{document}
