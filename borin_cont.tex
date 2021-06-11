@@ -1,0 +1,10 @@
+\begin{teo} \label{teo:borin1}
+	Consider a simple hypergraph $H = (V,B)$, then for all $ q < \chi(H)$ we have: 
+	\[ J(H)^{( \tau(H)(q-1) )} \not \subseteq J(H)^q \]
+\end{teo}
+
+\begin{proof}
+	Let $\tau = \tau (H)$ and $ J = J(H) $. From theorem \ref{teo:col:chi} we have $\mm_V^{q-1} \not \in J^q$, therfore we only need to prove $ \mm_V^{q-1} \in J(H)^{( \tau (q-1) )}$. For this we use as in \ref{teo:col:cont} theorem \ref{teo:zarnaga}:\\
+For every $\beta \in B $ we know that it has at least $	\tau$ elements, without los of generality we can assume that they are $x_1 , ... , x_\tau$, and so we have $x_1^{q-1} \cdots  x_\tau^{q-1} \in \p_\beta^{\tau(q -1)} $ thus completing with the other elements we get $\mm_V^{q-1} \in \p_\beta^{\tau(q -1)} $. 
+\end{proof} 
+

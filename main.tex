@@ -78,6 +78,7 @@
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\hgt}{ht}
 \DeclareMathOperator{\co}{co}
+\DeclareMathOperator{\reg}{reg}
 
 
 
@@ -488,7 +489,7 @@ Sadly the other direction of the containment isn't that easy, and it's an open q
 	
 
 \section{The resurgence}
-To mesure the containment property we can some constants associated to the ideal $ I $, one of them is the \textbf{resurgence}, proposed in \cite{Boc09resurgence}:
+To mesure the containment property we can some constants associated to the ideal $ I $, one of them is the \textbf{resurgence}, proposed in \cite{Boc09resurgence}, an important article that focuses in the use of some numerical invariant of the ideal to describe the pairs for which the containment problem holds. 
 \begin{deff}
 	For a proper non-zero ideal $ I $ in a commutative ring $ R $ we define the resurgence of $ I $ as:
 	\begin{equation*}
@@ -591,6 +592,31 @@ Let $ R $ be a regular ring containing a field and let $ I $ be an ideal with bi
 
 For $ s=0 $ we obtain $ I^{(nh)} \subseteq \prod_{i=1}^{n} I^{(1)} = ( I^{(1)} )^n = I^n$ (theorem \ref{teo:cont:bigh}). Observe that \ref{eq:cont:bighgen} is the other direction of point $ 3. $ in Remarks \ref{rem:symb_basic} and as it happened for the cotainment problem only one of the two directions is elementary. 
 
+Another results on the containment problem came again from \cite{BocciHrabourne10}, in which it uses the least degree of a generator $\alpha(I)$ and the \textit{Castelnuovo-Mumford regularity}:
+
+\begin{deff} \label{def:reg}
+Let $ I \subset R $ be an homogeneous ideal in a graded ring, and let 
+\[
+0 \to \dots \to F_j \to \dots \to F_0 \to I \to 0
+\]
+be the minimal free resolution of $ I $ over $ R $, let $ f_j $ be the maximal degree of a generator in a minimal set of generators of  $ F_j $, then the regularity of $ I $ is:
+\[ 
+ \reg(I) := \max_{j\geq 0} \{f_j - j \}
+\]
+\end{deff}
+
+\begin{tboxtodo}
+Metti alcune referneze, direi di usare Eisenbud
+\end{tboxtodo}
+
+\begin{lem}[Postulation Crtiterion 2 from \cite{BocciHrabourne10}] \label{lem:cont:reg}
+Let $ I $ be a homogeneous ideal defining a $ 0 $-dimensional subscheme in $ \PP^N $, if we have the inequality:
+\begin{equation}\label{eq:cont:reg}
+r \cdot \reg(I) \leq \alpha(I^{(m)})
+\end{equation}
+then we have:
+\[ \cont{m}{r}\]
+\end{lem}
 
 
 Here there are some sufficent conditions for the Stable Harbourne Conjecture (\ref{conj:stabharb}) to hold, discovered by Eloìsa Grifo in \cite{Grifo20}. 
@@ -656,11 +682,11 @@ Geometrically the blocks can be seen as linear subspace in a projective spce tha
 \end{ex}
 
 
-\begin{figure}
-\includegraphics{images/fanoplane}
-\caption{Fano plane}
-\label{fig:fanoplane}
-\end{figure}
+%\begin{figure}
+%\includegraphics[width=10cm,height=10cm,keepaspectratio]{images/fanoplane.png}
+%\caption{Fano plane}
+%\label{fig:fanoplane}
+%\end{figure}
 
 
 In general the existence of a Stiner system depends on the parameters, for instance a for a Steiner Triple system ($ t=2, n=3 $) we need $ v \equiv 1,3 \mod 6 $. There are not known sufficient existance conditions, but only necessary, for example if it exists a $ S(t,n,v) $ Steiner system we need: 
@@ -883,10 +909,16 @@ Spiegare meglio perchè sono primi associati, è ovvio che i primi associati deb
 
 
 
+Is possible to exploit the algebraic structure of the cover ideal to get information on the coloration of the hypergraph (and viceversa), for example in \cite{Fran10Colourings} was discovered that using the element $  \mm_V = x_1 \cdots x_v  $ is possible to evaluate the cromatic number:
 
 \begin{teo}[Theorem 3.2 of \cite{Fran10Colourings}] \label{teo:col:chi}
-content...
+Let $ H = (V,E) $ be a simple hypergraph on $ V = \{ x_1 , ... , x_v\} $, then for all $ d >0 $ we have $ \mm_V^{d-1} \in J(H)^d $ if and only if $ \chi(H) \leq d $, thus we can characterize:
+\begin{equation}\label{eq:col:chi}
+ \chi(H)   = \min \{ d \,|\, \mm_V^{d-1} \in J(H)^d\}
+ \end{equation}
 \end{teo}
+
+
 
 For a hypergraph $ H = (V,B) $ we define $ \tau (H) $ as the smallest cardinality for a set $ \min_{\beta \in B} \{ |\beta |\}$, we can use this number to show a link, introduced in \cite{Bal21Steiner}, between the coloring properties of $ H $ and when the Containment Problem fail for the cover ideal:
 
@@ -895,7 +927,7 @@ Let $ H = (V,B) $ be a hypergraph, if $ H $ is not $ d $-coverable then $ J(H)^{
 \end{teo}
 
 \begin{proof}
-Let $\tau = \tau (H)$, $ J = J(H) $ and $ \mm_V = x_1 \cdots x_v $, then we have:\\
+Let $\tau = \tau (H)$ and $ J = J(H) $, then we have:\\
 since for each $ \beta \in B $ the ideal $ \p_\beta $ has $ |\beta | \geq \tau $ elements, we have $ \mm_V \in \p_\beta $ (it is enought to use $\tau$ of the $ |b| $ variables and complete with the missing one). Then using Zarisky-Nagata theorem \ref{teo:zarnaga} we get $ \mm_V \in J^{(\tau)} $.\\
 Suppose now that $ \mm_V \in J^d $, then there exists $ m_1 , ... , m_d \in J $ with $ \mm_V = m_1 \cdots m_d $. We want to use them to costruct a partition: $ U_i := \{ x_u \in V \,|\, x_u \text{ divides } m_i\} $. $ U_1 , ... ,U_d $ is a partition because $ \mm_V $ is squarefree (so no repetition) and it is divided by all the vertices of $ V $. Since for all $ i $  $ m_i $ is a squarefree monomial in $ J $, by using the definition $ \ref{eq:coverideal} $ of cover ideal we have that $ U_i $ must be a vertex cover, and then we have a partition that satisfies definition \ref{def:cover} of $ d $-coverable, absurd. 
 \end{proof}
@@ -911,6 +943,23 @@ Obviously $ \tau(S)=n=3 $, so we need only to prove that $ S $ is not $ 2 $-cove
 Non so bene perchè dovrebbe essere assurdo e purtroppo non trovo l'articolo \textit{Steiner triple systems and their chromatic number, Rosa A.}
 \end{tboxque}
 \end{proof}
+
+\begin{teo} \label{teo:borin1}
+	Consider a simple hypergraph $H = (V,B)$, if we indicate $\tau = \tau (H)$ and the cover ideal $ J = J(H)$,  then for all $ q < \chi(H)$ we have: 
+	\[ J^{( \tau(q-1) )} \not \subseteq J^q \]
+\end{teo}
+
+Another possible failure of the containment can be deducted by the cromatic numeber:
+
+\begin{proof}
+	From theorem \ref{teo:col:chi} we have $\mm_V^{q-1} \not \in J^q$, therfore we only need to prove $ \mm_V^{q-1} \in J(H)^{( \tau (q-1) )}$ to fail the containment. For this we use as in \ref{teo:col:cont} theorem \ref{teo:zarnaga}:\\
+	For every $\beta \in B $ we know that it has at least $	\tau$ elements, without los of generality we can assume that they are $x_1 , ... , x_\tau$, and so we have $x_1^{q-1} \cdots  x_\tau^{q-1} \in \p_\beta^{\tau(q -1)} $ thus completing with the other elements we get $\mm_V^{q-1} \in \p_\beta^{\tau(q -1)} $. 
+\end{proof} 
+
+\begin{tboxtodo}
+Questo teorema è da controllare meglio perchè l'ho scritto io.\\
+Inoltre se fosse giusto vorrei provare a usarlo per fare qualche controesempio. 
+\end{tboxtodo}
 
 
 \backmatter
