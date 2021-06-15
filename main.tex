@@ -147,7 +147,7 @@ colframe=orange!50!white
 
 
 
-\chapter{Inroduction and Symbolic Powers}
+\chapter{Introduction and Symbolic Powers}
 %TODO Should I say that R is always commutative with unity
 
 
@@ -175,7 +175,7 @@ For an ideal $ I $ we say that a prime is associated to $ I $ if it is associate
 
 Between the associated primes of an ideal we distinguish the minimal elements, that are called \textbf{isolated primes}, whilst the other one are said \textbf{embedded primes}.
 
-We can define also the minimal primes of the ideal $ I $, that are the minimal ones that contains $ I $. In Noetherian rings these concepts are redundant, infact with the following proposition we have that minimal and isolated are equivalent. 
+We can define also the minimal primes of the ideal $ I $, that are the minimal ones that contains $ I $. In Noetherian rings these concepts are redundant, in fact with the following proposition we have that minimal and isolated are equivalent. 
 
 \begin{prop} \label{prop:minprimes}
 	For a Noetherian ring $ R$, the minimal primes of $ R $ are among the associated primes of $ R $
@@ -187,7 +187,7 @@ We can define also the minimal primes of the ideal $ I $, that are the minimal o
 \end{tboxque}
 
 \begin{rem}
-	Another name for associated ideal used by the Bourbaki group is \textit{assasin} or \textit{assassinator}, a word play between associated and annihilator. %todo check this
+	Another name for associated ideal used by the Bourbaki group is \textit{assassin} or \textit{assassinator}, a word play between associated and annihilator. %todo check this
 \end{rem}
 
 \section{Primary decomposition}
@@ -198,13 +198,13 @@ We would like to have some sort of factorization for the ideals of a ring, more 
 Now I will recall some of the principal result on this topics, contained in \cite[Section 7]{Reid} and \cite[Section 4 and Page 83]{AMCD}
 
 \begin{deff}
-	An ideal $ \A $ in a ring $ R $ is said primary if $ R/\A$ is different from zero and all its zerodivisors are nilpotent, otherwhise we can express this as:
+	An ideal $ \A $ in a ring $ R $ is said primary if $ R/\A$ is different from zero and all its zero divisors are nilpotent, otherwise we can express this as:
 	\begin{equation*}
 		fg \in \aa \Longrightarrow f \in \A \text{ or } g^n \in \A \text{ for some } n >0
 	\end{equation*}
 \end{deff}
 
-It is obvious that the radical of a primary ideal is a prime ideal, infact given $ fg \in \rad(\A)  $ we have $ (fg)^m = f^m g^m \in \A $ for $ m>0 $, and so $ f^m \in \A \Rightarrow f \in \rad(\A)$ or exists $ n>0 $ such that $ g^{mn} \in \A \Rightarrow g \in \rad(\A) $.
+It is obvious that the radical of a primary ideal is a prime ideal, in fact given $ fg \in \rad(\A)  $ we have $ (fg)^m = f^m g^m \in \A $ for $ m>0 $, and so $ f^m \in \A \Rightarrow f \in \rad(\A)$ or exists $ n>0 $ such that $ g^{mn} \in \A \Rightarrow g \in \rad(\A) $.
 
 If $ \A $ is a primary ideal such that $ \rad(\A) = \p $ we say that $ \A $ is {$ \p $-primary}.
 
@@ -241,7 +241,7 @@ In general such structure does not exists, but for $ R $ noetherian we can prove
 \end{lem}
 
 \begin{proof}
-Modulo working in the quotient ring we can assume to work with the zero ideal. So we assume that the ideal $ 0 $ is irreducible and we consider $ x$, $y $ such that $ xy = 0 $ with $ y\neq 0 $, then $ x $ is a zerodivisor. So we have that $ y \in \Ann(x) $\footnote{For $ \Ann(x) $ we mean the annihilator of the principal ideal $ (x) $} and we consider the chain:
+Modulo working in the quotient ring we can assume to work with the zero ideal. So we assume that the ideal $ 0 $ is irreducible and we consider $ x$, $y $ such that $ xy = 0 $ with $ y\neq 0 $, then $ x $ is a zero divisor. So we have that $ y \in \Ann(x) $\footnote{For $ \Ann(x) $ we mean the annihilator of the principal ideal $ (x) $} and we consider the chain:
 $$ \Ann(x)  \subseteq \Ann(x^2) \subseteq ...$$
 And for the ascending chain condition there exists $ m $ with $ \Ann(x^m)= \Ann(x^{m+1})$. \\
 Now consider $ a \in (x^m)\cap (y) $, then $ a = bx^m $ and $ a = cy $, so since $ y \in \Ann(x) $ we have $ 0 = cyx = ax = bx^m x=  bx^{m+1}$, so $ b \in  \Ann(x^{m+1}) = \Ann(x^m) $, then $ a = bx^n = 0 $. So $ (x^m)\cap (y)=0 $ and since $ 0 $ is irreducible and $ y\neq 0 $ then $ x^m=0 $. 
@@ -252,19 +252,19 @@ Combining this two lemmas we have that the decomposition for Noetherian ring. In
 \begin{teo}[Lasker-Noether]
 A Noetherian Ring is also a Lasker Ring
 \end{teo}
-Now we need to achive some kind of uniqueness. First of all we say that a decomposition $ \A = \bigcap_{i=1}^n \q_i $ is \textbf{minimal} if:
+Now we need to achieve some kind of uniqueness. First of all we say that a decomposition $ \A = \bigcap_{i=1}^n \q_i $ is \textbf{minimal} if:
 \begin{enumerate}
 \item $ \rad(\q_i) $ are all distinct
 \item for all $ i $ we have $ \q_i \not \subseteq \bigcap_{j\neq i} \q_j $
 \end{enumerate}
 
-We can easly prove that from every decomposition we can obtain a minimal one using the following lemma:
+We can easily prove that from every decomposition we can obtain a minimal one using the following lemma:
 
 \begin{lem}
 If $ \A $ and $ \B $ are $ \p $-primary then $ \A \cap \B $ is $ \p $-primary
 \end{lem}
 
-Infact we can group the primaty ideal to get $ 1. $ and omit the superfluous terms to get $ 2. $
+In fact we can group the primary ideal to get $ 1. $ and omit the superfluous terms to get $ 2. $
 
 So we have two theorem of uniqueness for the prime \textit{associated}\footnote{not a random word} to a particular decomposition. 
 
@@ -275,7 +275,7 @@ and so the set of primes $ \{ \p_1 , ... , \p_n \} $ is uniquely determined by t
 
 \end{teo}
 
-This theorem show the strong ralation that we have between the associated prime ideal and the primary decomposition for Noetherian ring. Also, it is possible to show that the factors $ \q_i $ depends only on the ideal and the primes $ \p_i $, in particular:
+This theorem show the strong relation that we have between the associated prime ideal and the primary decomposition for Noetherian ring. Also, it is possible to show that the factors $ \q_i $ depends only on the ideal and the primes $ \p_i $, in particular:
 
 \begin{teo}[Second uniqueness theorem]
 Let $ R $ be a ring and $ \A $ an ideal with minimal decomposition $ \bigcap_{i=1}^n \q_i $, where $ \q_i $ is $ \p_i $-primary, then if $ \p_i $ is a minimal element of $ \{ \p_1 , ... , \p_n \} $ $ \q_i $ is uniquely determined by the ideals $ \A $ and $ \p_i $.\\
@@ -288,7 +288,7 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 \end{teo}
 
 
-\section{Sybolic power}
+\section{Symbolic power}
 
 	Lets consider an homogeneous polynomial ring $ k[x_0 , ... , x_n] $, it is easy to se that if we consider a variety $ X $ with it's coordinate ring $ R = k[X] $ and a point $ p \in X $ (associated to the maximal ideal $ \mm_p $)  we have that:
 	
@@ -296,7 +296,7 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 		\mm_p^n = \{ f \in k[X] \text{ such that } f \text{ vanishes in } p \text{ with multiplicity } n\}
 	\end{equation}
 	
-	Sadly for a general ideal to get a similiar results we can not rely on the normal power, so now we introduce a sharper object, the \textbf{symbolic power}, that has nicer geometric properties and we will see that in some way can answer to our problem. %TODO Qualcosa di più qui
+	Sadly for a general ideal to get a similar results we can not rely on the normal power, so now we introduce a sharper object, the \textbf{symbolic power}, that has nicer geometric properties and we will see that in some way can answer to our problem. %TODO Qualcosa di più qui
 	
 	\begin{tboxtodo}
 	Vorrei trovare qualche informazione di più sulla storia delle potenze simboliche, che non penso fossero state introdotte con questa idea, ad esempio ho visto che è usata per dimostrare il \textit{Krull's height theorem}
@@ -306,24 +306,24 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 	\begin{equation}\label{eq:sym_pow_p1}
 		\p^{(n)} = \{ r \in R \text{ such that exists } s \in R \setminus \p \text{ with } sr \in \p^n \}
 	\end{equation}
-	This definition show clearly the idea between the symbolic power, but is not easy to work with. We can have another equivalent definition that use the localization on the prime ideal $ R_\p $. Infact we can see it as the contraction of $ \p^n R_\p $ over $ R $:
+	This definition show clearly the idea between the symbolic power, but is not easy to work with. We can have another equivalent definition that use the localization on the prime ideal $ R_\p $. In fact we can see it as the contraction of $ \p^n R_\p $ over $ R $:
 	\begin{equation}\label{eq:sym_pow_p2}
 		\p^{(n)} = \p^n R_\p \cap R
 	\end{equation}
-	In general the generic and symbolic power are different concept. It is obvious that $ \p^{n} \subset \p^{(n)} $ since $ 1 \not \in \p $. For the other direction we can costruct a counter example with the following proposition:
+	In general the generic and symbolic power are different concept. It is obvious that $ \p^{n} \subset \p^{(n)} $ since $ 1 \not \in \p $. For the other direction we can construct a counter example with the following proposition:
 	\begin{prop}\label{prop:sym_is_primary}
 		$ \p^{(n)} $ is the smallest $ \p $-primary ideal that contain $ \p^n $
 	\end{prop}
 	\begin{proof}\quad \\
 		\textit{Primary}: If $ xy \in  \p^{(n)}$ with $ x \not \in  \p^{(n)}$ we have that exists $ s \not \in \p $ with $ sxy \in \p^n $. Suppose that $ sy \not \in \p $, so $ (sy)x \in \p^n $ and then $ x \in \p^{(n)} $ that is absurd, so $ sy \in \p \Rightarrow (sy)^n \in \p^n \Rightarrow s^n y^n \in \p^n$. Since $ \p $ is prime $ s^n \not \in \p $ and so $ y^n \in \p^{(n)} $. \\
-		\textit{$p$-primary}: Infact $ \p^{(n)} \subset \p $ and so $  \rad  (\p^{(n)} )\subset \rad (\p) = \p$. Also if $ x \in \p $ we have $ x^n \in \p^n \subset \p^{(n)}  $ and so $ x \in \p^{(n)}  $.\\
-		\textit{Minimal}: If $ \q $ is $ \p $-primary and contains $ \p^n $, then for $ r \in \p^{(n)}  $ there exists $ s \not \in \p \supset \q $ with $ sr \in \p^{(n)}  \subset \q $, and so since $ s \not \in \q  $ exists $ k $ such that $ r^k \in \q $. If $ k=1 $ we have finished otherwhise we terminate by induction using $ r r^{k-1} \in \q $.
+		\textit{$p$-primary}: In fact $ \p^{(n)} \subset \p $ and so $  \rad  (\p^{(n)} )\subset \rad (\p) = \p$. Also if $ x \in \p $ we have $ x^n \in \p^n \subset \p^{(n)}  $ and so $ x \in \p^{(n)}  $.\\
+		\textit{Minimal}: If $ \q $ is $ \p $-primary and contains $ \p^n $, then for $ r \in \p^{(n)}  $ there exists $ s \not \in \p \supset \q $ with $ sr \in \p^{(n)}  \subset \q $, and so since $ s \not \in \q  $ exists $ k $ such that $ r^k \in \q $. If $ k=1 $ we have finished otherwise we terminate by induction using $ r r^{k-1} \in \q $.
 	\end{proof}
-	Using the same example from Remark \ref{rem:power_primary} we can observe that necessarly $ p^2 \neq \p^{(2)}  $ since the first one isn't prymary. 
+	Using the same example from Remark \ref{rem:power_primary} we can observe that necessary $ p^2 \neq \p^{(2)}  $ since the first one isn't primary. 
 	
 	\begin{rems}
 		\begin{itemize}
-		\item The proposition \ref{prop:sym_is_primary} establish a new equivalent definition for the symbolic power, more in line to the use of this ideal in the Zarisky-Nakata Theorem.
+		\item The proposition \ref{prop:sym_is_primary} establish a new equivalent definition for the symbolic power, more in line to the use of this ideal in the Zarisky-Nagata Theorem.
 		\item Using the properties of localization, like \cite[Proposition 4.8]{AMCD} and working with the contraction we would have speed up the proof.
 		%TODO Motiva perchè non lo hai fatto/di che lo farai dopo
 		\end{itemize}
@@ -383,7 +383,7 @@ If $ I $ is a radical ideal in a polynomial ring we have:
 \section{Fat Points}
 
 Let's consider now an object of interest, that has particular relations with the symbolic powers.\\
-Let $ k $ be a field and $ \PP^N$ the $ N $-th projective space over $ k $, consider now the distincts points $ p_1, ... ,p_k \in  \PP^N$ and some positive integers $ m_1 , ... ,m_k $. If we consider the defining ideals $ I(p_1), ... , I(p_k)  \subset k [\PP^N]$, representing the homogeneous polynomials vanishing on the point (before we have also used the notation $ \mm_{p_i}$ that emphasise their role as maximal ideals) we can define another ideal:
+Let $ k $ be a field and $ \PP^N$ the $ N $-th projective space over $ k $, consider now the distinct points $ p_1, ... ,p_k \in  \PP^N$ and some positive integers $ m_1 , ... ,m_k $. If we consider the defining ideals $ I(p_1), ... , I(p_k)  \subset k [\PP^N]$, representing the homogeneous polynomials vanishing on the point (before we have also used the notation $ \mm_{p_i}$ that emphasise their role as maximal ideals) we can define another ideal:
 \begin{equation}\label{eq:fat_pt}
 	I = \bigcap_{i=1}^k I(p_i)^{m_i} \subset k [\PP^N]
 \end{equation}
@@ -392,7 +392,7 @@ Since is intersection of homogenous ideals $ I $ is also homogeneous and we can 
 Z = m_1 p_1 + ... +  m_k p_k
 \]
 And we will denote $ I $ as $ I(Z) $. This ideal represents the homogeneous polynomials that vanishes on $ p_i $ with multiplicity $ m_i $ for all $ i = 1, ... , k $. The support of the scheme is the set of points $ \{ p_1 , ... , p_k\} $.\\
-The simbolic power of $ I(Z) $ has the particular from:
+The symbolic power of $ I(Z) $ has the particular from:
 \[
 I(Z)^{(m)} = \bigcap_{i=1}^k I(p_i)^{m_im}
 \]
@@ -420,68 +420,70 @@ Eloìsa Grifo, 1.5
 
 
 \section{Relation between normal and symbolic power}
-\begin{tboxprop}
 
-\textbf{Cosa trovata nell'intrdouduzione di \cite{BocciHrabourne10} , sarebbe carino riprendere un discorso simile}
+For an ideal $ I $ of a Noetherian ring taking the $ n $-th power of $ I $ is a natural algebraic construction (is the $ n $-th product of $ I $ with itself), we can simply have its generators if we know the one of $ I $, in fact if $ I = \left\langle f_1 , ... ,f_k \right\rangle $:
+\[ I^n = \left\langle \xi_1 \cdots \xi_n \,|\, \xi_i \in \{ f_1 , ... ,f_k \} \right\rangle \]
+but it has not a clear geometric interpretation, in-fact the knowledge of the generators does not give a lot of information on the primary decomposition. On the other hand we have symbolic power, that inherit a strong geometric significance, for example from Zarisky-Nagata theorem, but their generators are tricky to find, so we can pose a natural question:
 
-Consider a homogeneous ideal I in a polynomial ring k[PN ]. Taking powers of I is a natural algebraic construction, but it can be difficult to understand their structure geometrically (for example, knowing generators of Ir does not make it easy to know its primary decomposition). On the other hand, symbolic powers of I are more natural geometrically than algebraically. For example, if I is a radical ideal defining a finite set of points p 1, . . . , ps  PN , then its mth symbolic power I(m) is generated by all forms vanishing to order at least m at each point pi, but it is not easy to write down specific generators for I(m), even if one has generators for I.
+\begin{que}
+What is the relation between the two powers?
+\end{que}
 
-A natural question that arises is the relation between the two powers.
-\end{tboxprop}
+An easy result that we can obtain from standard abstract algebra is:
 
 \begin{teo}\label{teo:inv_cont}
 	If $ R $ is a Noetherian reduced ring then $ I^r \subseteq I^{(m)}$  if and only if $ r \geq m $
 \end{teo}
 \begin{proof}
 	Since if $ I=0 $ it is obvious we assume it to be non zero.\\
-	The first implication is easy, infact for all $ \p $ we have that $ I^m \subset I^mR_\p \cap R $ since $ I \subset \p $\footnote{So nothing become zero} and $ 1 \not \in \p $.\\
+	The first implication is easy, in fact for all $ \p $ we have that $ I^m \subset I^mR_\p \cap R $ since $ I \subset \p $\footnote{So nothing become zero} and $ 1 \not \in \p $.\\
 	Suppose now that $ I^r \subseteq I^{(m)}$ and $ r < m $. Consider an associated prime $ \p $, then if we consider the localization $ I_\p $ we have:
 	\begin{itemize}
 	\item $ (I_\p)^r = (I^r)_\p $ it is obvious
 	%TODO Sono la stessa notazione I_\p e IR_\p ??????
 	\item $ (I_\p)^m \supset (I^{(m)})_\p $, because $ I^{(m)} \subset I^mR_\p \cap R = I^m_\p \cap R $ and thus passing to the localization (again for the second term) we get the containment.
 	\end{itemize}
-	So composing this with the containment hypotesis (localized) we get $ (I_\p)^r = (I^r)_\p \subset (I^{(m)})_\p \subset (I_\p)^m $. Since the other inclusion is obvious we have $ I_\p^m= I_\p^r $, considering the intermediary power we have that $ I_\p I_\p^r =I_\p^r $, thus we can use the Nakayama Lemma:
+	So composing this with the containment hypothesis (localized) we get $ (I_\p)^r = (I^r)_\p \subset (I^{(m)})_\p \subset (I_\p)^m $. Since the other inclusion is obvious we have $ I_\p^m= I_\p^r $, considering the intermediary power we have that $ I_\p I_\p^r =I_\p^r $, thus we can use the Nakayama Lemma:
 	
 	\begin{lem}[Nakayama] \label{lem:naka}
-		Given an ideal $ I $ of a commutative ring with unity $ A $ and $ M $ a finetely-generated module over $ A $ with $ IM = M $, then there exists a $ x \in A $ such that $ x \equiv 1 \mod I $ and $ xM = 0 $
+		Given an ideal $ I $ of a commutative ring with unity $ A $ and $ M $ a finitely-generated module over $ A $ with $ IM = M $, then there exists a $ x \in A $ such that $ x \equiv 1 \mod I $ and $ xM = 0 $
 	\end{lem}
 	%TODO Scolta non è che l'estensione di I in R_\p e l'estensione non sono la stessa cosa?
-	In our case the ring is $ R_\p $, the ideal is $ I_\p $ and the module is $ I_\p^{r} $. So since $ R_p $ is a local ring with maximal ideal the localization of $ \p $, that whene localized is also the maximal Ideal, and $ I_\p $ is contained in it. Since $ x -1 \in I_\p \subseteq \p_\p $, we cannot have $ x \in \p_\p $, otherwhise we would have $ 1 \in \p_\p $, therefore we have that $ x $ is invertible (because $ \p_\p $ is the only maximal ideal) and then $ I_\p^r = 0 $, but since we inherit that $ R_\p $ is a reduced ring this is possible only if $ I_\p = 0$. Since this is true for all the prime ideal (for the non associated one it is obvious since they intersect $ R \setminus I $) and this is a local property (\cite[Proposition 3.8]{AMCD}) we have $ I = 0 $, absurd.
+	In our case the ring is $ R_\p $, the ideal is $ I_\p $ and the module is $ I_\p^{r} $. So since $ R_p $ is a local ring with maximal ideal the localization of $ \p $, that when localized is also the maximal Ideal, and $ I_\p $ is contained in it. Since $ x -1 \in I_\p \subseteq \p_\p $, we cannot have $ x \in \p_\p $, otherwise we would have $ 1 \in \p_\p $, therefore we have that $ x $ is invertible (because $ \p_\p $ is the only maximal ideal) and then $ I_\p^r = 0 $, but since we inherit that $ R_\p $ is a reduced ring this is possible only if $ I_\p = 0$. Since this is true for all the prime ideal (for the non associated one it is obvious since they intersect $ R \setminus I $) and this is a local property (\cite[Proposition 3.8]{AMCD}) we have $ I = 0 $, absurd.
 \end{proof} 
 Sadly the other direction of the containment isn't that easy, it's an open question and in the last years was largely studied for several classes of ideals.
 
 \chapter{The Containment Problem}
 \section*{}
-	As stated before the other direction of the cotainment of symbolic powers into normal powers is an open question in Algebraic Geometry and Commutative Algebra. The general form of the problem is:
+	As stated before the other direction of the containment of symbolic powers into normal powers is an open question in Algebraic Geometry and Commutative Algebra. The general form of the problem is:
 	\begin{que}[Containment Problem] \label{que:cont}
 		Given a (\textbf{Noetherian ???}) Ring $ R $ and an ideal $ I $, for which $ m,r $ positive integers we have the containment:
 		$$ I^{(m)} \subset I^r $$
 	\end{que}
 	For our present knowledge in Algebra Question \ref{que:cont} seems quite general and does not have a unique and simple answer (contrary to the inverse, that has theorem \ref{teo:inv_cont}). Usually we need to specify a particular ring and a particular ideal. Also we consider some precise pairs, like $ 3,2 $, or a subset given by a disequation. 
 	\begin{rem}
-	If the contaiment holds for $ m,r $ it does also for all $ m' ,r $ with $ m'\geq m $, since we have $ I^{(m')} \subset \cont{m}{r} $
+	If the containment holds for $ m,r $ it does also for all $ m' ,r $ with $ m'\geq m $, since we have $ I^{(m')} \subset \cont{m}{r} $
 	\end{rem}
 	To better explain this let's see a celebrated result, showed in \cite{HocHun02,EinLazSmi01}:
 	\begin{teo}{(Ein-Lazarsfeld-Smith, Hochster-Huneke)}\label{teo:cont:bigh}
-	Let $ R $ be a regular ring and $ I $ a nonzero, radical ideal, then if $ h $ is the big height of $ I $ we have that for all $ n \geq 0 $ we have:
+	Let $ R $ be a regular ring and $ I $ a non-zero, radical ideal, then if $ h $ is the big height of $ I $ we have that for all $ n \geq 0 $ we have:
 	\[ \cont{hn}{n}\]	
 	\end{teo} 
 	
 	To understand this theorem we need two concepts.
 	\subsection{Regular ring}
-	For a Noetherian local ring $ (R,\mm) $ we say that it is a regular local ring if the minimal number of generators of the maximal ideal is equal to the dimension of $ R $. The name came from a Zarisky's result: for an algebraic variety a point $ p $ is non singular (regular) if and only if the ring of germs in $ p $ is regular (\cite{Zar40}). Is possible to see this in a more modern way , infact for Nakayama's Lemma (is lemma \ref{lem:naka}, but in a different form) is possible to show that $ R $ is regular if and only if $ \dim(\mm / \mm^2 ) = \dim (R) $, and from algebraic geometry $ \mm /\mm^2 $ is the cotangent space of the point corresponding to $ \mm $, so the tangent space has same dimension of the variety if and only if the localization is regular.\\
-	In general we say that a Noetherian ring is \textbf{regular} if the localization at every prime ideal is a regular local ring. Also a geometrical interpretation of this definition is that for an affine variety $ V $ its ring of regular functions $ \mathcal{O}_V $ is a regular ring if and only if $ V $ is a non singualr variety. 
+	For a Noetherian local ring $ (R,\mm) $ we say that it is a regular local ring if the minimal number of generators of the maximal ideal is equal to the dimension of $ R $. The name came from a Zarisky's result: for an algebraic variety a point $ p $ is non singular (regular) if and only if the ring of germs in $ p $ is regular (\cite{Zar40}). Is possible to see this in a more modern way , in fact for Nakayama's Lemma (is lemma \ref{lem:naka}, but in a different form) is possible to show that $ R $ is regular if and only if $ \dim(\mm / \mm^2 ) = \dim (R) $, and from algebraic geometry $ \mm /\mm^2 $ is the cotangent space of the point corresponding to $ \mm $, so the tangent space has same dimension of the variety if and only if the localization is regular.\\
+	In general we say that a Noetherian ring is \textbf{regular} if the localization at every prime ideal is a regular local ring. Also a geometrical interpretation of this definition is that for an affine variety $ V $ its ring of regular functions $ \mathcal{O}_V $ is a regular ring if and only if $ V $ is a non singular variety. 
 	
 	\subsection{Height of an ideal}
-	The \textit{height} of a prime ideal ($\hgt ( \p )$) in a Noetherian Ring $ R $ is the supremum of the lenghts $ h $ of prime ideals chains descending from $ \p $:
+	The \textit{height} of a prime ideal ($\hgt ( \p )$) in a Noetherian Ring $ R $ is the supremum of the lengths $ h $ of prime ideals chains descending from $ \p $:
 	\begin{equation}\label{eq:chain}
 		\p_0 \subsetneq \p_1 \subsetneq ... \subsetneq \p_{h} = \p
 	\end{equation}
-	The concept of height is equivalent to the codimension of the ideal $ \p $, that is the (Krull) dimension of the localization $ R_\p $ (looking at the definition it is easy to see that they are the same). Similarly we can define the coheight of $ \p $ as the dimension of the ideal $ \p $ (the supremum of the lenght of chanis ascending from $ \p $). To be more clear we racall that the Krull-dimension of a Ring $ R $ is the supremum of the lenght of chains of prime ideals:
+	The concept of height is equivalent to the codimension of the ideal $ \p $, that is the (Krull) dimension of the localization $ R_\p $ (looking at the definition it is easy to see that they are the same). Similarly we can define the coheight of $ \p $ as the dimension of the ideal $ \p $ (the supremum of the length of chains ascending from $ \p $). To be more clear we recall that the Krull-dimension of a Ring $ R $ is the supremum of the length of chains of prime ideals:
 	\[ \dim (R) = \sup \{ r \,|\, \text{exists a prime ideals chains: } \p_r \subsetneq \p_{r-1} \subsetneq ... \subsetneq \p_0 \}\] 
 	And the dimension of an ideal $ I $ is the dimension of the quotient $ R/I $. Moreover, for a $ R $-module $ M $ we define the dimension of $ M $ as the dimension of the annihilator $ \Ann_R(M) $. Observe that for an ideal these two definitions do not coincide (an ideal is also a module), but usually the right calculations is clear from the context. \\
-	For a general ideal $ I $ we define the height of $ I $ as the minimum height of its prime ideals (for proposition \ref{prop:minprimes} we can consider only the associated ones) and the \textbf{big height of $ I $} as the maximal height of its associated primes. Also if all the prime assasins as same height these two quantities are equal and we say that the ideal has pure height.
+	For a general ideal $ I $ we define the height of $ I $ as the minimum height of its prime ideals (for proposition \ref{prop:minprimes} we can consider only the associated ones) and the \textbf{big height of $ I $} as the maximal height of its associated primes. Also if all the prime assassins as same height these two quantities are equal and we say that the ideal has pure height.
 
 %TODO	
 	\begin{tboxque}
@@ -508,8 +510,8 @@ Sadly the other direction of the containment isn't that easy, it's an open quest
 	\end{tboxque}
 	
 
-\section[Costants of relevance]{Costants of relevance for the Containment problem}
-To mesure the containment property we can some constants associated to the ideal $ I $, one of them is the \textbf{resurgence}, proposed in \cite{Boc09resurgence}, an important article that focuses in the use of some numerical invariant of the ideal to describe the pairs for which the containment problem holds. 
+\section[Constants of relevance]{Constants of relevance for the Containment problem}
+To measure the containment property we can some constants associated to the ideal $ I $, one of them is the \textbf{resurgence}, proposed in \cite{Boc09resurgence}, an important article that focuses in the use of some numerical invariant of the ideal to describe the pairs for which the containment problem holds. 
 \begin{deff}
 	For a proper non-zero ideal $ I $ in a commutative ring $ R $ we define the resurgence of $ I $ as:
 	\begin{equation*}
@@ -517,15 +519,15 @@ To mesure the containment property we can some constants associated to the ideal
 	\end{equation*}
 \end{deff}
 Bounding the resurgence of an ideal means finding a constant such that $ \frac{m}{r} > \rho $ implies that $ \cont{m}{r} $ holds.
-For example using this quantity we can express the Theorem \ref{teo:cont:bigh} (in a sligtly weaker version) as:
+For example using this quantity we can express the Theorem \ref{teo:cont:bigh} (in a slightly weaker version) as:
 \begin{teo}
-	For a radical nonzero ideal in a regular ring $ \rho(I) \leq h $ where $ h $ is the big height of $ I $
+	For a radical non-zero ideal in a regular ring $ \rho(I) \leq h $ where $ h $ is the big height of $ I $
 \end{teo}
 In general this is not an optimal bound and since it is difficult to directly evaluate $ \rho(I) $ we can pose the question when the resurgence is strictly less than the big height. 
 
-Another constant, closely related to $ \rho $, is the \textbf{asymptotich resurgence} (introduced in \cite{Guardo2012}), defined as:
+Another constant, closely related to $ \rho $, is the \textbf{asymptotic resurgence} (introduced in \cite{Guardo2012}), defined as:
 \begin{deff}
-	For a homogeneous nonzero proper ideal $ I $ of $ k[x_0 , ... , x_n] $ the asymptotic resurgence $ \rho_a(I) $ is:
+	For a homogeneous non-zero proper ideal $ I $ of $ k[x_0 , ... , x_n] $ the asymptotic resurgence $ \rho_a(I) $ is:
 	\[ \rho_a(I) = \sup \left\lbrace \frac{m}{r} \, | \, I^{(mt)} \not \subseteq I^{rt} \text{ for all } t \gg 0 \right\rbrace \]
 \end{deff}
 	
@@ -559,7 +561,7 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 	Another good question is if it is possible to improve the result from theorem \ref{teo:cont:bigh}. Since there is no known example for which the bound is optimal a new conjecture have been posed:
 	
 	\begin{conj}[Harbourne]\label{conj:harb}
-		Given a nonzero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m > 0 $:
+		Given a non-zero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m > 0 $:
 		\[
 		\cont{hm - h +1}{m}
 		\]
@@ -568,7 +570,7 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 	Trying to solve this problem directly has been shown to be quite difficult, so there are several  sharper version of the Conjecture \ref{conj:harb}, in particular the following one does not request the containment to hold in general, but only asymptotically:
 	
 	\begin{conj}[Stable Harbourne]\label{conj:stabharb}
-			Given a nonzero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m \gg 0 $:
+			Given a non-zero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m \gg 0 $:
 			\[
 			\cont{hm - h +1}{m}
 			\]
@@ -577,7 +579,7 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 	Another way to modify the Harbourne Conjecture is to use the irrelevant ideal $ \MM=\left\langle x_0 , ... ,x_n \right> $ (also said graded maximal ideal) : 
 	
 	\begin{conj}[Stable Harbourne-Huneke]\label{conj:stabharbhun}
-	Given a nonzero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m \gg 0 $:
+	Given a non-zero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m \gg 0 $:
 	\begin{itemize}
 	\item $ I^{(hm)} \subset \MM^{m(h-1)} I^m$
 	\item $ I^{(hm - h +1 )} \subset \MM^{(m-1)(h-1)} I^m $
@@ -587,13 +589,13 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 	One simple example of why do we use the graded maximal ideal is:
 	
 	\begin{prop} \label{prop:eulid}
-	Given a $ r>0 $ and a nonzero, proper, homogeneous ideal $ I \subset k[x_0 , ... , x_n] $, with $ k $ of characteristic $ 0 $ we have:
+	Given a $ r>0 $ and a non-zero, proper, homogeneous ideal $ I \subset k[x_0 , ... , x_n] $, with $ k $ of characteristic $ 0 $ we have:
 	\[ I^{(r+1)}   \subseteq \MM I^{(r)}\]
 	\end{prop}
 	\begin{proof}
-	This is a straight application of Euler identity for homegeneous polynomial:
+	This is a straight application of Euler identity for homogeneous polynomial:
 	\[ (\deg{F})F = \sum_{i=0}^{n} x_i \parder{F}{x_i} \]
-	, infact if $ F \in I^{(r+1)} $ we have $ \parder{F}{x_i} \in I^{(r)} $ for Zarisky-Nagata theorem (\ref{teo:zarnaga}) and the thesis follows.
+	, in fact if $ F \in I^{(r+1)} $ we have $ \parder{F}{x_i} \in I^{(r)} $ for Zarisky-Nagata theorem (\ref{teo:zarnaga}) and the thesis follows.
  	\end{proof}
  	
 
@@ -602,13 +604,13 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 We recall some results on the Containment problem that we will use. First of all a generalization of theorem \ref{teo:cont:bigh}:
 
 \begin{teo}[Theorem 4.4 of \cite{John14}]\label{teo:cont:bighgen}
-Let $ R $ be a regular ring containing a field and let $ I $ be an ideal with big height $ h $, for all intgers $ n \geq 1 $, $ s \geq -nh $ and $ s_1 \leq  ... \leq s_n $ integers such that $ s = s_1 +  ... + s_n $ we have:
+Let $ R $ be a regular ring containing a field and let $ I $ be an ideal with big height $ h $, for all integers $ n \geq 1 $, $ s \geq -nh $ and $ s_1 \leq  ... \leq s_n $ integers such that $ s = s_1 +  ... + s_n $ we have:
 \begin{equation}\label{eq:cont:bighgen}
 	I^{(nh + s)} \subseteq \prod_{i=1}^{n} I^{(s_i + 1)}
 \end{equation}
 \end{teo}
 
-For $ s=0 $ we obtain $ I^{(nh)} \subseteq \prod_{i=1}^{n} I^{(1)} = ( I^{(1)} )^n = I^n$ (theorem \ref{teo:cont:bigh}). Observe that \ref{eq:cont:bighgen} is the other direction of point $ 3. $ in Remarks \ref{rem:symb_basic} and as it happened for the cotainment problem only one of the two directions is elementary. 
+For $ s=0 $ we obtain $ I^{(nh)} \subseteq \prod_{i=1}^{n} I^{(1)} = ( I^{(1)} )^n = I^n$ (theorem \ref{teo:cont:bigh}). Observe that \ref{eq:cont:bighgen} is the other direction of point $ 3. $ in Remarks \ref{rem:symb_basic} and as it happened for the containment problem only one of the two directions is elementary. 
 
 Another results on the containment problem came again from \cite{BocciHrabourne10}, in which it uses the least degree of a generator $\alpha(I)$ and the \textit{Castelnuovo-Mumford regularity}:
 
@@ -627,8 +629,8 @@ be the minimal free resolution of $ I $ over $ R $, let $ f_j $ be the maximal d
 Qui voglio inserire alcune referneze, senza entrare troppo nel dettaglio della regolaità, direi di usare section 20.5 dall'Eisenbud (\cite{Eisenbud95}) 
 \end{tboxtodo}
 
-\begin{lem}[Postulation Crtiterion 2 from \cite{BocciHrabourne10}] \label{lem:cont:reg}
-Let $ I $ be a homogeneous ideal defining a $ 0 $-dimensional subscheme in $ \PP^N $, if we have the inequality:
+\begin{lem}[Postulation Criterion 2 from \cite{BocciHrabourne10}] \label{lem:cont:reg}
+Let $ I $ be a homogeneous ideal defining a $ 0 $-dimensional sub-scheme in $ \PP^N $, if we have the inequality:
 \begin{equation}\label{eq:cont:reg}
 r \cdot \reg(I) \leq \alpha(I^{(m)})
 \end{equation}
@@ -637,7 +639,7 @@ then we have:
 \end{lem}
 
 
-Here there are some sufficent conditions for the Stable Harbourne Conjecture (\ref{conj:stabharb}) to hold, discovered by Eloìsa Grifo in \cite{Grifo20}. 
+Here there are some sufficient conditions for the Stable Harbourne Conjecture (\ref{conj:stabharb}) to hold, discovered by Eloìsa Grifo in \cite{Grifo20}. 
 
 
 \begin{teo} \label{teo:cont:grifo0}
@@ -669,7 +671,7 @@ thus we have $ hn + s = h(h+t) + h(hm-h-1)= h^2 + ht + h^2m - h^2 - h = h(hm + t
 \begin{equation}\label{eq:teo:grifo1}
 I^{ ( hk - h)} = I^{ (hn + s)} \subseteq {( I^{ (mh -h ) } )}^h {I}^t \stackrel{*}{\subseteq} (I^m)^h I^t = I^{ mh +t} = I^k
 \end{equation}
-Where in $\ast$ we use the hypotesis $ \cont{hm-h}{m} $.
+Where in $\ast$ we use the hypothesis $ \cont{hm-h}{m} $.
 \end{proof}
 
 
@@ -694,11 +696,11 @@ Non saprei che testi usare però
 \end{tboxtodo}
 
 A \textbf{Steiner system} $ (V,B) $ of type $ S(t,n,v) $ is an \textit{hypergraph} with $ |V|=v $ and all the elements of $ B $, called blocks, are $ n $-subsets (of $ V $) such that every $ t $-tuple of elements in $ V $ is contained in only one block of $ B $. \\
-To be more clear we recall that an hypergraph $ (V,B) $ is a generalization of the normal graph, in which $ V $ is a finite set and $ B $ contains non-empty subset of $ V $ called hyperedges (a normal graph conatins only pairs) such that they cover $ V $ ($ \bigcup_{H \in B} H = V $).\\
-Geometrically the blocks can be seen as linear subspace in a projective spce that contains points in $ V $, in particular this interpretation is useful for \textbf{Steiner triple sistem}, that are Steiner system with $ t=2 $ and $ n=3 $, also indicated with $ STS(v) $. Later we will use again algebraic geometry, but with a different approach.
+To be more clear we recall that an hypergraph $ (V,B) $ is a generalization of the normal graph, in which $ V $ is a finite set and $ B $ contains non-empty subset of $ V $ called hyper edges (a normal graph contains only pairs) such that they cover $ V $ ($ \bigcup_{H \in B} H = V $).\\
+Geometrically the blocks can be seen as linear subspace in a projective space that contains points in $ V $, in particular this interpretation is useful for \textbf{Steiner triple system}, that are Steiner system with $ t=2 $ and $ n=3 $, also indicated with $ STS(v) $. Later we will use again algebraic geometry, but with a different approach.
 
 \begin{ex} \label{ex:fano1}
-	The most known example of Steiner is of type $ STS(7) $ and, up to isomorphism, is the Fano Plane ($ \PP_{\mathbb{F}_2}^3 $). It has as blocks all the lines (hypeplanes):
+	The most known example of Steiner is of type $ STS(7) $ and, up to isomorphism, is the Fano Plane ($ \PP_{\mathbb{F}_2}^3 $). It has as blocks all the lines (hyperplanes):
 	\[B := \{\{1, 2, 3\}, \{3, 4, 5\}, \{3, 6, 7\}, \{1, 4, 7\}, \{2, 4, 6\}, \{2, 5, 7\}, \{1, 5, 6\}\}\].
 \end{ex}
 
@@ -710,23 +712,23 @@ Geometrically the blocks can be seen as linear subspace in a projective spce tha
 %\end{figure}
 
 
-In general the existence of a Stiner system depends on the parameters, for instance a for a Steiner Triple system ($ t=2, n=3 $) we need $ v \equiv 1,3 \mod 6 $. There are not known sufficient existance conditions, but only necessary, for example if it exists a $ S(t,n,v) $ Steiner system we need: 
+In general the existence of a Steiner system depends on the parameters, for instance a for a Steiner Triple system ($ t=2, n=3 $) we need $ v \equiv 1,3 \mod 6 $. There are not known sufficient existence conditions, but only necessary, for example if it exists a $ S(t,n,v) $ Steiner system we need: 
 \[
 	|B| = \frac{\binom{v}{t}}{\binom{n}{t}}
 \]
-This is simply combinatorics, infact every $ t $-tuple of vertices is contained in only one block and each one of these contains $ \binom{n}{t} $ $ t $-tuples. 
+This is simply combinatorics, in fact every $ t $-tuple of vertices is contained in only one block and each one of these contains $ \binom{n}{t} $ $ t $-tuples. 
 
-\section[Ideal of Steyner configuartion]{An algebraic representation of Steiner systems}
+\section[Ideal of Steiner configuration]{An algebraic representation of Steiner systems}
 
-As said before is possible to use algebraic geometry to represents the Steiner systems, in particular the concept of star configuaration of points:
+As said before is possible to use algebraic geometry to represents the Steiner systems, in particular the concept of star configuration of points:
 
 %Star configuarations
 \begin{deff} \label{def:starconf}
-A finite set of points $ Z \subset \PP_k^n $ is a \textbf{star configuaration of points} of degree $ d \geq n $ if there exists $ d $ general hyperplanes such that the points of $ Z $ are exactly the ones that are intersection of $ n $ of these hyperplanes.
+A finite set of points $ Z \subset \PP_k^n $ is a \textbf{star configuration of points} of degree $ d \geq n $ if there exists $ d $ general hyperplanes such that the points of $ Z $ are exactly the ones that are intersection of $ n $ of these hyperplanes.
 \end{deff}
 By general position we mean that any group of $ n $ hyperplanes intersect in only one point and there is no point belonging to more than $ n $ hyperplanes. It also used the notation $ d $-star to emphasize the degree. 
 
-In our case we consider v-star configuartions in $ \PP_k^n $ defined by the general hyperplanes in $ \PP^n $ $ \HH  = \{ H_1 , ... , H_v\}$, with $ H_i $ associated to the linear form $ l_i $ (a linear map from $ \PP_k^n $ to the field of scalars $ k $). Given an $ n $-subset of $ V $\footnote{Since $ V $ is finite we can index it using natual numbers and assume $ V = \{ 1 , ... , v\} $} $ \sigma : = \{ \sigma_1 , ... , \sigma_v\}$ we can associate to it a point of the configuaration $ P_{\HH, \sigma }= \cap_{\sigma_i \in \sigma} H_{\sigma_i}$, that has as vanishing ideal $ I_{P_{\HH, \sigma}} = \left< l_{\sigma_1} , ... , l_{\sigma_v} \right\rangle $.\\
+In our case we consider v-star configurations in $ \PP_k^n $ defined by the general hyperplanes in $ \PP^n $ $ \HH  = \{ H_1 , ... , H_v\}$, with $ H_i $ associated to the linear form $ l_i $ (a linear map from $ \PP_k^n $ to the field of scalars $ k $). Given an $ n $-subset of $ V $\footnote{Since $ V $ is finite we can index it using natural numbers and assume $ V = \{ 1 , ... , v\} $} $ \sigma : = \{ \sigma_1 , ... , \sigma_v\}$ we can associate to it a point of the configuration $ P_{\HH, \sigma }= \cap_{\sigma_i \in \sigma} H_{\sigma_i}$, that has as vanishing ideal $ I_{P_{\HH, \sigma}} = \left< l_{\sigma_1} , ... , l_{\sigma_v} \right\rangle $.\\
  Observe that in this case the vertices are represented by $( n-1 )$-linear space and the blocks by points.\\
  Also we can define:
  \begin{deff}\label{def:gensys}
@@ -739,20 +741,20 @@ In our case we consider v-star configuartions in $ \PP_k^n $ defined by the gene
  I_{X_{\HH , \mathcal{F}}}:= \bigcap_{\sigma \in \mathcal{F} } I_{\HH, \sigma }
  \end{equation}
  \end{deff}
- Please notice that these costructions are more general, so to obtain a Steiner Sytem we assign $ \mathcal{F}=B $, obtaining $ X_{\HH , B} $ and $  I_{X_{\HH , B}} $. 
+ Please notice that these constructions are more general, so to obtain a Steiner System we assign $ \mathcal{F}=B $, obtaining $ X_{\HH , B} $ and $  I_{X_{\HH , B}} $. 
  We call  $ X_{\HH , B} $ the \textbf{Steiner configuration of points} associated to the Steiner system $ (V , B) $ of type $ S(t , n,v) $ with respect to $ \HH $. \\
- Also we indicate $ C_{(n,v)} $ as the family of all the n-subset of $ V $ and we can costruct the \textbf{Complement of a Steiner configuration} of points with respect to $ \HH $ as the scheme $ X_{\HH , C_{(n,v)} \setminus B} $ (said C-Steiner and indicated $ X_C $ too).
+ Also we indicate $ C_{(n,v)} $ as the family of all the n-subset of $ V $ and we can construct the \textbf{Complement of a Steiner configuration} of points with respect to $ \HH $ as the scheme $ X_{\HH , C_{(n,v)} \setminus B} $ (said C-Steiner and indicated $ X_C $ too).
 Now we obtain some interesting results for this particular scheme. 
 \begin{rem}
-Since every point in $ \PP_k^n $ has height $ n $ we have that all these ideals has pure hight $ n $
+Since every point in $ \PP_k^n $ has height $ n $ we have that all these ideals has pure height $ n $
 \end{rem}
  
  \section{Containment problem for C-Steiner System}
  
- First of all we recall some results from \cite{Bal20Steiner} in partlicular the Theorem 3.9:
+ First of all we recall some results from \cite{Bal20Steiner} in particular the Theorem 3.9:
  
  \begin{teo} \label{teo:alphaXC}
-Consider a Steiner system $ (V,B) $ of type $ S(t,n,v) $, let $ X_C \subset \PP^n$ be the corrispondent C-Steiner configuaration and $ I_{X_C} $ its ideal, then:
+Consider a Steiner system $ (V,B) $ of type $ S(t,n,v) $, let $ X_C \subset \PP^n$ be the correspondent C-Steiner configuration and $ I_{X_C} $ its ideal, then:
 \begin{enumerate}
 \item $ \alpha(I_{X_C}) = v- n $
 \item $ \alpha(I_{X_C}^{(q)}) = v- n +q  $ for $ q \in [2,n) $
@@ -767,7 +769,7 @@ Consider a Steiner system $ (V,B) $ of type $ S(t,n,v) $, let $ X_C \subset \PP^
   \end{tboxprop}
   
 \begin{rem}\label{rem:alphaXC}
-We can use the results from theorem \ref{teo:alphaXC} to get some situation in which the containment problem fails, infact for nonzero, proper, homogeneous ideals $ I $ and $ J $ is straightforward that if $ \alpha(I) < \alpha(J) $ then $ I \not\subseteq J $, infact $ I_{ \alpha(I) } \neq 0$ but $ J_{ \alpha(I) } = 0 $. 
+We can use the results from theorem \ref{teo:alphaXC} to get some situation in which the containment problem fails, in fact for non-zero, proper, homogeneous ideals $ I $ and $ J $ is straightforward that if $ \alpha(I) < \alpha(J) $ then $ I \not\subseteq J $, in fact $ I_{ \alpha(I) } \neq 0$ but $ J_{ \alpha(I) } = 0 $. 
 \end{rem}
 
 \begin{cor}\label{cor:alphaXC}
@@ -784,13 +786,13 @@ or
  \end{cor}
   
  \begin{proof}
- Using $ 1. $ from Theorem \ref{teo:alphaXC} and simple algebra we have $ \alpha({I_{X_C}}^d) = d\alpha(I_{X_C}) = d(v- n) $, than from remark \ref{rem:alphaXC} is enought to prove:
+ Using $ 1. $ from Theorem \ref{teo:alphaXC} and simple algebra we have $ \alpha({I_{X_C}}^d) = d\alpha(I_{X_C}) = d(v- n) $, than from remark \ref{rem:alphaXC} is enough to prove:
  \begin{equation}\label{eq:proof:alphaXC}
  \alpha(I_{X_C}^{(m)}) < d(v-n)
  \end{equation}
  \begin{itemize}
  \item[$m \equiv 1$ : ] we have $ m = pn + 1 $ with $ p $ integer, so using $ 3. $ and $ 1. $ of theorem \ref{teo:alphaXC} for $ q = 1 $ we have $  \alpha(I_{X_C}^{(m)}) \eqb \alpha(I_{X_C} ) + pv \eqb (v-n) + \frac{m-1}{n}v  $. Grouping by the factor $ (n-v) $ and using the second part of \ref{eq:cor:alphaXC:1} we get \ref{eq:proof:alphaXC}. 
- \item[$m \not\equiv 0,1$ : ] we have $ m = pn + q $ with $ q = 0 $ or $ 2 \leq q < n $ so using $ 3. $ and $ 2. $ of theorem \ref{teo:alphaXC} we get  $  \alpha(I_{X_C}^{(m)}) \eqb \alpha(I_{X_C}^{(q)} ) + pv \eqb v - n + q  +pv = (v - n) + m -pn +pv = (1 + p)(v - n) + m $. We can now simply osserve that $ p = \frac{m-q}{n} \geq \frac{m-n}{n} $ and then group again by $ v-n $ to use the second part of \ref{eq:cor:alphaXC:2} hence we get \ref{eq:proof:alphaXC}.
+ \item[$m \not\equiv 0,1$ : ] we have $ m = pn + q $ with $ q = 0 $ or $ 2 \leq q < n $ so using $ 3. $ and $ 2. $ of theorem \ref{teo:alphaXC} we get  $  \alpha(I_{X_C}^{(m)}) \eqb \alpha(I_{X_C}^{(q)} ) + pv \eqb v - n + q  +pv = (v - n) + m -pn +pv = (1 + p)(v - n) + m $. We can now simply observe that $ p = \frac{m-q}{n} \geq \frac{m-n}{n} $ and then group again by $ v-n $ to use the second part of \ref{eq:cor:alphaXC:2} hence we get \ref{eq:proof:alphaXC}.
  \item[$ m\equiv 0 $ : ] we have $ m=pn $, then \ref{eq:cor:alphaXC:2} became with simple algebra $ d > \frac{pv}{v-n} $, and hence for $ 3. $ of theorem \ref{teo:alphaXC} $  \alpha(I_{X_C}^{(m)})= pv < d(v-n)$, that satisfy \ref{eq:proof:alphaXC}. 
  \end{itemize}
  In particular for $ m=n $ and $ v > 2n $ we have 
@@ -799,7 +801,7 @@ or
  \end{proof}
  
  \begin{ex}\label{ex:fano2}
- Consider now Steiner system of type $ S(2,3,7) $ as in example \ref{ex:fano1}, given $ \HH = \{ H_1 , ... , H_7 \} $ a collection of 7 hyperplanes in general position in $ \PP^3 $ we can use them to costruct the C-Steiner configuaration $ X_{\HH , C_{(3,7)} \setminus B} $ , it has:
+ Consider now Steiner system of type $ S(2,3,7) $ as in example \ref{ex:fano1}, given $ \HH = \{ H_1 , ... , H_7 \} $ a collection of 7 hyperplanes in general position in $ \PP^3 $ we can use them to construct the C-Steiner configuration $ X_{\HH , C_{(3,7)} \setminus B} $ , it has:
  \[
  \binom{v}{n} - |B| = \binom{v}{n} -  \frac{\binom{v}{t}}{\binom{n}{t}} = \binom{7}{3} -  \frac{\binom{7}{2}}{\binom{3}{2}} = 28
  \]
@@ -841,7 +843,7 @@ so $ g_i \in \MM^k $ and the thesis follows.
 Here we prove one of the main result of the article \cite{Bal21Steiner}:
 \begin{teo}\label{teo:cont:csteiner}
 
-Let $ I_{X_C} \subset k[x_0 , ... , x_n]$ be the defining ideal of a Complement of a Steiner configuaration of points in $ \PP^n_k $, then it satisfies:
+Let $ I_{X_C} \subset k[x_0 , ... , x_n]$ be the defining ideal of a Complement of a Steiner configuration of points in $ \PP^n_k $, then it satisfies:
 \begin{enumerate}
 \item Stable Harbourne-Huneke Conjecture (\ref{conj:stabharbhun})
 \item Stable Harbourne Conjecture (\ref{conj:stabharb})
@@ -885,23 +887,23 @@ Let $ I_{X_C} \subset k[x_0 , ... , x_n]$ be the defining ideal of a Complement 
 
 \chapter{Colouring of an hypergraph and containment}
 
-In this chaper we focus in an interesting relation between the colourability of an hypergraph and  the failure of the cotainment problem of its cover ideal. Then we apply these results in the case of a Steiner System. These results were proposed for the first time in the section 4 of \cite{Bal21Steiner}.
+In this chapter we focus in an interesting relation between the colourability of an hypergraph and  the failure of the containment problem of its cover ideal. Then we apply these results in the case of a Steiner System. These results were proposed for the first time in the section 4 of \cite{Bal21Steiner}.
  
 \section{Colouring definitions}
 
 We can see two different definition of $ m $-colouring, the first one is more descriptive and use the intuitive notion of surjective map, focusing on the role of the vertices: 
 \begin{deff}\label{def:colouring1}
-Let $ C $ be the set of possible colours, a colouring of the hypergraph $ H = (V,E) $ is a sujective map $ c : V \to C $. \\
+Let $ C $ be the set of possible colours, a colouring of the hypergraph $ H = (V,E) $ is a surjective map $ c : V \to C $. \\
 In the case of which $ C $ is finite we assume $ C = \{ 1 , ... , m\} $ and we say that a colouring $ c : V \to C $ is a proper $ m $-colouring if for every edge $ \beta \in B $ we have two vertices of different colours. 
 \end{deff}
 
-The second one is due to the fact that we can see a colouring as a partition of the vertices (in fact is well know that a surjective map partitions the domain using the fibers):
+The second one is due to the fact that we can see a colouring as a partition of the vertices (in fact is well know that a surjective map partitions the domain using the fibres):
 
 \begin{deff}
 An $ m $-colouring of the hypergraph $ H = (V,E) $ is a partition in $ m $ subset of $ V = U_1 \sqcup ... \sqcup U_m $ such that for every edge $ \beta \in B $ we have $ \beta \not \subseteq U_i $ for all $ i = 1, ... , m $
 \end{deff}
  
-For comodity we introduce the \textbf{cromatic number} of the hypergraph $ H $, indicated $ \chi(H) $, that is the minimum $ m $ such that $ H $ has an $ m $-colouring.
+We introduce the \textbf{chromatic number} of the hypergraph $ H $, indicated $ \chi(H) $, that is the minimum $ m $ such that $ H $ has an $ m $-colouring.
 
 \begin{deff}
 A hypergraph $ H $ is m-colourable if there exists a proper $ m $-colouring (i.e. $ \chi(H) \leq m $)
@@ -912,7 +914,7 @@ Ma non sono proprio equivalenti, se $ |V| > m $ credo non esita una m-colorazion
 \end{tboxque}
 
 \begin{deff}
-We say that a hypergraph $ H $ is m-cromatic if it is $ m $-colourable, but no $ (m-1) $-colourable (i.e. $\chi(H) = m  $)
+We say that a hypergraph $ H $ is m-chromatic if it is $ m $-colourable, but no $ (m-1) $-colourable (i.e. $\chi(H) = m  $)
 \end{deff}
 
 We see now a stronger definition, that also require at every block to have vertices of every colour:
@@ -956,7 +958,7 @@ H=(V, E)
 
 Where I recall that a \textit{simple hypergraph} is an hypergraph without loops (edges with a single element) and without repeated edges (i.e. if $ \beta, \gamma \in E$ and $ \beta \subseteq \gamma $ then $ \beta = \gamma $). 
 
-Is possible to give a different definition of cover ideal that focuses more on its primary decomposition, infact we can define for every $ \beta = \{ x_{i_1} , ... , x_{i_r}\} \in E  $ the ideal:
+Is possible to give a different definition of cover ideal that focuses more on its primary decomposition, in fact we can define for every $ \beta = \{ x_{i_1} , ... , x_{i_r}\} \in E  $ the ideal:
 \begin{equation}\label{eq:prime}
 \p_\beta = \left\langle  x_{i_1} , ... , x_{i_r} \right\rangle \subseteq k[V]
 \end{equation}
@@ -971,7 +973,7 @@ Spiegare meglio perchè sono primi associati, è ovvio che i primi associati deb
 
 
 
-Is possible to exploit the algebraic structure of the cover ideal to get information on the coloration of the hypergraph (and viceversa), for example in \cite{Fran10Colourings} was discovered that using the element $  \mm_V = x_1 \cdots x_v  $ is possible to evaluate the cromatic number:
+Is possible to exploit the algebraic structure of the cover ideal to get information on the colouration of the hypergraph (and vice versa), for example in \cite{Fran10Colourings} was discovered that using the element $  \mm_V = x_1 \cdots x_v  $ is possible to evaluate the chromatic number:
 
 \begin{teo}[Theorem 3.2 of \cite{Fran10Colourings}] \label{teo:col:chi}
 Let $ H = (V,E) $ be a simple hypergraph on $ V = \{ x_1 , ... , x_v\} $, then for all $ d >0 $ we have $ \mm_V^{d-1} \in J(H)^d $ if and only if $ \chi(H) \leq d $, thus we can characterize:
@@ -982,7 +984,7 @@ Let $ H = (V,E) $ be a simple hypergraph on $ V = \{ x_1 , ... , x_v\} $, then f
 
 
 
-For a hypergraph $ H = (V,B) $ we define $ \tau (H) $ as the smallest cardinality for a set $ \min_{\beta \in B} \{ |\beta |\}$, we can use this number to show a link, introduced in \cite{Bal21Steiner}, between the coloring properties of $ H $ and when the Containment Problem fail for the cover ideal:
+For a hypergraph $ H = (V,B) $ we define $ \tau (H) $ as the smallest cardinality for a set $ \min_{\beta \in B} \{ |\beta |\}$, we can use this number to show a link, introduced in \cite{Bal21Steiner}, between the colouring properties of $ H $ and when the Containment Problem fail for the cover ideal:
 
 \begin{teo}[Theorem 4.8 of \cite{Bal21Steiner}] \label{teo:col:cont}
 Let $ H = (V,B) $ be a hypergraph, if $ H $ is not $ d $-coverable then $ J(H)^{(\tau(H))} \not \subseteq J(H)^d $
@@ -990,8 +992,8 @@ Let $ H = (V,B) $ be a hypergraph, if $ H $ is not $ d $-coverable then $ J(H)^{
 
 \begin{proof}
 Let $\tau = \tau (H)$ and $ J = J(H) $, then we have:\\
-since for each $ \beta \in B $ the ideal $ \p_\beta $ has $ |\beta | \geq \tau $ elements, we have $ \mm_V \in \p_\beta^\tau $ (it is enought to use $\tau$ of the $ |b| $ variables and complete with the missing one). Then, since the cover ideal is an intersection of prime ideals and so is radical, using the theorem \ref{teo:sym_radical} we get $ \mm_V \in J^{(\tau)} $.\\
-Suppose now that $ \mm_V \in J^d $, then there exists $ m_1 , ... , m_d \in J $ with $ \mm_V = m_1 \cdots m_d $. We want to use them to costruct a partition: $ U_i := \{ x_u \in V \,|\, x_u \text{ divides } m_i\} $. $ U_1 , ... ,U_d $ is a partition because $ \mm_V $ is squarefree (so no repetition) and it is divided by all the vertices of $ V $. Since for all $ i $  $ m_i $ is a squarefree monomial in $ J $, by using the definition $ \ref{eq:coverideal} $ of cover ideal we have that $ U_i $ must be a vertex cover, and then we have a partition that satisfies definition \ref{def:cover} of $ d $-coverable, absurd. 
+since for each $ \beta \in B $ the ideal $ \p_\beta $ has $ |\beta | \geq \tau $ elements, we have $ \mm_V \in \p_\beta^\tau $ (it is enough to use $\tau$ of the $ |b| $ variables and complete with the missing one). Then, since the cover ideal is an intersection of prime ideals and so is radical, using the theorem \ref{teo:sym_radical} we get $ \mm_V \in J^{(\tau)} $.\\
+Suppose now that $ \mm_V \in J^d $, then there exists $ m_1 , ... , m_d \in J $ with $ \mm_V = m_1 \cdots m_d $. We want to use them to construct a partition: $ U_i := \{ x_u \in V \,|\, x_u \text{ divides } m_i\} $. $ U_1 , ... ,U_d $ is a partition because $ \mm_V $ is squarefree (so no repetition) and it is divided by all the vertices of $ V $. Since for all $ i $  $ m_i $ is a squarefree monomial in $ J $, by using the definition $ \ref{eq:coverideal} $ of cover ideal we have that $ U_i $ must be a vertex cover, and then we have a partition that satisfies definition \ref{def:cover} of $ d $-coverable, absurd. 
 \end{proof}
 
 We can use this theorem to prove the failure of Question \ref{que:32} for cover ideals of Steiner Triple System $ STS(v) $
@@ -1000,7 +1002,7 @@ If $ v>3 $ and $ S = (V,B) $ is a Steiner Triple System $ S(2,3,v) $, then $ J(S
 \end{prop}
 
 \begin{proof}
-Obviously $ \tau(S)=n=3 $, so we need only to prove that $ S $ is not $ 2 $-coverable. Assume that there exists a partition of vertex covers $ U_1 \sqcup U_2 = V $, so for all triple $ \{ i , j, k\} \in B $ we have $ \{ i , j, k\} \cap U_1 \neq \emptyset $ and $ \{ i , j, k\} \cap U_2 \neq \emptyset $, this means that for every edges there are exactly $ 2 $ colors. This characteristic is called $ 2 $-bicolourable, that \textbf{???}. 
+Obviously $ \tau(S)=n=3 $, so we need only to prove that $ S $ is not $ 2 $-coverable. Assume that there exists a partition of vertex covers $ U_1 \sqcup U_2 = V $, so for all triple $ \{ i , j, k\} \in B $ we have $ \{ i , j, k\} \cap U_1 \neq \emptyset $ and $ \{ i , j, k\} \cap U_2 \neq \emptyset $, this means that for every edges there are exactly $ 2 $ colours. This characteristic is called $ 2 $-bicolourable, that \textbf{???}. 
 \begin{tboxque}
 Non so bene perchè dovrebbe essere assurdo e purtroppo non trovo l'articolo \textit{Steiner triple systems and their chromatic number, Rosa A.}
 \end{tboxque}
@@ -1016,11 +1018,11 @@ Inoltre pensavo di usare l'esempio 5.6 di \cite{Bal20Steiner} per far vedere qua
 	\[ J^{( \tau(q-1) )} \not \subseteq J^q \]
 \end{teo}
 
-Another possible failure of the containment can be deducted by the cromatic numeber:
+Another possible failure of the containment can be deducted by the chromatic number:
 
 \begin{proof}
-	From theorem \ref{teo:col:chi} we have $\mm_V^{q-1} \not \in J^q$, therfore we only need to prove $ \mm_V^{q-1} \in J(H)^{( \tau (q-1) )}$ to fail the containment. For this we use as in \ref{teo:col:cont} theorem \ref{teo:sym_radical}:\\
-	For every $\beta \in B $ we know that it has at least $	\tau$ elements, without los of generality we can assume that they are $x_1 , ... , x_\tau$, and so we have $x_1^{q-1} \cdots  x_\tau^{q-1} \in \p_\beta^{\tau(q -1)} $ thus completing with the other elements we get $\mm_V^{q-1} \in \p_\beta^{\tau(q -1)} $. 
+	From theorem \ref{teo:col:chi} we have $\mm_V^{q-1} \not \in J^q$, therefore we only need to prove $ \mm_V^{q-1} \in J(H)^{( \tau (q-1) )}$ to fail the containment. For this we use as in \ref{teo:col:cont} theorem \ref{teo:sym_radical}:\\
+	For every $\beta \in B $ we know that it has at least $	\tau$ elements, without loss of generality we can assume that they are $x_1 , ... , x_\tau$, and so we have $x_1^{q-1} \cdots  x_\tau^{q-1} \in \p_\beta^{\tau(q -1)} $ thus completing with the other elements we get $\mm_V^{q-1} \in \p_\beta^{\tau(q -1)} $. 
 \end{proof} 
 
 \begin{tboxtodo}
