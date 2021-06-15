@@ -68,6 +68,7 @@
 \newcommand{\Cc}{\mathfrak{c}}
 
 \newcommand{\cont}[2]{ I^{(#1)} \subseteq I^{#2}}
+\newcommand{\mcont}[3]{ I^{(#1)} \subseteq \MM^{#2} I^{#3}}
 
 
 \DeclareMathOperator*{\eqb }{=}
@@ -87,23 +88,23 @@
 \newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
 
 %tcolorbox
-
+\newcounter{que}
 \newtcolorbox{tboxprop}[1][]
 {
-title=Possibile aggiunta,
+title=\stepcounter{que}\theque : Possibile aggiunta,
 colback=red!20!white, 
 colframe=red!50!white
 }
 \newtcolorbox{tboxque}[1][]
 {
-title=Domanda,
+title=\stepcounter{que}\theque : Domanda,
 colback=blue!20!white, 
 colframe=blue!50!white
 }
 
 \newtcolorbox{tboxtodo}[1][]
 {
-title=TODO,
+title=\stepcounter{que}\theque : Cosa da fare,
 coltitle=white,
 colback=yellow!20!white, 
 colframe=orange!50!white
@@ -128,24 +129,22 @@ colframe=orange!50!white
 
 \mainmatter
 
-\section*{Cose da fare}
+%\section*{Cose da fare}
 \tcbset{colframe=red!75!black,fonttitle=\bfseries}
-\begin{tcolorbox}[enhanced,title=Domande e dubbi,
-  interior style={left color=red!20!white,
-                  right color=yellow!50!white}]
-\begin{itemize}
-\item Decidere bene su quali anelli si sta lavorando
-\item Dovrei inserire la definizione di dimensione di Krull?
-\item Cosa vuol dire comparare le topologie
-\item Trovare quando è stato proposto 
-\item \textit{Reduction to characteristic p}
-\item Non mi è chiaro perchè l'altezza dell'ideale $ I_{X_C} $ sia $ n $, ho due possibili motivi:
-\begin{enumerate}
-\item Lo è per tutti gli ideali in un anello polinomiale
-\item Sono dei fat points quindi hanno dimensione 0 e codimensione $ n $
-\end{enumerate}
-\end{itemize}
-\end{tcolorbox}
+%\begin{tcolorbox}[enhanced,title=Domande e dubbi,
+%  interior style={left color=red!20!white,
+%                  right color=yellow!50!white}]
+%\begin{itemize}
+%\item Decidere bene su quali anelli si sta lavorando
+%\item Dovrei inserire la definizione di dimensione di Krull?
+%\item Cosa vuol dire comparare le topologie
+%\item Trovare quando è stato proposto 
+%\item \textit{Reduction to characteristic p}
+%\end{enumerate}
+%\end{itemize}
+%\end{tcolorbox}
+
+
 
 
 \chapter{Inroduction and Symbolic Powers}
@@ -482,7 +481,7 @@ Sadly the other direction of the containment isn't that easy, it's an open quest
 	The concept of height is equivalent to the codimension of the ideal $ \p $, that is the (Krull) dimension of the localization $ R_\p $ (looking at the definition it is easy to see that they are the same). Similarly we can define the coheight of $ \p $ as the dimension of the ideal $ \p $ (the supremum of the lenght of chanis ascending from $ \p $). To be more clear we racall that the Krull-dimension of a Ring $ R $ is the supremum of the lenght of chains of prime ideals:
 	\[ \dim (R) = \sup \{ r \,|\, \text{exists a prime ideals chains: } \p_r \subsetneq \p_{r-1} \subsetneq ... \subsetneq \p_0 \}\] 
 	And the dimension of an ideal $ I $ is the dimension of the quotient $ R/I $. Moreover, for a $ R $-module $ M $ we define the dimension of $ M $ as the dimension of the annihilator $ \Ann_R(M) $. Observe that for an ideal these two definitions do not coincide (an ideal is also a module), but usually the right calculations is clear from the context. \\
-	For a general ideal $ I $ we define the height of $ I $ as the minimum height of its prime ideals (for proposition \ref{prop:minprimes} we can consider only the associated ones) and the \textbf{big height of $ I $} as the maximal height of its associated primes. 
+	For a general ideal $ I $ we define the height of $ I $ as the minimum height of its prime ideals (for proposition \ref{prop:minprimes} we can consider only the associated ones) and the \textbf{big height of $ I $} as the maximal height of its associated primes. Also if all the prime assasins as same height these two quantities are equal and we say that the ideal has pure height.
 
 %TODO	
 	\begin{tboxque}
@@ -498,7 +497,9 @@ Sadly the other direction of the containment isn't that easy, it's an open quest
 	
 \begin{tboxprop}
 	Given that $ k[x_0, ... , x_N] $ is a regular ring (this is a consequence of the Hilbert's syzygy theorem) and that obviously the big hieght of every homogeneous ideal $ I $ is less than the dimension of the ring ($ N $) we have a more geometrically form of theorem \ref{teo:cont:bigh}, that states $ \cont{Nm}{m} $ for all positive $ m $. %TODO Posso farlo per la varietà?
-\end{tboxprop}
+	Potenzialmente potrei aggiungere anche qualche precisazione da section 19.2 dell'Eisenbud (\cite{Eisenbud95})
+	
+	\end{tboxprop}
 	
 	 
 	\begin{tboxque}
@@ -578,8 +579,8 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 	\begin{conj}[Stable Harbourne-Huneke]\label{conj:stabharbhun}
 	Given a nonzero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m \gg 0 $:
 	\begin{itemize}
-	\item $ I^{(hm)} \subset \MM^{r(h-1)} I^r$
-	\item $ I^{(hm - h +1 )} \subset \MM^{(r-1)(h-1)} I^r $
+	\item $ I^{(hm)} \subset \MM^{m(h-1)} I^m$
+	\item $ I^{(hm - h +1 )} \subset \MM^{(m-1)(h-1)} I^m $
 	\end{itemize}
 	\end{conj}
 	
@@ -623,7 +624,7 @@ be the minimal free resolution of $ I $ over $ R $, let $ f_j $ be the maximal d
 \end{deff}
 
 \begin{tboxtodo}
-Qui voglio inserire alcune referneze, senza entrare troppo nel dettaglio della regolaità, direi di usare Eisenbud (\cite{Eisenbud95})
+Qui voglio inserire alcune referneze, senza entrare troppo nel dettaglio della regolaità, direi di usare section 20.5 dall'Eisenbud (\cite{Eisenbud95}) 
 \end{tboxtodo}
 
 \begin{lem}[Postulation Crtiterion 2 from \cite{BocciHrabourne10}] \label{lem:cont:reg}
@@ -674,11 +675,13 @@ Where in $\ast$ we use the hypotesis $ \cont{hm-h}{m} $.
 
 \begin{tboxque}
 Nel teo \ref{teo:cont:bighgen} va bene $ s \in \Z $? o serve $ s\geq 0 $?\\
-Dimostrazioni di alcuni di questi punti\\
-Potrei anche inserire la dimostrazione del teorema \ref{teo:cont:bigh} in caratteristica finita\\
-Qualcosa sulla \textit{reduction to characteristic p}
+Vorrei sapere se fosse interessante inserire qualcosa sulla \textit{reduction to characteristic p}, ho visto che diversi articoli ne fanno riferimento per prendere risultati in caratteristica finita e portarli in caratteristica 0: secondo Lei vale la pena? Nel caso dove mi converrebbe studiare?
 \end{tboxque}
 
+\begin{tboxtodo}
+Dimostrazioni di altri punti del teorema \ref{teo:cont:grifo0}.\\
+Potrei anche inserire la dimostrazione del teorema \ref{teo:cont:bigh} in caratteristica finita.\\
+\end{tboxtodo}
  	
 	
 
@@ -719,11 +722,11 @@ As said before is possible to use algebraic geometry to represents the Steiner s
 
 %Star configuarations
 \begin{deff} \label{def:starconf}
-A finite set of points $ Z \subset \PP^n $ is a \textbf{star configuaration of points} of degree $ d \geq n $ if there exists $ d $ general hyperplanes such that the points of $ Z $ are exactly the ones that are intersection of $ n $ of these hyperplanes.
+A finite set of points $ Z \subset \PP_k^n $ is a \textbf{star configuaration of points} of degree $ d \geq n $ if there exists $ d $ general hyperplanes such that the points of $ Z $ are exactly the ones that are intersection of $ n $ of these hyperplanes.
 \end{deff}
 By general position we mean that any group of $ n $ hyperplanes intersect in only one point and there is no point belonging to more than $ n $ hyperplanes. It also used the notation $ d $-star to emphasize the degree. 
 
-In our case we consider v-star configuartions in $ \PP^n $ defined by the general hyperplanes in $ \PP^n $ $ \HH  = \{ H_1 , ... , H_v\}$, with $ H_i $ associated to the linear form $ l_i $ (a linear map from $ \PP^n $ to the field of scalars $ k $). Given an $ n $-subset of $ V $\footnote{Since $ V $ is finite we can index it using natual numbers and assume $ V = \{ 1 , ... , v\} $} $ \sigma : = \{ \sigma_1 , ... , \sigma_v\}$ we can associate to it a point of the configuaration $ P_{\HH, \sigma }= \cap_{\sigma_i \in \sigma} H_{\sigma_i}$, that has as vanishing ideal $ I_{P_{\HH, \sigma}} = \left< l_{\sigma_1} , ... , l_{\sigma_v} \right\rangle $.\\
+In our case we consider v-star configuartions in $ \PP_k^n $ defined by the general hyperplanes in $ \PP^n $ $ \HH  = \{ H_1 , ... , H_v\}$, with $ H_i $ associated to the linear form $ l_i $ (a linear map from $ \PP_k^n $ to the field of scalars $ k $). Given an $ n $-subset of $ V $\footnote{Since $ V $ is finite we can index it using natual numbers and assume $ V = \{ 1 , ... , v\} $} $ \sigma : = \{ \sigma_1 , ... , \sigma_v\}$ we can associate to it a point of the configuaration $ P_{\HH, \sigma }= \cap_{\sigma_i \in \sigma} H_{\sigma_i}$, that has as vanishing ideal $ I_{P_{\HH, \sigma}} = \left< l_{\sigma_1} , ... , l_{\sigma_v} \right\rangle $.\\
  Observe that in this case the vertices are represented by $( n-1 )$-linear space and the blocks by points.\\
  Also we can define:
  \begin{deff}\label{def:gensys}
@@ -740,6 +743,9 @@ In our case we consider v-star configuartions in $ \PP^n $ defined by the genera
  We call  $ X_{\HH , B} $ the \textbf{Steiner configuration of points} associated to the Steiner system $ (V , B) $ of type $ S(t , n,v) $ with respect to $ \HH $. \\
  Also we indicate $ C_{(n,v)} $ as the family of all the n-subset of $ V $ and we can costruct the \textbf{Complement of a Steiner configuration} of points with respect to $ \HH $ as the scheme $ X_{\HH , C_{(n,v)} \setminus B} $ (said C-Steiner and indicated $ X_C $ too).
 Now we obtain some interesting results for this particular scheme. 
+\begin{rem}
+Since every point in $ \PP_k^n $ has height $ n $ we have that all these ideals has pure hight $ n $
+\end{rem}
  
  \section{Containment problem for C-Steiner System}
  
@@ -755,10 +761,9 @@ Consider a Steiner system $ (V,B) $ of type $ S(t,n,v) $, let $ X_C \subset \PP^
  \end{teo}
  
  \begin{tboxprop}
- Spiega l'idea dietro la dimostrazione\\
+ Vorrei spiegare solo l'idea dietro la dimostrazione, perchè penso che metterla tutta sarebbe eccessivo, in particulare pensavo di dire qualcosa su:\\
  Utilizzo simplicial complex\\
- $ I_{X_C}^{(m)} $ e $ I_{\Delta_C}^{(m)} $ hanno le stesse invarianti omologiche\\
- Appendice die Eisenbud
+ $ I_{X_C}^{(m)} $ e $ I_{\Delta_C}^{(m)} $ hanno le stesse invarianti omologiche
   \end{tboxprop}
   
 \begin{rem}\label{rem:alphaXC}
@@ -802,19 +807,36 @@ or
  Using the corollary \ref{cor:alphaXC} we get $ I_{X_C}^{(3)}  \not \subseteq I_{X_C}^2$, that is a new counterexample for question \ref{que:32}. 
  \end{ex}
  
-Another useful results from \cite{Bal20Steiner} is the calculation of the largest degree in a minimal homogeneous set of generators of the ideal $ I_{X_C} $, i.e. the integer $ \omega (I_{X_	C}) $ such that given a minimal set of generators $\{ f_1 ,... , f_k\} $ of $ I_{X_	C} $ we are granted to have $ \deg (f_i) \leq \omega (I_{X_	C}) $ for all $ i $ and the bound is reached by at least one element. %TODO Dovrei dimostrare che è definito bene?
+Other useful results from \cite{Bal20Steiner} are the calculation of some homological invariants of $ I_{X_C}$, like the regularity and the largest degree in a minimal homogeneous set of generators of the ideal, i.e. the integer $ \omega (I_{X_	C}) $ such that given a minimal set of generators $\{ f_1 ,... , f_k\} $ of $ I_{X_	C} $ we are granted to have $ \deg (f_i) \leq \omega (I_{X_	C}) $ for all $ i $ and the bound is reached by at least one element. %TODO Dovrei dimostrare che è definito bene?
 
-\begin{prop}[Corollary 4.7 in \cite{Bal20Steiner}]
+\begin{prop}[Corollary 4.2 and 4.7 in \cite{Bal20Steiner}]
 \label{prop:largdeg}
 For a Steiner system of type $ S(t,n,v) $ we have:
 \begin{equation}\label{eq:largdeg}
 \omega (I_{X_	C}) = 
 \begin{cases}
 \alpha (I_{X_	C})=v-n     & \text{ if } t = n-1\\
-\alpha (I_{X_	C})+1=\reg(I_{X_C}) = v-n +1 & \text{ if } t < n-1
+\reg(I_{X_C}) & \text{ if } t < n-1
 \end{cases}
 \end{equation}
+with  \begin{equation}\label{eq:reqXC}
+\reg(I_{X_C}) =\alpha (I_{X_	C})+1= v-n +1
+\end{equation}
 \end{prop}
+
+In particular we will use this proposition in combination with the lemma:
+\begin{lem}\label{lem:cont_om}
+Let $ I,J $ be homogeneous ideals in a Polynomial Ring $ R $, if we have both $ I \subseteq J $ and $ \alpha(I) - \omega (J) \geq k >0 $ then we have:
+\[ I \subseteq \MM^k J\]
+\end{lem}
+\begin{proof}
+Consider a minimal set of generators $ \left\langle \xi_1 , ... ,\xi_r \right\rangle = J $, with degree bounded by $ \omega(J) $, then for an element $ f \in I $ (without loss og generality we assume it homogenous) we have $ f = \sum g_i \xi_i  $, thus we have for all $ i $ with $ g_i\neq 0 $:
+\[ \alpha(I) \leq \deg (f) = \deg(g_i \xi_i ) = \deg(g_i) + \deg(\xi_i) \leq  \deg(g_i) + \omega(J) \]
+therefore we have:
+\[ \deg(g_i)  \geq\alpha(I) - \omega (J) \geq k \]
+so $ g_i \in \MM^k $ and the thesis follows.
+\end{proof}
+
 
 Here we prove one of the main result of the article \cite{Bal21Steiner}:
 \begin{teo}\label{teo:cont:csteiner}
@@ -828,11 +850,33 @@ Let $ I_{X_C} \subset k[x_0 , ... , x_n]$ be the defining ideal of a Complement 
 
 \begin{proof}
 \begin{enumerate}
-\item \quad \\
-\begin{tboxque}
-Non ho ben capito da dove venga $ \cont{n(r-1)}{r} $
-\end{tboxque}
-\item Using theorem \ref{teo:cont:grifo0}, condition \textit{1.} , and having $ \cont{n(r-1)}{r} $ we get for $ r \gg 0 $ the containment $ \cont{hn - h +1}{n} $
+\item Let $ I = I_{X_C}$ be the ideal defining the Complement of a Steiner configuration of points of type $ S(t,n,v) $ in $ \PP_k^n $, we will use the lemma \ref{lem:cont_om} in combination with proposition \ref{prop:largdeg} and theorem \ref{teo:alphaXC} to evaluate $\omega$ and $\alpha$:
+	\begin{itemize}
+	\item Using theorem \ref{teo:cont:bigh} with $ h=n $ we have $ \cont{hr}{r} $ for all $ r>0 $, also we have $ \alpha(I^{(nr)}) = rv $ and $ \omega(I^r)=r\omega(I)  \leq r(v-n+1) $, so $  \alpha(I^{(nr)}) - \omega(I^r) \geq rv - rv + r(n-1) = r(n-1) $, thus for all $ r>0 $:
+	\[ 
+	\mcont{nr}{r(n-1)}{r}
+	\]
+	\item We have $\alpha(I^{(n(r-1))}) = (r-1)v $ and $ \reg(I) = v-n+1 $ (Proposition \ref{prop:largdeg} equation \ref{eq:reqXC}), thus for $ r \gg 0 $ we have:
+	\[ \alpha(I^{(n(r-1))}) = (r-1)v \geq r(v-n+1) = r \reg(I)\]
+	so for the Postulation Criterion (Lemma \ref{lem:cont:reg}) we have the containment $ \cont{n(r-1)}{r} $. Now we observe that:
+\begin{equation} \label{eq:alpha?}
+	\alpha(I^{(n(r-1))}) - \alpha (I^r) = (r-1)v - r(v-n)=rn -v
+\end{equation}
+ And so we have $ \mcont{n(r-1)}{rn-v}{r} $, thus we have:
+ \begin{multline*}
+ I^{(n(r-1)+1)} \stackrel{*}{\subseteq} \mathcal{M} I^{(n(r-1))} \subseteq \mathcal{M}^{r n-v+1} I^{r} =\mathcal{M}^{r n-v-n+n+1} I^{r}=\\
+ =\mathcal{M}^{r n-n-(v-n)+1} I^{r} 
+  \stackrel{**}{\subseteq} \mathcal{M}^{r n-n-r+1} I^{r}=\mathcal{M}^{(r-1)(n-1)} I^{r}
+ \end{multline*}
+ Where in $ \ast $ we have used proposition \ref{prop:eulid} and in $ \ast \ast $ that $ r \gg 0 $ to have $ r \geq v-n $.
+	
+	\begin{tboxque}
+	Non mi è chiaro perchè in \ref{eq:alpha?} basti fare l'uguaglianza con $ \alpha $ senza usare $\omega$, dato che l'ugualianza c'è solo per $ t = n-1 $. Ho provato un po' a correggere ma non sono riuscito\\
+	Inoltre come si può vedere ho unito proposizione 3.4 e teorema 3.5 di \cite{Bal21Steiner}, tirandone fuori il lemma e il teorema perchè mi è venuto più semplice lavorare così, spero vada bene
+	\end{tboxque}
+	
+	\end{itemize}
+\item Using theorem \ref{teo:cont:grifo0}, condition \textit{1.} , and having for some $ r $ the containment $ \cont{n(r-1)}{r} $ we get for $ r \gg 0 $ the containment $ \cont{hn - h +1}{n} $
 \end{enumerate}
 \end{proof}
 
@@ -864,7 +908,7 @@ A hypergraph $ H $ is m-colourable if there exists a proper $ m $-colouring (i.e
 \end{deff}
 
 \begin{tboxque}
-Ma non sono proprio equivalenti, se $ |V| > m $ non esite una m-colorazione ma comunque $ \chi(H) \leq |V| $
+Ma non sono proprio equivalenti, se $ |V| > m $ credo non esita una m-colorazione ma comunque $ \chi(H) \leq |V| $
 \end{tboxque}
 
 \begin{deff}
@@ -961,6 +1005,11 @@ Obviously $ \tau(S)=n=3 $, so we need only to prove that $ S $ is not $ 2 $-cove
 Non so bene perchè dovrebbe essere assurdo e purtroppo non trovo l'articolo \textit{Steiner triple systems and their chromatic number, Rosa A.}
 \end{tboxque}
 \end{proof}
+
+\begin{tboxtodo}
+Qui pensavo di inserire anche la proposizione 4.10 e l'esempio 4.11 (o comunque qualcosa di simile) dall'articolo \cite{Bal21Steiner}\\
+Inoltre pensavo di usare l'esempio 5.6 di \cite{Bal20Steiner} per far vedere qualche calcolo con Macaulay2 \cite{M2} (o CoCoA)
+\end{tboxtodo}
 
 \begin{teo} \label{teo:borin1}
 	Consider a simple hypergraph $H = (V,B)$, if we indicate $\tau = \tau (H)$ and the cover ideal $ J = J(H)$,  then for all $ q < \chi(H)$ we have: 
