@@ -82,7 +82,6 @@
 \DeclareMathOperator{\reg}{reg}
 
 
-
 %Environment
 \newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
 \newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
@@ -920,24 +919,23 @@ In this chapter we focus in an interesting relation between the colourability of
 We can see two different definition of $ m $-colouring, the first one is more descriptive and use the intuitive notion of surjective map, focusing on the role of the vertices: 
 \begin{deff}\label{def:colouring1}
 Let $ C $ be the set of possible colours, a colouring of the hypergraph $ H = (V,E) $ is a surjective map $ c : V \to C $. \\
-In the case of which $ C $ is finite we assume $ C = \{ 1 , ... , m\} $ and we say that a colouring $ c : V \to C $ is a proper $ m $-colouring if for every edge $ \beta \in B $ we have two vertices of different colours. 
+In the case of which $ C $ is finite we assume $ C = \{ 1 , ... , m\} $ and we say that a colouring $ c : V \to C $ is a proper $ m $-colouring if for every hyperedge $ \beta \in B $ we have at least two vertices of different colours. 
 \end{deff}
 
-The second one is due to the fact that we can see a colouring as a partition of the vertices (in fact is well know that a surjective map partitions the domain using the fibres):
+The second one is due to the fact that we can see a colouring as a partition of the vertices (in fact is well known that a surjective map partitions the domain using the fibres):
 
 \begin{deff}
-An $ m $-colouring of the hypergraph $ H = (V,E) $ is a partition in $ m $ subset of $ V = U_1 \sqcup ... \sqcup U_m $ such that for every edge $ \beta \in B $ we have $ \beta \not \subseteq U_i $ for all $ i = 1, ... , m $
+An $ m $-colouring of the hypergraph $ H = (V,E) $ is a partition in $ m $ subset of $ V = U_1 \sqcup ... \sqcup U_m $ such that for every edge $ \beta \in E $ we have $ \beta \not \subseteq U_i $ for all $ i = 1, ... , m $
 \end{deff}
  
 We introduce the \textbf{chromatic number} of the hypergraph $ H $, indicated $ \chi(H) $, that is the minimum $ m $ such that $ H $ has an $ m $-colouring.
 
 \begin{deff}
-A hypergraph $ H $ is m-colourable if there exists a proper $ m $-colouring (i.e. $ \chi(H) \leq m $)
+A hypergraph $ H $ is $ m $-colourable if there exists a proper $ m $-colouring
 \end{deff}
 
-\begin{tboxque}
-Ma non sono proprio equivalenti, se $ |V| > m $ credo non esita una m-colorazione ma comunque $ \chi(H) \leq |V| $
-\end{tboxque}
+If the hypergraph has less than $ m $ vertices the condition of $ m $-colourability is equivalent to the inequality $ \chi(H) \leq m $, in fact if we have a $ c $-colouring $ V = U_1 \sqcup ... \sqcup U_c $ with $ v < c $ we can assume $ U_1 $ to have more than $ 2 $ elements and get a new partition: $ V = \{x_1\} \sqcup U_1 \setminus \{x_1\} \sqcup ... \sqcup U_m $. Thus $ H $ is $ (c+1) $-colourable. 
+%TODO Qualcosa di più preciso
 
 \begin{deff}
 We say that a hypergraph $ H $ is m-chromatic if it is $ m $-colourable, but no $ (m-1) $-colourable (i.e. $\chi(H) = m  $)
@@ -951,7 +949,6 @@ A hypergraph $ H = (V,E) $ is said \textit{$ c $-coverable} if there exists a pa
 
 \section{Edge between algebra and colouring theory}
 
-An 
 
 This concepts where introduced for graph in \cite{Villa90} and for hypergraph in \cite{Ha08}.
 
