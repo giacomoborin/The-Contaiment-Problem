@@ -1,4 +1,4 @@
-\documentclass[]{book}
+\documentclass[a4wide]{book}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -6,7 +6,7 @@
 \usepackage{tikz-cd,wrapfig}
 \usepackage{tcolorbox}
 \tcbuselibrary{skins}
-
+\usepackage[Bjarne]{fncychap}
 \usepackage{graphicx}
 %\graphicspath{ {images/} }
 
@@ -33,7 +33,7 @@
 
 
 %Bibliography
-\usepackage[style=numeric, maxnames=4,backend=bibtex]{biblatex}
+\usepackage[style=alphabetic, maxnames=4,backend=bibtex,giveninits=true,isbn=false,url=false,eprint=false]{biblatex}
 % other styles: numeric authortitle
 \addbibresource{biblio.bib}
 \usepackage[hidelinks]{hyperref}
@@ -115,7 +115,7 @@ colframe=orange!50!white
 %opening
 \title{The Containment Problem, 
 \\a general introduction and 
-\\the particular case of Steiner configurations ideals}
+\\the particular case for Steiner systems}
 \author{Giacomo Borin}
 
 
@@ -124,6 +124,8 @@ colframe=orange!50!white
 
 \frontmatter
 \maketitle
+
+\UCTfalse
 \tableofcontents
 
 
@@ -181,10 +183,12 @@ We can define also the minimal primes of the ideal $ I $, that are the minimal o
 	For a Noetherian ring $ R$, the minimal primes of $ R $ are among the associated primes of $ R $
 \end{prop}
 
-\begin{tboxque}
-	Non so se inserire una dimostrazione di questo, ad oggi non ne ho trovata una che usi solo cose introdotte qui, ad eccezione di \href{https://mathoverflow.net/questions/30792/a-direct-proof-that-minimal-primes-are-associated}{questa}, che usa la decomposizione primaria. 
-	
-\end{tboxque}
+%\begin{tboxque}
+%	Non so se inserire una dimostrazione di questo, ad oggi non ne ho trovata una che usi solo cose introdotte qui, ad eccezione di \href{https://mathoverflow.net/questions/30792/a-direct-proof-that-minimal-primes-are-associated}{questa}, che usa la decomposizione primaria. 
+%\end{tboxque}
+%
+%	1) domanda: non inserirla. ma la nozione di associated prime viene proprio dalla decomposizione primaria, quindi sarebbe una proof ultranaturale, ma evitiamola per motivo di lunghezza
+%
 
 \begin{rem}
 	Another name for associated ideal used by the Bourbaki group is \textit{assassin} or \textit{assassinator}, a word play between associated and annihilator. %todo check this
@@ -214,7 +218,7 @@ If $ \A $ is a primary ideal such that $ \rad(\A) = \p $ we say that $ \A $ is {
 	\end{enumerate}
 \end{rems}
 
-We say tha an ideal $ \A \subseteq R $ has a \textbf{primary decomposition}  if there exists a finite set of primary ideal $ \{ \q_1 , ... , \q_n\} $ such that:
+We say that an ideal $ \A \subseteq R $ has a \textbf{primary decomposition}  if there exists a finite set of primary ideal $ \{ \q_1 , ... , \q_n\} $ such that:
 \begin{equation*}
 	\A = \bigcap_{i=1}^n \q_i
 \end{equation*}
@@ -290,7 +294,7 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 
 \section{Symbolic power}
 
-	Lets consider an homogeneous polynomial ring $ k[x_0 , ... , x_n] $, it is easy to se that if we consider a variety $ X $ with it's coordinate ring $ R = k[X] $ and a point $ p \in X $ (associated to the maximal ideal $ \mm_p $)  we have that:
+	Lets consider an homogeneous polynomial ring $ k[x_0 , ... , x_n] $, it is easy to see that if we consider a variety $ X $ with it's coordinate ring $ R = k[X] $ and a point $ p \in X $ (associated to the maximal ideal $ \mm_p $)  we have that:
 	
 	\begin{equation}\label{eq:max_pow}
 		\mm_p^n = \{ f \in k[X] \text{ such that } f \text{ vanishes in } p \text{ with multiplicity } n\}
@@ -298,10 +302,12 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 	
 	Sadly for a general ideal to get a similar results we can not rely on the normal power, so now we introduce a sharper object, the \textbf{symbolic power}, that has nicer geometric properties and we will see that in some way can answer to our problem. %TODO Qualcosa di più qui
 	
-	\begin{tboxtodo}
-	Vorrei trovare qualche informazione di più sulla storia delle potenze simboliche, che non penso fossero state introdotte con questa idea, ad esempio ho visto che è usata per dimostrare il \textit{Krull's height theorem}
-	\end{tboxtodo}
-		
+%	\begin{tboxtodo}
+%	Vorrei trovare qualche informazione di più sulla storia delle potenze simboliche, che non penso fossero state introdotte con questa idea, ad esempio ho visto che è usata per dimostrare il \textit{Krull's height theorem}
+%	\end{tboxtodo}
+%	
+%	2) Cosa non fare: lo scopo e'essere brevi, altrimenti si deve tagliare qualche cosa
+%		
 	First of all given a prime ideal $ \p $ in a Noetherian Ring $ R $ we can define the $ n $-th symbolic power of $ \p $ as:
 	\begin{equation}\label{eq:sym_pow_p1}
 		\p^{(n)} = \{ r \in R \text{ such that exists } s \in R \setminus \p \text{ with } sr \in \p^n \}
@@ -323,7 +329,7 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 	
 	\begin{rems}
 		\begin{itemize}
-		\item The proposition \ref{prop:sym_is_primary} establish a new equivalent definition for the symbolic power, more in line to the use of this ideal in the Zarisky-Nagata Theorem.
+		\item The proposition \ref{prop:sym_is_primary} establish a new equivalent definition for the symbolic power, more in line to the use of this ideal in the Zariski-Nagata Theorem.
 		\item Using the properties of localization, like \cite[Proposition 4.8]{AMCD} and working with the contraction we would have speed up the proof.
 		%TODO Motiva perchè non lo hai fatto/di che lo farai dopo
 		\end{itemize}
@@ -349,10 +355,10 @@ Working on the localization over the associate ideals $ \Ass(R/I) $ is possible 
 
 
 
-\section{Zarisky-Nagata Theorem}
-Why do we study symbolic power? The Zarisky-Nagata Theorem give a geometric interpretation of its significance.
+\section{Zariski-Nagata Theorem}
+Why do we study symbolic power? The Zariski-Nagata Theorem give a geometric interpretation of its significance.
 
-\begin{teo}[Zarisky-Nagata Theorem \cite{Zar49, Nagata62}] \label{teo:zarnaga}
+\begin{teo}[Zariski-Nagata Theorem \cite{Zar49, Nagata62}] \label{teo:zarnaga}
 	If $ R = k[x_0 , ... , x_n] $ is a polynomial ring and $ \p $ is a prime ideal then:
 	\begin{equation}\label{eq:zar_nag_teo}
 	\p^{(m)} = \bigcap_{\substack{ \mm \in \mm\Spec (R)\\ \p \subset \mm}} \mm ^n
@@ -400,10 +406,13 @@ and so clearly represents the functions vanishing on $ p_i $ with multiplicity $
 
 %TODO Scrivere dove li useremo
 
-\begin{tboxque}
-Vorrei inserire qualcosa in più, per questo potrebbe servirmi l'articolo \cite{Gimigliano89} ma per ora non lo trovo.
-\end{tboxque}
-
+%\begin{tboxque}
+%Vorrei inserire qualcosa in più, per questo potrebbe servirmi l'articolo \cite{Gimigliano89} ma per ora non lo trovo.
+%\end{tboxque}
+%
+%3) and 4)
+%Scrivere solo che solo computabili a macchina e mettere in coda le due referenze
+%11 e'estremamente outdate, ho referenze molto piu'aggiornate, ma comunque NON si ineriscono
 
 \section{Computation of Symbolic powers}
 
@@ -415,6 +424,9 @@ Symbolic Powers
 Eloìsa Grifo, 1.5 
 \item \fullcite{Grifo17computation}
 \end{itemize}
+
+Risposta:
+Scrivere solo che sono computabili a macchina e mettere le due referenze
 \end{tboxtodo}
 %TODO Actual computation of symbolic powers
 
@@ -423,7 +435,7 @@ Eloìsa Grifo, 1.5
 
 For an ideal $ I $ of a Noetherian ring taking the $ n $-th power of $ I $ is a natural algebraic construction (is the $ n $-th product of $ I $ with itself), we can simply have its generators if we know the one of $ I $, in fact if $ I = \left\langle f_1 , ... ,f_k \right\rangle $:
 \[ I^n = \left\langle \xi_1 \cdots \xi_n \,|\, \xi_i \in \{ f_1 , ... ,f_k \} \right\rangle \]
-but it has not a clear geometric interpretation, in-fact the knowledge of the generators does not give a lot of information on the primary decomposition. On the other hand we have symbolic power, that inherit a strong geometric significance, for example from Zarisky-Nagata theorem, but their generators are tricky to find, so we can pose a natural question:
+but it has not a clear geometric interpretation, in-fact the knowledge of the generators does not give a lot of information on the primary decomposition. On the other hand we have symbolic power, that inherit a strong geometric significance, for example from Zariski-Nagata theorem, but their generators are tricky to find, so we can pose a natural question:
 
 \begin{que}
 What is the relation between the two powers?
@@ -472,7 +484,7 @@ Sadly the other direction of the containment isn't that easy, it's an open quest
 	
 	To understand this theorem we need two concepts.
 	\subsection{Regular ring}
-	For a Noetherian local ring $ (R,\mm) $ we say that it is a regular local ring if the minimal number of generators of the maximal ideal is equal to the dimension of $ R $. The name came from a Zarisky's result: for an algebraic variety a point $ p $ is non singular (regular) if and only if the ring of germs in $ p $ is regular (\cite{Zar40}). Is possible to see this in a more modern way , in fact for Nakayama's Lemma (is lemma \ref{lem:naka}, but in a different form) is possible to show that $ R $ is regular if and only if $ \dim(\mm / \mm^2 ) = \dim (R) $, and from algebraic geometry $ \mm /\mm^2 $ is the cotangent space of the point corresponding to $ \mm $, so the tangent space has same dimension of the variety if and only if the localization is regular.\\
+	For a Noetherian local ring $ (R,\mm) $ we say that it is a regular local ring if the minimal number of generators of the maximal ideal is equal to the dimension of $ R $. The name came from a Zariski's result: for an algebraic variety a point $ p $ is non singular (regular) if and only if the ring of germs in $ p $ is regular (\cite{Zar40}). Is possible to see this in a more modern way , in fact for Nakayama's Lemma (is lemma \ref{lem:naka}, but in a different form) is possible to show that $ R $ is regular if and only if $ \dim(\mm / \mm^2 ) = \dim (R) $, and from algebraic geometry $ \mm /\mm^2 $ is the cotangent space of the point corresponding to $ \mm $, so the tangent space has same dimension of the variety if and only if the localization is regular.\\
 	In general we say that a Noetherian ring is \textbf{regular} if the localization at every prime ideal is a regular local ring. Also a geometrical interpretation of this definition is that for an affine variety $ V $ its ring of regular functions $ \mathcal{O}_V $ is a regular ring if and only if $ V $ is a non singular variety. 
 	
 	\subsection{Height of an ideal}
@@ -485,16 +497,21 @@ Sadly the other direction of the containment isn't that easy, it's an open quest
 	And the dimension of an ideal $ I $ is the dimension of the quotient $ R/I $. Moreover, for a $ R $-module $ M $ we define the dimension of $ M $ as the dimension of the annihilator $ \Ann_R(M) $. Observe that for an ideal these two definitions do not coincide (an ideal is also a module), but usually the right calculations is clear from the context. \\
 	For a general ideal $ I $ we define the height of $ I $ as the minimum height of its prime ideals (for proposition \ref{prop:minprimes} we can consider only the associated ones) and the \textbf{big height of $ I $} as the maximal height of its associated primes. Also if all the prime assassins as same height these two quantities are equal and we say that the ideal has pure height.
 
-%TODO	
-	\begin{tboxque}
-	Ho visto che alcuni usano il termine \textit{Largest analytic spread in the localization},
-	Dovrebbe essere lo stesso dell'altezza, ma vorrei controllare
-	\end{tboxque}
+
+%	\begin{tboxque}
+%	Ho visto che alcuni usano il termine \textit{Largest analytic spread in the localization},
+%	Dovrebbe essere lo stesso dell'altezza, ma vorrei controllare
+%	\end{tboxque}
+%
+%  domanda 5: non usarlo, usa un solo nomedomanda 5: non usarlo, usa un solo nome
+%
 	
 	An example of a non trivial use of theorem \ref{teo:cont:bigh} on a fat-point subscheme came directly from \cite[2.3]{EinLazSmi01}:
 	
 	\begin{ex}\label{es:P2points}
-	Consider a reduced\footnote{A scheme is reduced if and only if the associated ideal is radical} fat point subscheme $ Z = m_1 p_1 + ... +  m_k p_k$ (o more simply a finite set of points) in $ \PP^2 $, since the subscheme has dimension $ 0 $ the ideal has big height $ 2 $, so we have $ \cont{2m}{m} $ for $ I = I(Z) $. Using Theorem \ref{teo:zarnaga} this implies that all $ F $ with multiplicity $ \geq 2m $ (greater or equal than $ 2m_im $ for all the points $ p_i $) stays in $ I(Z)^m $. 
+	Consider a %reduced\footnote{A scheme is reduced if and only if the associated ideal is radical} come e' scritto ora e'proprio sbagliato \{p_1,\dots ,p_k\} e'reduced (finite sets with its reduced structure) m_1p_1+...+m_kp_k is NOT reduced, unless m_i=1 for all i.
+	%Quando dicono reduced intendono l insieme finito, le altre sono le sue potenze simboliche e non sono reduced
+	fat point subscheme $ Z = m_1 p_1 + ... +  m_k p_k$ (o more simply a finite set of points) in $ \PP^2 $, since the subscheme has dimension $ 0 $ the ideal has big height $ 2 $, so we have $ \cont{2m}{m} $ for $ I = I(Z) $. Using Theorem \ref{teo:zarnaga} this implies that all $ F $ with multiplicity $ \geq 2m $ (greater or equal than $ 2m_im $ for all the points $ p_i $) stays in $ I(Z)^m $. 
 	\end{ex}
 	
 \begin{tboxprop}
@@ -552,11 +569,13 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 	hold?
 	\end{que}
 	
-	\begin{tboxprop}
-	Qui vorrei inserire esempi e controesempi, per ora ho trovato e penserei di inserire:\\
-	Controesempi: \textit{Fermat cofiguaration and others} in \cite{DSTG13}. \\
-	Esempi: Star configuartions of points \cite{Har11}.
-	\end{tboxprop}
+%	\begin{tboxprop}
+%	Qui vorrei inserire esempi e controesempi, per ora ho trovato e penserei di inserire:\\
+%	Controesempi: \textit{Fermat cofiguaration and others} in \cite{DSTG13}. \\
+%	Esempi: Star configuartions of points \cite{Har11}.
+%	\end{tboxprop}
+%	
+%	8 non aggiunta
 	
 	Another good question is if it is possible to improve the result from theorem \ref{teo:cont:bigh}. Since there is no known example for which the bound is optimal a new conjecture have been posed:
 	
@@ -595,7 +614,7 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 	\begin{proof}
 	This is a straight application of Euler identity for homogeneous polynomial:
 	\[ (\deg{F})F = \sum_{i=0}^{n} x_i \parder{F}{x_i} \]
-	, in fact if $ F \in I^{(r+1)} $ we have $ \parder{F}{x_i} \in I^{(r)} $ for Zarisky-Nagata theorem (\ref{teo:zarnaga}) and the thesis follows.
+	, in fact if $ F \in I^{(r+1)} $ we have $ \parder{F}{x_i} \in I^{(r)} $ for Zariski-Nagata theorem (\ref{teo:zarnaga}) and the thesis follows.
  	\end{proof}
  	
 
@@ -604,7 +623,7 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 We recall some results on the Containment problem that we will use. First of all a generalization of theorem \ref{teo:cont:bigh}:
 
 \begin{teo}[Theorem 4.4 of \cite{John14}]\label{teo:cont:bighgen}
-Let $ R $ be a regular ring containing a field and let $ I $ be an ideal with big height $ h $, for all integers $ n \geq 1 $, $ s \geq -nh $ and $ s_1 \leq  ... \leq s_n $ integers such that $ s = s_1 +  ... + s_n $ we have:
+Let $ R $ be a regular ring containing a field and let $ I $ be an ideal with big height $ h $, for all integers $ n \geq 1 $, $ s \geq 0 $ and $ 0 \leq s_1 \leq  ... \leq s_n $ integers such that $ s = s_1 +  ... + s_n $ we have:
 \begin{equation}\label{eq:cont:bighgen}
 	I^{(nh + s)} \subseteq \prod_{i=1}^{n} I^{(s_i + 1)}
 \end{equation}
@@ -625,9 +644,10 @@ be the minimal free resolution of $ I $ over $ R $, let $ f_j $ be the maximal d
 \]
 \end{deff}
 
-\begin{tboxtodo}
-Qui voglio inserire alcune referneze, senza entrare troppo nel dettaglio della regolaità, direi di usare section 20.5 dall'Eisenbud (\cite{Eisenbud95}) 
-\end{tboxtodo}
+Is possible to find more information in \cite[Section 20.5]{Eisenbud95}. 
+%\begin{tboxtodo}
+%Qui voglio inserire alcune referneze, senza entrare troppo nel dettaglio della regolaità, direi di usare section 20.5 dall'Eisenbud (\cite{Eisenbud95}) 
+%\end{tboxtodo}
 
 \begin{lem}[Postulation Criterion 2 from \cite{BocciHrabourne10}] \label{lem:cont:reg}
 Let $ I $ be a homogeneous ideal defining a $ 0 $-dimensional sub-scheme in $ \PP^N $, if we have the inequality:
@@ -676,24 +696,28 @@ Where in $\ast$ we use the hypothesis $ \cont{hm-h}{m} $.
 
 
 \begin{tboxque}
-Nel teo \ref{teo:cont:bighgen} va bene $ s \in \Z $? o serve $ s\geq 0 $?\\
+%Nel teo \ref{teo:cont:bighgen} va bene $ s \in \Z $? o serve $ s\geq 0 $?\\
 Vorrei sapere se fosse interessante inserire qualcosa sulla \textit{reduction to characteristic p}, ho visto che diversi articoli ne fanno riferimento per prendere risultati in caratteristica finita e portarli in caratteristica 0: secondo Lei vale la pena? Nel caso dove mi converrebbe studiare?
 \end{tboxque}
 
-\begin{tboxtodo}
-Dimostrazioni di altri punti del teorema \ref{teo:cont:grifo0}.\\
-Potrei anche inserire la dimostrazione del teorema \ref{teo:cont:bigh} in caratteristica finita.\\
-\end{tboxtodo}
+
+%No
+%\begin{tboxtodo}
+%Dimostrazioni di altri punti del teorema \ref{teo:cont:grifo0}.\\
+%Potrei anche inserire la dimostrazione del teorema \ref{teo:cont:bigh} in caratteristica finita.\\
+%\end{tboxtodo}
  	
 	
 
 
 \chapter{Steiner Configuration ideal}
 \section*{}
-\begin{tboxtodo}
-Qui penso di aggiungere una introduzione sugli steiner system e i loro utilizzi.\\		
-Non saprei che testi usare però
-\end{tboxtodo}
+
+%NO
+%\begin{tboxtodo}
+%Qui penso di aggiungere una introduzione sugli steiner system e i loro utilizzi.\\		
+%Non saprei che testi usare però
+%\end{tboxtodo}
 
 A \textbf{Steiner system} $ (V,B) $ of type $ S(t,n,v) $ is an \textit{hypergraph} with $ |V|=v $ and all the elements of $ B $, called blocks, are $ n $-subsets (of $ V $) such that every $ t $-tuple of elements in $ V $ is contained in only one block of $ B $. \\
 To be more clear we recall that an hypergraph $ (V,B) $ is a generalization of the normal graph, in which $ V $ is a finite set and $ B $ contains non-empty subset of $ V $ called hyper edges (a normal graph contains only pairs) such that they cover $ V $ ($ \bigcup_{H \in B} H = V $).\\
@@ -701,7 +725,7 @@ Geometrically the blocks can be seen as linear subspace in a projective space th
 
 \begin{ex} \label{ex:fano1}
 	The most known example of Steiner is of type $ STS(7) $ and, up to isomorphism, is the Fano Plane ($ \PP_{\mathbb{F}_2}^3 $). It has as blocks all the lines (hyperplanes):
-	\[B := \{\{1, 2, 3\}, \{3, 4, 5\}, \{3, 6, 7\}, \{1, 4, 7\}, \{2, 4, 6\}, \{2, 5, 7\}, \{1, 5, 6\}\}\].
+	\[B := \{\{1, 2, 3\}, \{3, 4, 5\}, \{3, 6, 7\}, \{1, 4, 7\}, \{2, 4, 6\}, \{2, 5, 7\}, \{1, 5, 6\}\}\]
 \end{ex}
 
 
@@ -762,11 +786,13 @@ Consider a Steiner system $ (V,B) $ of type $ S(t,n,v) $, let $ X_C \subset \PP^
 \end{enumerate}
  \end{teo}
  
- \begin{tboxprop}
- Vorrei spiegare solo l'idea dietro la dimostrazione, perchè penso che metterla tutta sarebbe eccessivo, in particulare pensavo di dire qualcosa su:\\
- Utilizzo simplicial complex\\
- $ I_{X_C}^{(m)} $ e $ I_{\Delta_C}^{(m)} $ hanno le stesse invarianti omologiche
-  \end{tboxprop}
+ 
+% puo'scrivere a parole in non piu'di due righe senza simboli, l'idea e'dimostrare che two certain simplicial complex have the same homological invariants
+% \begin{tboxprop}
+% Vorrei spiegare solo l'idea dietro la dimostrazione, perchè penso che metterla tutta sarebbe eccessivo, in particulare pensavo di dire qualcosa su:\\
+% Utilizzo simplicial complex\\
+% $ I_{X_C}^{(m)} $ e $ I_{\Delta_C}^{(m)} $ hanno le stesse invarianti omologiche
+%  \end{tboxprop}
   
 \begin{rem}\label{rem:alphaXC}
 We can use the results from theorem \ref{teo:alphaXC} to get some situation in which the containment problem fails, in fact for non-zero, proper, homogeneous ideals $ I $ and $ J $ is straightforward that if $ \alpha(I) < \alpha(J) $ then $ I \not\subseteq J $, in fact $ I_{ \alpha(I) } \neq 0$ but $ J_{ \alpha(I) } = 0 $. 
@@ -1026,7 +1052,7 @@ Another possible failure of the containment can be deducted by the chromatic num
 \end{proof} 
 
 \begin{tboxtodo}
-Questo teorema è da controllare meglio perchè l'ho scritto io.\\
+Questo teorema è da controllare meglio perchè l'ho scritto io (inoltre non so se qualcuno lo abbia già fatto).\\
 Inoltre se fosse giusto vorrei provare a usarlo per fare qualche controesempio. 
 \end{tboxtodo}
 
