@@ -9,6 +9,7 @@
 \usepackage[Bjarne]{fncychap}
 \usepackage{graphicx}
 %\graphicspath{ {images/} }
+\usepackage{listings}
 
 % Theorem definitons 
 \theoremstyle{plain}
@@ -33,7 +34,7 @@
 
 
 %Bibliography
-\usepackage[style=alphabetic, maxnames=4,backend=bibtex,giveninits=true,isbn=false,url=false,eprint=false]{biblatex}
+\usepackage[style=alphabetic, maxnames=4,backend=bibtex,giveninits=true,isbn=false,eprint=false]{biblatex}
 % other styles: numeric authortitle
 \addbibresource{biblio.bib}
 \usepackage[hidelinks]{hyperref}
@@ -381,8 +382,46 @@ If $ I $ is a radical ideal in a polynomial ring we have:
 
 
 
+\section{Computation of Symbolic powers}
 
-%TODO Posso prendere roba dagli articoli
+%\begin{tboxtodo}
+%Qui vorrei inserire qualcosa su come calcolare effettivamente le potenze simboliche, mostrando come farlo in Macaulay 2. Penso di usare come fonti i due lavori:
+%\begin{itemize}
+%\item Topics in commutative algebra:
+%Symbolic Powers
+%Eloìsa Grifo, 1.5 
+%\item \fullcite{Grifo17computation}
+%\end{itemize}
+%
+%Risposta:
+%Scrivere solo che sono computabili a macchina e mettere le due referenze
+%\end{tboxtodo}
+%TODO Actual computation of symbolic powers
+
+The actual computation of the symbolic powers is a difficult problem, because it requires the computation of the primary decomposition of $ I $ and its $ n $-th power (to get the factors $ I^n R_\p \cap R $), but this is an NP-hard problem (See Proposition 2.4 of \cite{Serk02} and Section 3.7 of \cite{Swa17} for more informations). 
+
+However is actually possible to evaluate a set of generators for $ I^{(n)} $ for polynomial rings, in \verb|Macaulay2| (\cite{M2}) there exists the \verb|SymbolicPowers| package, code available at \href{https://github.com/eloisagrifo/SymbolicPowers}{https://github.com/eloisagrifo/SymbolicPowers}. This package uses several methods to evaluate the results, for example for squarefree monomial ideal (so radical) it uses theorem \ref{teo:sym_radical}. 
+
+More information on the computation of symbolic powers and this package are obtainable on \cite{Grifo18Symb} and \cite{Grifo17computation}. 
+
+
+Here a small example of the package use:
+
+\begin{lstlisting}
+i1 : loadPackage "SymbolicPowers"; 
+
+i2 : R = QQ[x,y,z];
+
+i3 : I = ideal(x*y, y*z, z*x);
+
+i4 : symbolicPower(I,3)
+
+                     3 3   2 2    2   2     2 2   3 3   3 3
+o4 = monomialIdeal (x y , x y z, x y*z , x*y z , x z , y z )
+
+o4 : MonomialIdeal of R
+
+\end{lstlisting}
 
 
 \section{Fat Points}
@@ -413,21 +452,6 @@ and so clearly represents the functions vanishing on $ p_i $ with multiplicity $
 %Scrivere solo che solo computabili a macchina e mettere in coda le due referenze
 %11 e'estremamente outdate, ho referenze molto piu'aggiornate, ma comunque NON si ineriscono
 
-\section{Computation of Symbolic powers}
-
-\begin{tboxtodo}
-Qui vorrei inserire qualcosa su come calcolare effettivamente le potenze simboliche, mostrando come farlo in Macaulay 2. Penso di usare come fonti i due lavori:
-\begin{itemize}
-\item Topics in commutative algebra:
-Symbolic Powers
-Eloìsa Grifo, 1.5 
-\item \fullcite{Grifo17computation}
-\end{itemize}
-
-Risposta:
-Scrivere solo che sono computabili a macchina e mettere le due referenze
-\end{tboxtodo}
-%TODO Actual computation of symbolic powers
 
 
 \section{Relation between normal and symbolic power}
@@ -513,17 +537,17 @@ Sadly the other direction of the containment isn't that easy, it's an open quest
 	fat point subscheme $ Z = m_1 p_1 + ... +  m_k p_k$ (o more simply a finite set of points) in $ \PP^2 $, since the subscheme has dimension $ 0 $ the ideal has big height $ 2 $, so we have $ \cont{2m}{m} $ for $ I = I(Z) $. Using Theorem \ref{teo:zarnaga} this implies that all $ F $ with multiplicity $ \geq 2m $ (greater or equal than $ 2m_im $ for all the points $ p_i $) stays in $ I(Z)^m $. 
 	\end{ex}
 	
-\begin{tboxprop}
-	Given that $ k[x_0, ... , x_N] $ is a regular ring (this is a consequence of the Hilbert's syzygy theorem) and that obviously the big hieght of every homogeneous ideal $ I $ is less than the dimension of the ring ($ N $) we have a more geometrically form of theorem \ref{teo:cont:bigh}, that states $ \cont{Nm}{m} $ for all positive $ m $. %TODO Posso farlo per la varietà?
-	Potenzialmente potrei aggiungere anche qualche precisazione da section 19.2 dell'Eisenbud (\cite{Eisenbud95})
-	
-	\end{tboxprop}
-	
-	 
-	\begin{tboxque}
-		Nell'atricolo di Szemberg (\cite{Sze17}) nel teorema 1.3  non richiede che I sia radicale (può essere che assuma essere l'ideale di uno schema ridotto), mi sono perso qualcosa? Mi sembra strano anche perchè lo chiedono nell'articolo di Ein (\cite[Theorem A]{EinLazSmi01}).\\
-		Inoltre non sono certo che la mia motivazione sia giusta (bight $ \leq $ dim(R)) perchè penso ce ne sia una più elegante.
-	\end{tboxque}
+%\begin{tboxprop}
+%	Given that $ k[x_0, ... , x_N] $ is a regular ring (this is a consequence of the Hilbert's syzygy theorem) and that obviously the big hieght of every homogeneous ideal $ I $ is less than the dimension of the ring ($ N $) we have a more geometrically form of theorem \ref{teo:cont:bigh}, that states $ \cont{Nm}{m} $ for all positive $ m $. %TODO Posso farlo per la varietà?
+%	Potenzialmente potrei aggiungere anche qualche precisazione da section 19.2 dell'Eisenbud (\cite{Eisenbud95})
+%	
+%	\end{tboxprop}
+%	
+%	 
+%	\begin{tboxque}
+%		Nell'atricolo di Szemberg (\cite{Sze17}) nel teorema 1.3  non richiede che I sia radicale (può essere che assuma essere l'ideale di uno schema ridotto), mi sono perso qualcosa? Mi sembra strano anche perchè lo chiedono nell'articolo di Ein (\cite[Theorem A]{EinLazSmi01}).\\
+%		Inoltre non sono certo che la mia motivazione sia giusta (bight $ \leq $ dim(R)) perchè penso ce ne sia una più elegante.
+%	\end{tboxque}
 	
 
 \section[Constants of relevance]{Constants of relevance for the Containment problem}
@@ -694,10 +718,10 @@ Where in $\ast$ we use the hypothesis $ \cont{hm-h}{m} $.
 \end{proof}
 
 
-\begin{tboxque}
-%Nel teo \ref{teo:cont:bighgen} va bene $ s \in \Z $? o serve $ s\geq 0 $?\\
-Vorrei sapere se fosse interessante inserire qualcosa sulla \textit{reduction to characteristic p}, ho visto che diversi articoli ne fanno riferimento per prendere risultati in caratteristica finita e portarli in caratteristica 0: secondo Lei vale la pena? Nel caso dove mi converrebbe studiare?
-\end{tboxque}
+%\begin{tboxque}
+%%Nel teo \ref{teo:cont:bighgen} va bene $ s \in \Z $? o serve $ s\geq 0 $?\\
+%Vorrei sapere se fosse interessante inserire qualcosa sulla \textit{reduction to characteristic p}, ho visto che diversi articoli ne fanno riferimento per prendere risultati in caratteristica finita e portarli in caratteristica 0: secondo Lei vale la pena? Nel caso dove mi converrebbe studiare?
+%\end{tboxque}
 
 
 %No
@@ -935,7 +959,6 @@ A hypergraph $ H $ is $ m $-colourable if there exists a proper $ m $-colouring
 \end{deff}
 
 If the hypergraph has less than $ m $ vertices the condition of $ m $-colourability is equivalent to the inequality $ \chi(H) \leq m $, in fact if we have a $ c $-colouring $ V = U_1 \sqcup ... \sqcup U_c $ with $ v < c $ we can assume $ U_1 $ to have more than $ 2 $ elements and get a new partition: $ V = \{x_1\} \sqcup U_1 \setminus \{x_1\} \sqcup ... \sqcup U_m $. Thus $ H $ is $ (c+1) $-colourable. 
-%TODO Qualcosa di più preciso
 
 \begin{deff}
 We say that a hypergraph $ H $ is m-chromatic if it is $ m $-colourable, but no $ (m-1) $-colourable (i.e. $\chi(H) = m  $)
@@ -963,8 +986,11 @@ J(H) := \left\langle x_{j_1} \cdots x_{j_r} \,|\, \{ x_{j_1} , ... , x_{j_r}\} \
 \end{equation}
 \end{deff}
 
+I recall that a \textit{simple hypergraph} is an hypergraph without loops (edges with a single element) and without repeated edges (i.e. if $ \beta, \gamma \in E$ and $ \beta \subseteq \gamma $ then $ \beta = \gamma $). 
+
+
 The notion of edge ideal is of relevance for several reasons, for example there is a natural bijection between simple hypergraph over $ V $ and squarefree monomial ideal of $ k[V] $:
-\begin{align} \label{eq:bij}
+\begin{align*} \label{eq:bij}
 \left\{\begin{array}{c}
 \text { simple hypergraphs } \\
 H=(V, E)
@@ -977,9 +1003,8 @@ H=(V, E)
 (\beta = \{ x_{i_1} , ... , x_{i_r}\} \in E )
 &  \leftrightarrow  
 (x_{i_1} \cdots x_{i_r} \in I)
-\end{align}
+\end{align*}
 
-Where I recall that a \textit{simple hypergraph} is an hypergraph without loops (edges with a single element) and without repeated edges (i.e. if $ \beta, \gamma \in E$ and $ \beta \subseteq \gamma $ then $ \beta = \gamma $). 
 
 Is possible to give a different definition of cover ideal that focuses more on its primary decomposition, in fact we can define for every $ \beta = \{ x_{i_1} , ... , x_{i_r}\} \in E  $ the ideal:
 \begin{equation}\label{eq:prime}
@@ -1020,7 +1045,7 @@ Suppose now that $ \mm_V \in J^d $, then there exists $ m_1 , ... , m_d \in J $ 
 \end{proof}
 
 We can use this theorem to prove the failure of Question \ref{que:32} for cover ideals of Steiner Triple System $ STS(v) $
-\begin{prop}
+\begin{prop}[Proposition 4.9 of \cite{Bal21Steiner}]
 If $ v>3 $ and $ S = (V,B) $ is a Steiner Triple System $ S(2,3,v) $, then $ J(S)^{(3)}  \not \subseteq J(S)^2$
 \end{prop}
 
