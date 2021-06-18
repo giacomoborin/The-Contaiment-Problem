@@ -150,7 +150,7 @@ colframe=orange!50!white
 \rfoot{\thepage}
 
 \tableofcontents
-
+\newpage
 %\chapter*{Introduction}
 %\label{sec:intro}
 %\addcontentsline{toc}{chapter}{Introduction}
@@ -160,11 +160,26 @@ colframe=orange!50!white
 %The Containment 
 %In this thesis 
 
+\section*{Introduction}
+The Containment problem is an open sector of research that focuses on the behaviour of symbolic powers of ideals in relation to the normal powers and touches several disciplines, in particular Algebraic Geometry and Commutative Algebra, but also Combinatorics and graph Theory. 
+
+In this essay we will introduce the problem and investigate some connections between these subjects. 
+
+We start in chapter \ref{cha:pre_sym} with an introduction to the Primary decomposition (and associated primes), a generalization of the prime decomposition for more general ideals. This topic is necessary to understand the construction of the symbolic powers, an interesting algebraic instrument with several applications, for example they represent the polynomials vanishing on a variety with higher orders. 
+
+In chapter \ref{cha:cont} we introduce the Containment problem, with some important results and open questions posed recently, for instance the Stable Harbourne Conjecture and the Stable Harbourne-Huneke Conjecture. 
+
+In chapter \ref{cha:stein} we define the Steiner Systems, a class of hypergraphs with high regularity properties, then we associate to them some ideals and study the containment problem for them. 
+
+In chapter \ref{cha:coul} we build a bridge between the colouring properties of hypergraphs (in particular Steiner systems) and the algebraic properties of their cover ideals; in particular we see that the non-colourability can imply the failure of the containment problem. 
+
+  
+
 \mainmatter
 
 
 
-\chapter{Preliminaries and Symbolic Powers}
+\chapter{Preliminaries and Symbolic Powers} \label{cha:pre_sym}
 %TODO Should I say that R is always commutative with unity
 
 
@@ -504,7 +519,7 @@ An easy result that we can obtain from standard abstract algebra is:
 \end{proof} 
 Sadly the other direction of the containment isn't that easy, it's an open question and in the last years was largely studied for several classes of ideals.
 
-\chapter{The Containment Problem}
+\chapter{The Containment Problem} \label{cha:cont}
 \section*{}
 	As stated before the other direction of the containment of symbolic powers into normal powers is an open question in Algebraic Geometry and Commutative Algebra. The general form of the problem is:
 	\begin{que}[Containment Problem] \label{que:cont}
@@ -749,7 +764,7 @@ Where in $\ast$ we use the hypothesis $ \cont{hm-h}{m} $.
 	
 
 
-\chapter{Steiner Configuration ideal}
+\chapter{Steiner Configuration ideal} \label{cha:stein}
 \section*{}
 
 %NO
@@ -952,7 +967,7 @@ Let $ I_{X_C} \subset k[x_0 , ... , x_n]$ be the defining ideal of a Complement 
 
  
 
-\chapter{Colouring of an hypergraph and containment}
+\chapter{Colouring of an hypergraph and containment} \label{cha:coul}
 
 In this chapter we focus in an interesting relation between the colourability of an hypergraph and  the failure of the containment problem of its cover ideal. Then we apply these results in the case of a Steiner System. These results were proposed for the first time in the section 4 of \cite{Bal21Steiner}.
  
