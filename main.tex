@@ -21,6 +21,18 @@
 \usepackage{tikz}
 \usetikzlibrary{cd}
 
+%\usepackage{geometry}
+%\newgeometry{twoside}
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
 
 % Theorem definitons 
 \theoremstyle{plain}
@@ -141,7 +153,10 @@ colframe=orange!50!white
 \renewcommand{\footrulewidth}{1.5pt}
 \cfoot{{\fontfamily{phv} \small Academic Year 2020-21}}
 
+
 \include{frontespizio}
+%\newgeometry{twoside}
+
 
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{0pt}
