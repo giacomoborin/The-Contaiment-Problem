@@ -1,4 +1,4 @@
-\documentclass[a4wide]{book}
+\documentclass[notitlepage, a4]{book}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -10,6 +10,17 @@
 \usepackage{graphicx}
 %\graphicspath{ {images/} }
 \usepackage{listings}
+
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[all,2cell]{xy}
+\usepackage{float}
+\usepackage{csquotes}
+
+\usepackage{tikz}
+\usetikzlibrary{cd}
+
 
 % Theorem definitons 
 \theoremstyle{plain}
@@ -34,7 +45,7 @@
 
 
 %Bibliography
-\usepackage[style=alphabetic, maxnames=4,backend=bibtex,giveninits=true,isbn=false,eprint=false]{biblatex}
+\usepackage[style=alphabetic, maxnames = 8, backend=bibtex,giveninits=true,isbn=false,eprint=false]{biblatex}
 % other styles: numeric authortitle
 \addbibresource{biblio.bib}
 \usepackage[hidelinks]{hyperref}
@@ -121,35 +132,39 @@ colframe=orange!50!white
 
 
 \begin{document}
-
 \frontmatter
-\maketitle
 
-\UCTfalse
+\pagestyle{fancy}
+\fancyhf{}
+
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1.5pt}
+\cfoot{{\fontfamily{phv} \small Academic Year 2020-21}}
+
+\include{frontespizio}
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\rhead{\leftmark}
+\rfoot{\thepage}
+
 \tableofcontents
 
+%\chapter*{Introduction}
+%\label{sec:intro}
+%\addcontentsline{toc}{chapter}{Introduction}
+%
+%\chaptermark{Introduction}
+%
+%The Containment 
+%In this thesis 
 
 \mainmatter
 
-%\section*{Cose da fare}
-\tcbset{colframe=red!75!black,fonttitle=\bfseries}
-%\begin{tcolorbox}[enhanced,title=Domande e dubbi,
-%  interior style={left color=red!20!white,
-%                  right color=yellow!50!white}]
-%\begin{itemize}
-%\item Decidere bene su quali anelli si sta lavorando
-%\item Dovrei inserire la definizione di dimensione di Krull?
-%\item Cosa vuol dire comparare le topologie
-%\item Trovare quando è stato proposto 
-%\item \textit{Reduction to characteristic p}
-%\end{enumerate}
-%\end{itemize}
-%\end{tcolorbox}
 
 
-
-
-\chapter{Introduction and Symbolic Powers}
+\chapter{Preliminaries and Symbolic Powers}
 %TODO Should I say that R is always commutative with unity
 
 
@@ -400,14 +415,14 @@ If $ I $ is a radical ideal in a polynomial ring we have:
 
 The actual computation of the symbolic powers is a difficult problem, because it requires the computation of the primary decomposition of $ I $ and its $ n $-th power (to get the factors $ I^n R_\p \cap R $), but this is an NP-hard problem (See Proposition 2.4 of \cite{Serk02} and Section 3.7 of \cite{Swa17} for more informations). 
 
-However is actually possible to evaluate a set of generators for $ I^{(n)} $ for polynomial rings, in \verb|Macaulay2| (\cite{M2}) there exists the \verb|SymbolicPowers| package, code available at \href{https://github.com/eloisagrifo/SymbolicPowers}{https://github.com/eloisagrifo/SymbolicPowers}. This package uses several methods to evaluate the results, for example for squarefree monomial ideal (so radical) it uses theorem \ref{teo:sym_radical}. 
+However is actually possible to evaluate a set of generators for $ I^{(n)} $ for polynomial rings, in \verb|Macaulay2| (\cite{M2}) there exists the \verb|SymbolicPowers| package, code available at  \href{https://github.com/eloisagrifo/SymbolicPowers}{https://github.com/eloisagrifo/SymbolicPowers}. This package uses several methods to evaluate the results, for example for squarefree monomial ideal (so radical) it uses theorem \ref{teo:sym_radical}. 
 
 More information on the computation of symbolic powers and this package are obtainable on \cite{Grifo18Symb} and \cite{Grifo17computation}. 
 
 
-Here a small example of the package use:
+Here also a small example of the package use:
 
-\begin{lstlisting}
+\begin{lstlisting}[language = Macaulay2]
 i1 : loadPackage "SymbolicPowers"; 
 
 i2 : R = QQ[x,y,z];
@@ -427,7 +442,8 @@ o4 : MonomialIdeal of R
 \section{Fat Points}
 
 Let's consider now an object of interest, that has particular relations with the symbolic powers.\\
-Let $ k $ be a field and $ \PP^N$ the $ N $-th projective space over $ k $, consider now the distinct points $ p_1, ... ,p_k \in  \PP^N$ and some positive integers $ m_1 , ... ,m_k $. If we consider the defining ideals $ I(p_1), ... , I(p_k)  \subset k [\PP^N]$, representing the homogeneous polynomials vanishing on the point (before we have also used the notation $ \mm_{p_i}$ that emphasise their role as maximal ideals) we can define another ideal:
+Let $ k $ be a field and $ \PP^N$ the $ N $-th projective space over $ k $, consider now the distinct points \linebreak
+$ p_1, ... ,p_k \in  \PP^N$ and some positive integers $ m_1 , ... ,m_k $. If we consider the defining ideals $ I(p_1), ... , I(p_k)  \subset k [\PP^N]$, representing the homogeneous polynomials vanishing on the point (before we have also used the notation $ \mm_{p_i}$ that emphasise their role as maximal ideals) we can define another ideal:
 \begin{equation}\label{eq:fat_pt}
 	I = \bigcap_{i=1}^k I(p_i)^{m_i} \subset k [\PP^N]
 \end{equation}
@@ -492,7 +508,7 @@ Sadly the other direction of the containment isn't that easy, it's an open quest
 \section*{}
 	As stated before the other direction of the containment of symbolic powers into normal powers is an open question in Algebraic Geometry and Commutative Algebra. The general form of the problem is:
 	\begin{que}[Containment Problem] \label{que:cont}
-		Given a (\textbf{Noetherian ???}) Ring $ R $ and an ideal $ I $, for which $ m,r $ positive integers we have the containment:
+		Given a Noetherian Ring $ R $ and an ideal $ I $, for which $ m,r $ positive integers we have the containment:
 		$$ I^{(m)} \subset I^r $$
 	\end{que}
 	For our present knowledge in Algebra Question \ref{que:cont} seems quite general and does not have a unique and simple answer (contrary to the inverse, that has theorem \ref{teo:inv_cont}). Usually we need to specify a particular ring and a particular ideal. Also we consider some precise pairs, like $ 3,2 $, or a subset given by a disequation. 
@@ -809,6 +825,8 @@ Consider a Steiner system $ (V,B) $ of type $ S(t,n,v) $, let $ X_C \subset \PP^
 \end{enumerate}
  \end{teo}
  
+ The idea behind the proof of this results is to construct a new simplicial complex $ \Delta_C $ where we can evaluate $\alpha$, thus show that the symbolic powers of the associated ideals $ I_{\Delta_C}^{(m)} $ and $ I_{X_C}^{(m)} $ share the same homological invariants. 
+ 
  
 % puo'scrivere a parole in non piu'di due righe senza simboli, l'idea e'dimostrare che two certain simplicial complex have the same homological invariants
 % \begin{tboxprop}
@@ -894,7 +912,7 @@ Here we prove one of the main result of the article \cite{Bal21Steiner}:
 
 Let $ I_{X_C} \subset k[x_0 , ... , x_n]$ be the defining ideal of a Complement of a Steiner configuration of points in $ \PP^n_k $, then it satisfies:
 \begin{enumerate}
-\item Stable Harbourne-Huneke Conjecture (\ref{conj:stabharbhun})
+\item Stable Harbourne-Huneke Conjecture (\ref{conj:stabharbhun}) (Proof of the second point only for the case of $ t = n-1 $)
 \item Stable Harbourne Conjecture (\ref{conj:stabharb})
 \end{enumerate}
 \end{teo}
@@ -909,9 +927,9 @@ Let $ I_{X_C} \subset k[x_0 , ... , x_n]$ be the defining ideal of a Complement 
 	\]
 	\item We have $\alpha(I^{(n(r-1))}) = (r-1)v $ and $ \reg(I) = v-n+1 $ (Proposition \ref{prop:largdeg} equation \ref{eq:reqXC}), thus for $ r \gg 0 $ we have:
 	\[ \alpha(I^{(n(r-1))}) = (r-1)v \geq r(v-n+1) = r \reg(I)\]
-	so for the Postulation Criterion (Lemma \ref{lem:cont:reg}) we have the containment $ \cont{n(r-1)}{r} $. Now we observe that:
+	so for the Postulation Criterion (Lemma \ref{lem:cont:reg}) we have the containment $ \cont{n(r-1)}{r} $. Now we observe that assuming that $ t=n-1 $:
 \begin{equation} \label{eq:alpha?}
-	\alpha(I^{(n(r-1))}) - \alpha (I^r) = (r-1)v - r(v-n)=rn -v
+	\alpha(I^{(n(r-1))}) - \omega (I^r) = (r-1)v - r(v-n)=rn -v
 \end{equation}
  And so we have $ \mcont{n(r-1)}{rn-v}{r} $, thus we have:
  \begin{multline*}
@@ -920,11 +938,11 @@ Let $ I_{X_C} \subset k[x_0 , ... , x_n]$ be the defining ideal of a Complement 
   \stackrel{**}{\subseteq} \mathcal{M}^{r n-n-r+1} I^{r}=\mathcal{M}^{(r-1)(n-1)} I^{r}
  \end{multline*}
  Where in $ \ast $ we have used proposition \ref{prop:eulid} and in $ \ast \ast $ that $ r \gg 0 $ to have $ r \geq v-n $.
-	
-	\begin{tboxque}
-	Non mi è chiaro perchè in \ref{eq:alpha?} basti fare l'uguaglianza con $ \alpha $ senza usare $\omega$, dato che l'ugualianza c'è solo per $ t = n-1 $. Ho provato un po' a correggere ma non sono riuscito\\
-	Inoltre come si può vedere ho unito proposizione 3.4 e teorema 3.5 di \cite{Bal21Steiner}, tirandone fuori il lemma e il teorema perchè mi è venuto più semplice lavorare così, spero vada bene
-	\end{tboxque}
+%	
+%	\begin{tboxque}
+%	Non mi è chiaro perchè in \ref{eq:alpha?} basti fare l'uguaglianza con $ \alpha $ senza usare $\omega$, dato che l'ugualianza c'è solo per $ t = n-1 $. Ho provato un po' a correggere ma non sono riuscito\\
+%	Inoltre come si può vedere ho unito proposizione 3.4 e teorema 3.5 di \cite{Bal21Steiner}, tirandone fuori il lemma e il teorema perchè mi è venuto più semplice lavorare così, spero vada bene
+%	\end{tboxque}
 	
 	\end{itemize}
 \item Using theorem \ref{teo:cont:grifo0}, condition \textit{1.} , and having for some $ r $ the containment $ \cont{n(r-1)}{r} $ we get for $ r \gg 0 $ the containment $ \cont{hn - h +1}{n} $
@@ -958,7 +976,7 @@ We introduce the \textbf{chromatic number} of the hypergraph $ H $, indicated $ 
 A hypergraph $ H $ is $ m $-colourable if there exists a proper $ m $-colouring
 \end{deff}
 
-If the hypergraph has less than $ m $ vertices the condition of $ m $-colourability is equivalent to the inequality $ \chi(H) \leq m $, in fact if we have a $ c $-colouring $ V = U_1 \sqcup ... \sqcup U_c $ with $ v < c $ we can assume $ U_1 $ to have more than $ 2 $ elements and get a new partition: $ V = \{x_1\} \sqcup U_1 \setminus \{x_1\} \sqcup ... \sqcup U_m $. Thus $ H $ is $ (c+1) $-colourable. 
+If the hypergraph has less than $ m $ vertices the condition of $ m $-colourability is equivalent to the inequality $ \chi(H) \leq m $, in fact if we have a $ c $-colouring $ V = U_1 \sqcup ... \sqcup U_c $ with $ v < c $ we can assume $ U_1 $ to have more than $ 2 $ elements and get a new partition: $ V = \{x_1\} \sqcup U_1 \setminus \{x_1\} \sqcup ... \sqcup U_m $. Thus $ H $ is $ (c+1) $-colourable and we can end by induction.
 
 \begin{deff}
 We say that a hypergraph $ H $ is m-chromatic if it is $ m $-colourable, but no $ (m-1) $-colourable (i.e. $\chi(H) = m  $)
@@ -1006,7 +1024,7 @@ H=(V, E)
 \end{align*}
 
 
-Is possible to give a different definition of cover ideal that focuses more on its primary decomposition, in fact we can define for every $ \beta = \{ x_{i_1} , ... , x_{i_r}\} \in E  $ the ideal:
+It is possible to give a different definition of cover ideal that focuses more on its primary decomposition. Indeed we can define for every $ \beta = \{ x_{i_1} , ... , x_{i_r}\} \in E  $ the ideal:
 \begin{equation}\label{eq:prime}
 \p_\beta = \left\langle  x_{i_1} , ... , x_{i_r} \right\rangle \subseteq k[V]
 \end{equation}
@@ -1015,13 +1033,15 @@ then it is obvious that for every squarefree monomial element $ x_{i_1} \cdots x
 J(H) = \bigcap_{\beta \in E} \p_\beta
 \end{equation}
 
-\begin{tboxtodo}
-Spiegare meglio perchè sono primi associati, è ovvio che i primi associati debbano avere la forma $  \left\langle  x_{i_1} , ... , x_{i_r} \right\rangle $, ma dovrebbe essere valido anche per potenze di ideali monomiali (monomial ideals), ma non ho idee di come mostrarlo
-\end{tboxtodo}
+%\begin{tboxtodo}
+%Spiegare meglio perchè sono primi associati, è ovvio che i primi associati debbano avere la forma $  \left\langle  x_{i_1} , ... , x_{i_r} \right\rangle $, ma dovrebbe essere valido anche per potenze di ideali monomiali (monomial ideals), ma non ho idee di come mostrarlo
+%\end{tboxtodo}
+%
+%For simple hypergraph this primes are minimal 
 
 
 
-Is possible to exploit the algebraic structure of the cover ideal to get information on the colouration of the hypergraph (and vice versa), for example in \cite{Fran10Colourings} was discovered that using the element $  \mm_V = x_1 \cdots x_v  $ is possible to evaluate the chromatic number:
+Is possible to exploit the algebraic structure of the cover ideal to get information on the colouration of the hypergraph (and vice versa), for example in \cite{Fran10Colourings} the authors discovered that using the element $  \mm_V = x_1 \cdots x_v  $ is possible to evaluate the chromatic number:
 
 \begin{teo}[Theorem 3.2 of \cite{Fran10Colourings}] \label{teo:col:chi}
 Let $ H = (V,E) $ be a simple hypergraph on $ V = \{ x_1 , ... , x_v\} $, then for all $ d >0 $ we have $ \mm_V^{d-1} \in J(H)^d $ if and only if $ \chi(H) \leq d $, thus we can characterize:
@@ -1044,39 +1064,35 @@ since for each $ \beta \in B $ the ideal $ \p_\beta $ has $ |\beta | \geq \tau $
 Suppose now that $ \mm_V \in J^d $, then there exists $ m_1 , ... , m_d \in J $ with $ \mm_V = m_1 \cdots m_d $. We want to use them to construct a partition: $ U_i := \{ x_u \in V \,|\, x_u \text{ divides } m_i\} $. $ U_1 , ... ,U_d $ is a partition because $ \mm_V $ is squarefree (so no repetition) and it is divided by all the vertices of $ V $. Since for all $ i $  $ m_i $ is a squarefree monomial in $ J $, by using the definition $ \ref{eq:coverideal} $ of cover ideal we have that $ U_i $ must be a vertex cover, and then we have a partition that satisfies definition \ref{def:cover} of $ d $-coverable, absurd. 
 \end{proof}
 
-We can use this theorem to prove the failure of Question \ref{que:32} for cover ideals of Steiner Triple System $ STS(v) $
+We can use this theorem to prove the failure of Question \ref{que:32} for cover ideals of Steiner Triple System $ STS(v) $, in fact it is enough to prove that 
 \begin{prop}[Proposition 4.9 of \cite{Bal21Steiner}]
 If $ v>3 $ and $ S = (V,B) $ is a Steiner Triple System $ S(2,3,v) $, then $ J(S)^{(3)}  \not \subseteq J(S)^2$
 \end{prop}
 
-\begin{proof}
-Obviously $ \tau(S)=n=3 $, so we need only to prove that $ S $ is not $ 2 $-coverable. Assume that there exists a partition of vertex covers $ U_1 \sqcup U_2 = V $, so for all triple $ \{ i , j, k\} \in B $ we have $ \{ i , j, k\} \cap U_1 \neq \emptyset $ and $ \{ i , j, k\} \cap U_2 \neq \emptyset $, this means that for every edges there are exactly $ 2 $ colours. This characteristic is called $ 2 $-bicolourable, that \textbf{???}. 
-\begin{tboxque}
-Non so bene perchè dovrebbe essere assurdo e purtroppo non trovo l'articolo \textit{Steiner triple systems and their chromatic number, Rosa A.}
-\end{tboxque}
-\end{proof}
+%\begin{proof}
+%Obviously $ \tau(S)=n=3 $, so we need only to prove that $ S $ is not $ 2 $-coverable. Assume that there exists a partition of vertex covers $ U_1 \sqcup U_2 = V $, so for all triple $ \{ i , j, k\} \in B $ we have $ \{ i , j, k\} \cap U_1 \neq \emptyset $ and $ \{ i , j, k\} \cap U_2 \neq \emptyset $, this means that for every edges there are exactly $ 2 $ colours. This characteristic is called $ 2 $-bicolourable, that \textbf{???}. 
+%\begin{tboxque}
+%Non so bene perchè dovrebbe essere assurdo e purtroppo non trovo l'articolo \textit{Steiner triple systems and their chromatic number, Rosa A.}
+%\end{tboxque}
+%\end{proof}
 
-\begin{tboxtodo}
-Qui pensavo di inserire anche la proposizione 4.10 e l'esempio 4.11 (o comunque qualcosa di simile) dall'articolo \cite{Bal21Steiner}\\
-Inoltre pensavo di usare l'esempio 5.6 di \cite{Bal20Steiner} per far vedere qualche calcolo con Macaulay2 \cite{M2} (o CoCoA)
-\end{tboxtodo}
 
-\begin{teo} \label{teo:borin1}
-	Consider a simple hypergraph $H = (V,B)$, if we indicate $\tau = \tau (H)$ and the cover ideal $ J = J(H)$,  then for all $ q < \chi(H)$ we have: 
-	\[ J^{( \tau(q-1) )} \not \subseteq J^q \]
-\end{teo}
 
 Another possible failure of the containment can be deducted by the chromatic number:
 
+\begin{teo} \label{teo:borin1}
+	Consider a simple hypergraph $H = (V,B)$, if we indicate $\tau = \tau (H)$ and the cover ideal $ J = J(H)$,  then for all $ q < \chi(H)$ we have: 
+	\begin{enumerate}
+	\item $ \mm_V^{q-1} \in J(H)^{( \tau (q-1) )} $
+	\item $ J^{( \tau(q-1) )} \not \subseteq J^q $
+	\end{enumerate}
+\end{teo}
+
+
 \begin{proof}
-	From theorem \ref{teo:col:chi} we have $\mm_V^{q-1} \not \in J^q$, therefore we only need to prove $ \mm_V^{q-1} \in J(H)^{( \tau (q-1) )}$ to fail the containment. For this we use as in \ref{teo:col:cont} theorem \ref{teo:sym_radical}:\\
+	From theorem \ref{teo:col:chi} we have $\mm_V^{q-1} \not \in J^q$, therefore we only need to prove \textit{1.} to fail the containment (\textit{2.}). For this we use as in \ref{teo:col:cont} theorem \ref{teo:sym_radical}:\\
 	For every $\beta \in B $ we know that it has at least $	\tau$ elements, without loss of generality we can assume that they are $x_1 , ... , x_\tau$, and so we have $x_1^{q-1} \cdots  x_\tau^{q-1} \in \p_\beta^{\tau(q -1)} $ thus completing with the other elements we get $\mm_V^{q-1} \in \p_\beta^{\tau(q -1)} $. 
 \end{proof} 
-
-\begin{tboxtodo}
-Questo teorema è da controllare meglio perchè l'ho scritto io (inoltre non so se qualcuno lo abbia già fatto).\\
-Inoltre se fosse giusto vorrei provare a usarlo per fare qualche controesempio. 
-\end{tboxtodo}
 
 
 \backmatter

@@ -299,3 +299,6 @@ images/*
 # Tesi versions
 borin_elab_fin*
 *.sty
+*.jpg
+main-frn.tex
+frontespizio.tex
