@@ -295,10 +295,12 @@ TSWLatexianTemp*
 # Folders
 Study\ files/* 
 images/*
+Front/*
 
-# Tesi versions
+# Files
 borin_elab_fin*
 *.sty
 *.jpg
 main-frn.tex
+
 frontespizio.tex
