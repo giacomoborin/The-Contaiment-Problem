@@ -296,11 +296,11 @@ TSWLatexianTemp*
 Study\ files/* 
 images/*
 Front/*
+Beamer/images/*
 
 # Files
 borin_elab_fin*
 *.sty
 *.jpg
 main-frn.tex
-
 frontespizio.tex
