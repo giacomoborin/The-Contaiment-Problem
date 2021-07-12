@@ -5,10 +5,140 @@
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 
+
+\usepackage{amssymb,amsmath,amsthm,mathtools} 
+\usepackage{tikz-cd,wrapfig}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\usepackage[Bjarne]{fncychap}
+\usepackage{graphicx}
+%\graphicspath{ {images/} }
+\usepackage{listings}
+
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[all,2cell]{xy}
+\usepackage{float}
+\usepackage{csquotes}
+
+\usepackage{tikz}
+\usetikzlibrary{cd}
+
+%\usepackage{geometry}
+%\newgeometry{twoside}
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+% Theorem definitons 
+\theoremstyle{plain}
+\newtheorem{teo}{Theorem}[section]
+\newtheorem{lem}[teo]{Lemma}
+\newtheorem{prop}[teo]{Proposition}
+\newtheorem{cor}[teo]{Corollary}
+\newtheorem*{form}{Formula}
+\newtheorem{conj}[teo]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newtheorem{rems}[rem]{Remarks}
+\newtheorem{que}[rem]{Question}
+\newtheorem{ex}[rem]{Example}
+\newtheorem{exs}[rem]{Examples}
+
+\theoremstyle{definition}
+\newtheorem{deff}[teo]{Definiton}
+\newtheorem{idea}{Idea}
+\newtheorem*{nota}{Notation}
+
+
 %Bibliography
 \usepackage[style=numeric, maxnames=4,backend=bibtex]{biblatex}
 % other styles: numeric authortitle
 \addbibresource{../biblio.bib}
+
+\usepackage{hyperref}
+%\hypersetup{frenchlinks=true}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = gray, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor   = blue %Colour of citations
+}
+
+% Commands 
+
+\newcommand{\parder}[2]{ \frac{\partial #1}{\partial #2} }
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\ZZ}[1]{\mathbb{Z}_{#1}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\MM}{\mathcal{M}}
+
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\q}{\mathfrak{q}}
+\newcommand{\mm}{\mathfrak{m}}
+\newcommand{\A}{\mathfrak{a}}
+\newcommand{\B}{\mathfrak{b}}
+\newcommand{\Cc}{\mathfrak{c}}
+
+\newcommand{\cont}[2]{ I^{(#1)} \subseteq I^{#2}}
+\newcommand{\mcont}[3]{ I^{(#1)} \subseteq \MM^{#2} I^{#3}}
+
+
+\DeclareMathOperator*{\eqb }{=}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Ass}{Ass}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\hgt}{ht}
+\DeclareMathOperator{\co}{co}
+\DeclareMathOperator{\reg}{reg}
+
+
+%Environment
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+%tcolorbox
+\newcounter{que}
+\newtcolorbox{tboxprop}[1][]
+{
+title=\stepcounter{que}\theque : Possibile aggiunta,
+colback=red!20!white, 
+colframe=red!50!white
+}
+\newtcolorbox{tboxque}[1][]
+{
+title=\stepcounter{que}\theque : Domanda,
+colback=blue!20!white, 
+colframe=blue!50!white
+}
+
+\newtcolorbox{tboxtodo}[1][]
+{
+title=\stepcounter{que}\theque : Cosa da fare,
+coltitle=white,
+colback=yellow!20!white, 
+colframe=orange!50!white
+}
+
+
+
+
 
 \title{The Containment Problem}
 \subtitle{a general introduction and 
@@ -24,5 +154,23 @@
 
 \begin{frame}{Contents}
   \tableofcontents
+\end{frame}
+
+\begin{frame}{Associated primes}
+
+\begin{deff}[Associated Prime]
+Let $ M $ be an $ R $-module. A prime ideal $ \p \subseteq R $ is an \textbf{associated prime} of $ M $ if there exists a non-zero element $ a \in M $ such that $ \p = \Ann_R (a)$. \\
+We define $ \Ass_R(M) $ as the set of the associated primes of $ M $.\\
+For an ideal $ I $ we say that a prime is associated to $ I $ if it is associated to the $ R $-module $ R/I $.
+\end{deff}
+
+\end{frame}
+
+
+\begin{frame}{Primary decomposition}
+We say that an ideal $ \A \subseteq R $ has a \textbf{primary decomposition}  if there exists a finite set of primary ideal $ \{ \q_1 , ... , \q_n\} $ such that:
+\begin{equation*}
+	\A = \bigcap_{i=1}^n \q_i
+\end{equation*}
 \end{frame}
 \end{document}

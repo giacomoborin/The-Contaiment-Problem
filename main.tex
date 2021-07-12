@@ -11,6 +11,7 @@
 %\graphicspath{ {images/} }
 \usepackage{listings}
 
+\usepackage{pdfpages}
 \usepackage{fancyhdr}
 \usepackage{multirow}
 \usepackage{xcolor}
@@ -60,7 +61,9 @@
 \usepackage[style=alphabetic, maxnames = 8, backend=bibtex,giveninits=true,isbn=false,eprint=false]{biblatex}
 % other styles: numeric authortitle
 \addbibresource{biblio.bib}
-\usepackage[hidelinks]{hyperref}
+
+\usepackage[a-1b]{pdfx}
+\usepackage[pdfa]{hyperref}
 %\hypersetup{frenchlinks=true}
 \hypersetup{
   colorlinks   = true, %Colours links instead of ugly boxes
@@ -78,7 +81,7 @@
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\ZZ}[1]{\mathbb{Z}_{#1}}
 \newcommand{\Q}{\mathbb{Q}}
-\newcommand{\C}{\mathbb{C}}
+\newcommand{\CC}{\mathbb{C}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\PP}{\mathbb{P}}
 \newcommand{\HH}{\mathcal{H}}
@@ -153,8 +156,8 @@ colframe=orange!50!white
 \renewcommand{\footrulewidth}{1.5pt}
 \cfoot{{\fontfamily{phv} \small Academic Year 2020-21}}
 
-
-\include{frontespizio}
+\includepdf{Front/main_front.pdf}
+%\include{frontespizio}
 %\newgeometry{twoside}
 
 
@@ -176,7 +179,7 @@ colframe=orange!50!white
 %In this thesis 
 
 \section*{Introduction}
-The Containment problem is an open sector of research that focuses on the behaviour of symbolic powers of ideals in relation to the normal powers and touches several disciplines, in particular Algebraic Geometry and Commutative Algebra, but also Combinatorics and graph Theory. 
+The Containment problem is an open sector of research that focuses on the behaviour of symbolic powers of ideals in relation to the normal powers and touches several disciplines, in particular Algebraic Geometry and Commutative Algebra, but also Combinatorics and Graph Theory. 
 
 In this essay we will introduce the problem and investigate some connections between these subjects. 
 
@@ -220,9 +223,9 @@ We define $ \Ass_R(M) $ as the set of the associated primes of $ M $.\\
 For an ideal $ I $ we say that a prime is associated to $ I $ if it is associated to the $ R $-module $ R/I $.
 \end{deff}
 
-Between the associated primes of an ideal we distinguish the minimal elements, that are called \textbf{isolated primes}, whilst the other one are said \textbf{embedded primes}.
+Between the associated primes of an ideal we distinguish the minimal elements, that are called \textbf{isolated primes}, whilst the others are said \textbf{embedded primes}.
 
-We can define also the minimal primes of the ideal $ I $, that are the minimal ones that contains $ I $. In Noetherian rings these concepts are redundant, in fact with the following proposition we have that minimal and isolated are equivalent. 
+We can define also the minimal primes of the ideal $ I $, that are the minimal ones that contains $ I $. In Noetherian rings these concepts are redundant, in fact with the following proposition we have that minimal and isolated primes are equivalent. 
 
 \begin{prop} \label{prop:minprimes}
 	For a Noetherian ring $ R$, the minimal primes of $ R $ are among the associated primes of $ R $
@@ -257,11 +260,8 @@ It is obvious that the radical of a primary ideal is a prime ideal, in fact give
 
 If $ \A $ is a primary ideal such that $ \rad(\A) = \p $ we say that $ \A $ is {$ \p $-primary}.
 
-\begin{rems} \label{rem:power_primary} \quad 
-	\begin{enumerate}
-	\item The power of a prime ideal isn't always primary, for example if in $ R = \K[x,y,z] / (xy - z^2) $ we consider the prime ideal $ \p = (x,z) $ (it is prime since $ R / \p \simeq \K[y]$ that is an integral domain) we have that $ y $ is a zero divisor in $R/\p $ (since $ x $ is not zero and $ yx = z^2 = 0 $, since $z^2 \in \p^2 $) but it is not nilpotent since $ y^k \not \in \p^2 $ for all $ k>0 $
-	\end{enumerate}
-\end{rems}
+\begin{rem} \label{rem:power_primary} The power of a prime ideal isn't always primary, for example if in $ R = \K[x,y,z] / (xy - z^2) $ we consider the prime ideal $ \p = (x,z) $ (it is prime since $ R / \p \simeq \K[y]$ that is an integral domain) we have that $ y $ is a zero divisor in $R/\p $ (since $ x $ is not zero and $ yx = z^2 = 0 $, since $z^2 \in \p^2 $) but it is not nilpotent since $ y^k \not \in \p^2 $ for all $ k>0 $
+\end{rem}
 
 We say that an ideal $ \A \subseteq R $ has a \textbf{primary decomposition}  if there exists a finite set of primary ideal $ \{ \q_1 , ... , \q_n\} $ such that:
 \begin{equation*}
@@ -282,7 +282,7 @@ In general such structure does not exists, but for $ R $ noetherian we can prove
 \end{lem}
 
 \begin{proof}
-	Let $ \mathfrak{F} $ be the set of proper ideal such that the lemma is false. Let $ \A $ be a maximal ideal of $ \mathfrak{F} $, since it cannot be irreducible there exists $ \B $, $ \Cc $ strictly greater than $ \A $ ( so not in $ \mathfrak{F} $) such that $ \A = \B \cap \Cc $. This is absurd and so $ \mathfrak{F} $ is empty.
+	Let $ \mathfrak{F} $ be the set of proper ideal such that the lemma is false. Let $ \A $ be a maximal ideal of $ \mathfrak{F} $, since it cannot be irreducible there exists $ \B $, $ \Cc $ strictly greater than $ \A $ (so not in $ \mathfrak{F} $) such that $ \A = \B \cap \Cc $. This is absurd and so $ \mathfrak{F} $ is empty.
 \end{proof}
 
 \begin{lem}
@@ -296,7 +296,7 @@ And for the ascending chain condition there exists $ m $ with $ \Ann(x^m)= \Ann(
 Now consider $ a \in (x^m)\cap (y) $, then $ a = bx^m $ and $ a = cy $, so since $ y \in \Ann(x) $ we have $ 0 = cyx = ax = bx^m x=  bx^{m+1}$, so $ b \in  \Ann(x^{m+1}) = \Ann(x^m) $, then $ a = bx^n = 0 $. So $ (x^m)\cap (y)=0 $ and since $ 0 $ is irreducible and $ y\neq 0 $ then $ x^m=0 $. 
 \end{proof}
 
-Combining this two lemmas we have that the decomposition for Noetherian ring. In literature we say that a commutative ring is a \textbf{Lasker Ring} if every ideal has a primary decomposition, so we can state that:
+Combining this two lemmas we have that the decomposition for Noetherian rings. In literature we say that a commutative ring is a \textbf{Lasker Ring} if every ideal has a primary decomposition, so we can state that:
 
 \begin{teo}[Lasker-Noether]
 A Noetherian Ring is also a Lasker Ring
@@ -315,7 +315,7 @@ If $ \A $ and $ \B $ are $ \p $-primary then $ \A \cap \B $ is $ \p $-primary
 
 In fact we can group the primary ideal to get $ 1. $ and omit the superfluous terms to get $ 2. $
 
-So we have two theorem of uniqueness for the prime \textit{associated}\footnote{not a random word} to a particular decomposition. 
+So we have two theorem of uniqueness for the primes \textit{associated}\footnote{not a random word} to a particular decomposition. 
 
 \begin{teo}[First uniqueness theorem]
 Let $ R $ be a Noetherian ring and $ \A $ an ideal with minimal decomposition $ \bigcap_{i=1}^n \q_i $, where $ \q_i $ is $ \p_i $-primary, then:
@@ -345,7 +345,7 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 		\mm_p^n = \{ f \in k[X] \text{ such that } f \text{ vanishes in } p \text{ with multiplicity } n\}
 	\end{equation}
 	
-	Sadly for a general ideal to get a similar results we can not rely on the normal power, so now we introduce a sharper object, the \textbf{symbolic power}, that has nicer geometric properties and we will see that in some way can answer to our problem. %TODO Qualcosa di più qui
+	Sadly for a general ideal to get a similar result we can not rely on the normal power, so now we introduce a sharper object, the \textbf{symbolic power}, that has nicer geometric properties and we will see that in some way can answer to our problem. %TODO Qualcosa di più qui
 	
 %	\begin{tboxtodo}
 %	Vorrei trovare qualche informazione di più sulla storia delle potenze simboliche, che non penso fossero state introdotte con questa idea, ad esempio ho visto che è usata per dimostrare il \textit{Krull's height theorem}
@@ -367,7 +367,7 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 	\end{prop}
 	\begin{proof}\quad \\
 		\textit{Primary}: If $ xy \in  \p^{(n)}$ with $ x \not \in  \p^{(n)}$ we have that exists $ s \not \in \p $ with $ sxy \in \p^n $. Suppose that $ sy \not \in \p $, so $ (sy)x \in \p^n $ and then $ x \in \p^{(n)} $ that is absurd, so $ sy \in \p \Rightarrow (sy)^n \in \p^n \Rightarrow s^n y^n \in \p^n$. Since $ \p $ is prime $ s^n \not \in \p $ and so $ y^n \in \p^{(n)} $. \\
-		\textit{$p$-primary}: In fact $ \p^{(n)} \subset \p $ and so $  \rad  (\p^{(n)} )\subset \rad (\p) = \p$. Also if $ x \in \p $ we have $ x^n \in \p^n \subset \p^{(n)}  $ and so $ x \in \p^{(n)}  $.\\
+		\textit{$\p$-primary}: In fact $ \p^{(n)} \subset \p $ and so $  \rad  (\p^{(n)} )\subset \rad (\p) = \p$. Also if $ x \in \p $ we have $ x^n \in \p^n \subset \p^{(n)}  $ and so $ x \in \p^{(n)}  $.\\
 		\textit{Minimal}: If $ \q $ is $ \p $-primary and contains $ \p^n $, then for $ r \in \p^{(n)}  $ there exists $ s \not \in \p \supset \q $ with $ sr \in \p^{(n)}  \subset \q $, and so since $ s \not \in \q  $ exists $ k $ such that $ r^k \in \q $. If $ k=1 $ we have finished otherwise we terminate by induction using $ r r^{k-1} \in \q $.
 	\end{proof}
 	Using the same example from Remark \ref{rem:power_primary} we can observe that necessary $ p^2 \neq \p^{(2)}  $ since the first one isn't primary. 
@@ -401,12 +401,12 @@ Working on the localization over the associate ideals $ \Ass(R/I) $ is possible 
 
 
 \section{Zariski-Nagata Theorem}
-Why do we study symbolic power? The Zariski-Nagata Theorem give a geometric interpretation of its significance.
+So why do we study symbolic power? The Zariski-Nagata Theorem give us the geometric interpretation that we were looking for.
 
 \begin{teo}[Zariski-Nagata Theorem \cite{Zar49, Nagata62}] \label{teo:zarnaga}
 	If $ R = k[x_0 , ... , x_n] $ is a polynomial ring and $ \p $ is a prime ideal then:
 	\begin{equation}\label{eq:zar_nag_teo}
-	\p^{(m)} = \bigcap_{\substack{ \mm \in \mm\Spec (R)\\ \p \subset \mm}} \mm ^n
+	\p^{(m)} = \bigcap_{\substack{ \mm \in \mm \Spec (R)\\ \p \subset \mm}} \mm ^n
 	\end{equation}
 \end{teo}
 
@@ -414,7 +414,7 @@ Using the equation \ref{eq:max_pow} we can see that in this case the $ n $-th sy
 \begin{equation}\label{eq:ideal_vanish}
 	I^{\left<n\right>} = \{ f \in R \text{ that vanishes on } \mathcal{V}(I) \text{ with multiplicity } n\}
 \end{equation}
-Also is possible to use this theorem to prove that this property, $ I^{(m)} = I^{\left<n\right>} $, also holds for radical ideal associated to a reduced subscheme in $ \PP ^N $, as shown for example in \cite[Corollary 2.9]{Sid09}.
+Also is possible to use this theorem to prove that this property, $ I^{(n)} = I^{\left<n\right>} $, also holds for radical ideal associated to a reduced subscheme in $ \PP ^N $, as shown for example in \cite[Corollary 2.9]{Sid09}.
 This is an astonishing result that emphasize a purely geometric significance of the symbolic power, in opposition to the normal one. 
 
 Also for radical ideal of a polynomial ring we have a nicer representation:
@@ -445,7 +445,7 @@ If $ I $ is a radical ideal in a polynomial ring we have:
 
 The actual computation of the symbolic powers is a difficult problem, because it requires the computation of the primary decomposition of $ I $ and its $ n $-th power (to get the factors $ I^n R_\p \cap R $), but this is an NP-hard problem (See Proposition 2.4 of \cite{Serk02} and Section 3.7 of \cite{Swa17} for more informations). 
 
-However is actually possible to evaluate a set of generators for $ I^{(n)} $ for polynomial rings, in \verb|Macaulay2| (\cite{M2}) there exists the \verb|SymbolicPowers| package, code available at  \href{https://github.com/eloisagrifo/SymbolicPowers}{https://github.com/eloisagrifo/SymbolicPowers}. This package uses several methods to evaluate the results, for example for squarefree monomial ideal (so radical) it uses theorem \ref{teo:sym_radical}. 
+However is actually possible to evaluate a set of generators for $ I^{(n)} $ for polynomial rings using different tecniques, in \verb|Macaulay2| (\cite{M2}) there exists the \verb|SymbolicPowers| package, code available at \linebreak \href{https://github.com/eloisagrifo/SymbolicPowers}{https://github.com/eloisagrifo/SymbolicPowers}. This package uses several methods to evaluate the results, for example for squarefree monomial ideal (so radical) it uses theorem \ref{teo:sym_radical}. 
 
 More information on the computation of symbolic powers and this package are obtainable on \cite{Grifo18Symb} and \cite{Grifo17computation}. 
 
@@ -472,12 +472,12 @@ o4 : MonomialIdeal of R
 \section{Fat Points}
 
 Let's consider now an object of interest, that has particular relations with the symbolic powers.\\
-Let $ k $ be a field and $ \PP^N$ the $ N $-th projective space over $ k $, consider now the distinct points \linebreak
+Let $ k $ be a field and $ \PP^N$ the $ N $-th projective space over $ k $, consider now the distinct points 
 $ p_1, ... ,p_k \in  \PP^N$ and some positive integers $ m_1 , ... ,m_k $. If we consider the defining ideals $ I(p_1), ... , I(p_k)  \subset k [\PP^N]$, representing the homogeneous polynomials vanishing on the point (before we have also used the notation $ \mm_{p_i}$ that emphasise their role as maximal ideals) we can define another ideal:
 \begin{equation}\label{eq:fat_pt}
 	I = \bigcap_{i=1}^k I(p_i)^{m_i} \subset k [\PP^N]
 \end{equation}
-Since is intersection of homogenous ideals $ I $ is also homogeneous and we can use it to define a $ 0 $ dimensional subscheme $ Z \subset \PP^N $, called \textbf{fat point subscheme} and indicated as 
+Since is intersection of homogenous ideals $ I $ is also homogeneous we can use it to define a $ 0 $ dimensional subscheme $ Z \subset \PP^N $, called \textbf{fat point subscheme} and indicated as 
 \[
 Z = m_1 p_1 + ... +  m_k p_k
 \]
@@ -553,7 +553,7 @@ Sadly the other direction of the containment isn't that easy, it's an open quest
 	
 	To understand this theorem we need two concepts.
 	\subsection{Regular ring}
-	For a Noetherian local ring $ (R,\mm) $ we say that it is a regular local ring if the minimal number of generators of the maximal ideal is equal to the dimension of $ R $. The name came from a Zariski's result: for an algebraic variety a point $ p $ is non singular (regular) if and only if the ring of germs in $ p $ is regular (\cite{Zar40}). Is possible to see this in a more modern way , in fact for Nakayama's Lemma (is lemma \ref{lem:naka}, but in a different form) is possible to show that $ R $ is regular if and only if $ \dim(\mm / \mm^2 ) = \dim (R) $, and from algebraic geometry $ \mm /\mm^2 $ is the cotangent space of the point corresponding to $ \mm $, so the tangent space has same dimension of the variety if and only if the localization is regular.\\
+	For a Noetherian local ring $ (R,\mm) $ we say that it is a regular local ring if the minimal number of generators of the maximal ideal is equal to the dimension of $ R $. The name came from a Zariski's result: for an algebraic variety a point $ p $ is non singular (regular) if and only if the ring of germs in $ p $ is regular (\cite{Zar40}). Is possible to see this in a more modern way, in fact for Nakayama's Lemma (is lemma \ref{lem:naka}, but in a different form) is possible to show that $ R $ is regular if and only if $ \dim(\mm / \mm^2 ) = \dim (R) $, and from algebraic geometry $ \mm /\mm^2 $ is the cotangent space of the point corresponding to $ \mm $, so the tangent space has same dimension of the variety if and only if the localization is regular.\\
 	In general we say that a Noetherian ring is \textbf{regular} if the localization at every prime ideal is a regular local ring. Also a geometrical interpretation of this definition is that for an affine variety $ V $ its ring of regular functions $ \mathcal{O}_V $ is a regular ring if and only if $ V $ is a non singular variety. 
 	
 	\subsection{Height of an ideal}
@@ -683,7 +683,7 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 	\begin{proof}
 	This is a straight application of Euler identity for homogeneous polynomial:
 	\[ (\deg{F})F = \sum_{i=0}^{n} x_i \parder{F}{x_i} \]
-	, in fact if $ F \in I^{(r+1)} $ we have $ \parder{F}{x_i} \in I^{(r)} $ for Zariski-Nagata theorem (\ref{teo:zarnaga}) and the thesis follows.
+	in fact if $ F \in I^{(r+1)} $ we have $ \parder{F}{x_i} \in I^{(r)} $ for Zariski-Nagata theorem (\ref{teo:zarnaga}) and the thesis follows.
  	\end{proof}
  	
 
@@ -883,7 +883,7 @@ or
  \end{cor}
   
  \begin{proof}
- Using $ 1. $ from Theorem \ref{teo:alphaXC} and simple algebra we have $ \alpha({I_{X_C}}^d) = d\alpha(I_{X_C}) = d(v- n) $, than from remark \ref{rem:alphaXC} is enough to prove:
+ Using $ 1. $ from Theorem \ref{teo:alphaXC} and simple algebra we have $ \alpha(I_{X_C}^d) = d\alpha(I_{X_C}) = d(v- n) $, than from remark \ref{rem:alphaXC} is enough to prove:
  \begin{equation}\label{eq:proof:alphaXC}
  \alpha(I_{X_C}^{(m)}) < d(v-n)
  \end{equation}
@@ -991,7 +991,7 @@ In this chapter we focus in an interesting relation between the colourability of
 We can see two different definition of $ m $-colouring, the first one is more descriptive and use the intuitive notion of surjective map, focusing on the role of the vertices: 
 \begin{deff}\label{def:colouring1}
 Let $ C $ be the set of possible colours, a colouring of the hypergraph $ H = (V,E) $ is a surjective map $ c : V \to C $. \\
-In the case of which $ C $ is finite we assume $ C = \{ 1 , ... , m\} $ and we say that a colouring $ c : V \to C $ is a proper $ m $-colouring if for every hyperedge $ \beta \in B $ we have at least two vertices of different colours. 
+In the case of which $ C $ is finite we assume $ C = \{1 , \dots , m\} $ and we say that a colouring $ c : V \to C $ is a proper $ m $-colouring if for every hyperedge $ \beta \in B $ we have at least two vertices of different colours. 
 \end{deff}
 
 The second one is due to the fact that we can see a colouring as a partition of the vertices (in fact is well known that a surjective map partitions the domain using the fibres):
@@ -1120,7 +1120,7 @@ Another possible failure of the containment can be deducted by the chromatic num
 
 
 \begin{proof}
-	From theorem \ref{teo:col:chi} we have $\mm_V^{q-1} \not \in J^q$, therefore we only need to prove \textit{1.} to fail the containment (\textit{2.}). For this we use as in \ref{teo:col:cont} theorem \ref{teo:sym_radical}:\\
+	From theorem \ref{teo:col:chi} we have $\mm_V^{q-1} \not \in J^q$, therefore we only need to prove \textit{1.} to fail the containment \textit{2.}. For this we use as in \ref{teo:col:cont} theorem \ref{teo:sym_radical}:\\
 	For every $\beta \in B $ we know that it has at least $	\tau$ elements, without loss of generality we can assume that they are $x_1 , ... , x_\tau$, and so we have $x_1^{q-1} \cdots  x_\tau^{q-1} \in \p_\beta^{\tau(q -1)} $ thus completing with the other elements we get $\mm_V^{q-1} \in \p_\beta^{\tau(q -1)} $. 
 \end{proof} 
 
