@@ -68,8 +68,8 @@
 \hypersetup{
   colorlinks   = true, %Colours links instead of ugly boxes
   urlcolor     = gray, %Colour for external hyperlinks
-  linkcolor    = blue, %Colour of internal links
-  citecolor   = blue %Colour of citations
+  linkcolor    = black, %Colour of internal links
+  citecolor   = gray %Colour of citations
 }
 
 
@@ -160,6 +160,8 @@ colframe=orange!50!white
 %\include{frontespizio}
 %\newgeometry{twoside}
 
+\pagestyle{empty}
+\newpage
 
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -633,7 +635,7 @@ This constant was introduced for the first time in the 1970' in \cite{Wald77}. A
 \section[Conjectures]{Some conjectures and questions for the Containment Problem}
 	A possible question arises from Example \ref{es:P2points}: in this case we know (using $ n=1 $) that $ \cont{4}{2}$, but from several example we know that we can improve the containment to $ \cont{3}{2} $, so naturally arises the question:
 	\begin{que}[Huneke] \label{que:32}
-	Let I be a saturated ideal of a reduced finite set of points in $ \PP^2 $, does the containment:
+	Let $ I $ be a saturated ideal of a reduced finite set of points in $ \PP^2 $, does the containment:
 	\[ \cont{3}{2} \]
 	hold?
 	\end{que}
@@ -1127,4 +1129,5 @@ Another possible failure of the containment can be deducted by the chromatic num
 
 \backmatter
 \printbibliography
+
 \end{document}

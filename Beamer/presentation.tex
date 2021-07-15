@@ -1,5 +1,5 @@
 \documentclass{beamer}
-
+\setbeamercovered{dynamic}
 \usetheme[math]{beunitn}
 
 \usepackage[english]{babel}
@@ -60,18 +60,12 @@
 
 
 %Bibliography
-\usepackage[style=numeric, maxnames=4,backend=bibtex]{biblatex}
+\usepackage[style=alphabetic, maxnames=99,backend=bibtex,maxbibnames=99,maxcitenames=99]{biblatex}
 % other styles: numeric authortitle
 \addbibresource{../biblio.bib}
 
 \usepackage{hyperref}
 %\hypersetup{frenchlinks=true}
-\hypersetup{
-  colorlinks   = true, %Colours links instead of ugly boxes
-  urlcolor     = gray, %Colour for external hyperlinks
-  linkcolor    = blue, %Colour of internal links
-  citecolor   = blue %Colour of citations
-}
 
 % Commands 
 
@@ -113,29 +107,6 @@
 \newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
 \newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
 
-%tcolorbox
-\newcounter{que}
-\newtcolorbox{tboxprop}[1][]
-{
-title=\stepcounter{que}\theque : Possibile aggiunta,
-colback=red!20!white, 
-colframe=red!50!white
-}
-\newtcolorbox{tboxque}[1][]
-{
-title=\stepcounter{que}\theque : Domanda,
-colback=blue!20!white, 
-colframe=blue!50!white
-}
-
-\newtcolorbox{tboxtodo}[1][]
-{
-title=\stepcounter{que}\theque : Cosa da fare,
-coltitle=white,
-colback=yellow!20!white, 
-colframe=orange!50!white
-}
-
 
 
 
@@ -152,17 +123,32 @@ colframe=orange!50!white
   \titlepage
 \end{frame}
 
+\begin{frame}[fragile]{Abstract}
+In this presentation we view a brief introduction to the \textbf{Containment Problem}, an open problem in Algebraic Geometry and Commutative Algebra.\\
+Later we will see some connections with Combinatorics and Graph Theory, in particular for Steiner Systems, mainly inspired by the article: \\
+\begin{exampleblock}{}
+%\citetitle{Bal21Steiner} \citeauthor{Bal21Steiner}
+\fullcite{Bal21Steiner}.
+\end{exampleblock}
+\end{frame}
+
 \begin{frame}{Contents}
   \tableofcontents
 \end{frame}
 
+\section{Introduction}
+
+\subsection{Preliminaries}
+
 \begin{frame}{Associated primes}
 
 \begin{deff}[Associated Prime]
-Let $ M $ be an $ R $-module. A prime ideal $ \p \subseteq R $ is an \textbf{associated prime} of $ M $ if there exists a non-zero element $ a \in M $ such that $ \p = \Ann_R (a)$. \\
-We define $ \Ass_R(M) $ as the set of the associated primes of $ M $.\\
-For an ideal $ I $ we say that a prime is associated to $ I $ if it is associated to the $ R $-module $ R/I $.
+For an ideal $ I $ in a commutative ring $ R$ we say that a prime $ \p $ is an \textbf{associated prime} if it is associated to the $ R $-module $ R/I $, i.e. there exists a non zero element $ a \in R $ such that is :
+\begin{equation*}\label{eq:ass}
+	\p = \Ann_R (a) = \{ x \in R \text{ such that } xa \in I \}
+\end{equation*}
 \end{deff}
+We indicate the set of the associated primes to $ I $ as $ \Ass_R(I) $
 
 \end{frame}
 
@@ -171,6 +157,219 @@ For an ideal $ I $ we say that a prime is associated to $ I $ if it is associate
 We say that an ideal $ \A \subseteq R $ has a \textbf{primary decomposition}  if there exists a finite set of primary ideal $ \{ \q_1 , ... , \q_n\} $ such that:
 \begin{equation*}
 	\A = \bigcap_{i=1}^n \q_i
-\end{equation*}
+\end{equation*}\pause
+In a Noetherian Ring we have:
+\begin{itemize}
+\item Existence
+\item Uniqueness of the minimal primes $ \p_i = \rad(\q_i)$, in particular they are the associated primes
+\item Uniqueness of the primary ideals $ \q_i $
+\end{itemize}
 \end{frame}
+
+\subsection{Powers of an ideal}
+
+\begin{frame}{Normal powers}
+Given an homogeneous ideal $ I = \left\langle  f_1 , ... ,f_k \right\rangle  $ the $ n $-th power of $ I $ is: 
+\[
+ I^n = \left\langle \xi_1 \cdots \xi_n \,|\, \xi_i \in \{ f_1 , ... ,f_k \} \right\rangle 
+\]
+\pause
+\begin{itemize}
+\item Easy algebraic construction
+\item Unknown primary decomposition %Also if we know the I's one
+\item No clear geometric interpretation 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Symbolic powers}
+Given an ideal $ I $ in a Noetherian ring $ R $ the $ m $-th symbolic power of $ i $ is:
+\begin{equation*}\label{eq:sym_pow_def}
+		I^{(m)} = \bigcap_{\p \in \Ass(R/I) } (I^m R_\p \cap R)
+	\end{equation*}
+\pause
+\begin{itemize}
+\item $ I^m R_\p \cap R = \{ r \in R \text{ such that exists } s \in R \setminus \p \text{ with } sr \in I^n\} $
+\item No easy set of generators
+\item Clear primary decomposition
+\item Wonderful geometric interpretation
+\end{itemize}
+\end{frame}
+
+\subsection{Zariski-Nagata Theorem}
+
+\begin{frame}{Zariski-Nagata Theorem}
+\begin{teo}[Zariski-Nagata Theorem \cite{Zar49, Nagata62}] \label{teo:zarnaga}
+	If $ R = k[x_0 , ... , x_n] $ is a polynomial ring and $ \p $ is a prime ideal then:
+	\begin{equation*}\label{eq:zar_nag_teo}
+	\p^{(m)} = \bigcap_{\substack{ \mm \in \mm \Spec (R)\\ \p \subset \mm}} \mm ^n
+	\end{equation*}
+\end{teo}
+\pause
+So the symbolic power represents the polynomial vanishing with multiplicity $ m $ on the variety $ \mathcal{V}(I) $:
+\begin{equation*}\label{eq:ideal_vanish}
+	I^{(m)} = I^{\left<m\right>} = \{ f \in R \text{ that vanishes on } \mathcal{V}(I) \text{ with multiplicity } m\}
+\end{equation*} 
+\end{frame}
+
+\section{Containment}
+
+\begin{frame}
+The natural question that arises is:
+\begin{alertblock}{Question}
+Can we find a relation between $ I^n $ and $ I^{(m)} $?
+\end{alertblock}
+\pause 
+As a consequence of the Nakayama Lemma we have one direction:
+\begin{teo}\label{teo:inv_cont}
+	If $ R $ is a Noetherian reduced ring then $ I^r \subseteq I^{(m)}$  if and only if $ r \geq m $
+\end{teo}
+\end{frame}
+
+\begin{frame}{The Containment Problem}
+\begin{alertblock}{Question}
+Given a Noetherian Ring $ R $ and an ideal $ I $, for which $ m,r $ positive integers we have the containment:
+		$$ I^{(m)} \subset I^r $$
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Containment and big height}
+Let's see a celebrated result, showed in \cite{HocHun02,EinLazSmi01}:
+	\begin{teo}{(Ein-Lazarsfeld-Smith, Hochster-Huneke)}\label{teo:cont:bigh}
+	Let $ R $ be a regular ring and $ I $ a non-zero, radical ideal, then if $ h $ is the big height of $ I $ we have that for all $ n \geq 0 $ we have:
+	\[ \cont{hn}{n}\]	
+	\end{teo} 
+\pause
+\begin{itemize}
+\item The height of a prime ideal $ \p $ is the supremum length of a descending chain of primes: $ \p_0 \subsetneq \p_1 \subsetneq ... \subsetneq \p_{h} = \p $
+\item The big height is the maximum height of its associated primes
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Example}
+
+An example of a non trivial use of the previous theorem on a reduced subscheme came directly from \cite[2.3]{EinLazSmi01}:
+	
+	\begin{ex}\label{es:P2points}
+	Consider a finite set of points $ Z $ in $ \PP^2 $, since the subscheme has dimension $ 0 $ the ideal has big height $ 2 $, so we have $ \cont{2m}{m} $ for $ I = I(Z) $. So this implies that all $ F $ with multiplicity $ \geq 2m $ on $ Z $ stays in $ I(Z)^m $. 
+	\end{ex}
+\end{frame}
+
+\subsection{Open questions}
+
+\begin{frame}{Open questions}
+Some important open questions for the Containment Problem are:
+\begin{alertblock}{Question (Huneke)}
+Let $ I $ be a saturated ideal of a reduced finite set of points in $ \PP^2 $, does the containment:
+	\[ \cont{3}{2} \]
+hold?
+\end{alertblock}
+\begin{conj}[Harbourne]\label{conj:harb}
+		Given a non-zero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m > 0 $:
+		\[
+		\cont{hm - h +1}{m}
+		\]
+	\end{conj}
+\end{frame}
+
+\section{Colouring and containment}
+
+\begin{frame}{Hypergraph}
+An hypergraph is a pair $ (V,E) $ where $ V $ is a finite set of vertices and $ E $ contains non-empty subset of $ V $ called hyper edges
+\begin{deff}
+A \textbf{Steiner system} $ (V,B) $ of type $ S(t,n,v) $ is an \textit{hypergraph} with $ |V|=v $ and all the elements of $ B $, called blocks, are $ n $-subsets (of $ V $) such that every $ t $-tuple of elements in $ V $ is contained in only one block of $ B $.
+\end{deff}
+\end{frame}
+
+\begin{frame}{Fano plane}
+	The most known example of Steiner is of type $ S(2,3,7) $ and, up to isomorphism, is the Fano Plane ($ \PP_{\mathbb{F}_2}^3 $). It has as blocks all the lines:
+	\begin{multline*}
+		B := \{\{1, 2, 3\}, \{3, 4, 5\}, \{3, 6, 7\}, \{1, 4, 7\}, \\\{2, 4, 6\}, \{2, 5, 7\}, \{1, 5, 6\}\}
+	\end{multline*}
+
+\begin{center}
+\begin{tikzpicture}
+  \draw (30:1)  -- (210:2)
+        (150:1) -- (330:2)
+        (270:1) -- (90:2)
+        (90:2)  -- (210:2) -- (330:2) -- cycle
+        (0:0)   circle (1);
+  \fill (0:0)   circle(3pt)
+        (30:1)  circle(3pt)
+        (90:2)  circle(3pt)
+        (150:1) circle(3pt)
+        (210:2) circle(3pt)
+        (270:1) circle(3pt)
+        (330:2) circle(3pt);
+\end{tikzpicture}
+\end{center}
+
+
+\end{frame}
+
+\begin{frame}{Colourability}
+\begin{deff}
+An $ m $-colouring of the hypergraph $ H = (V,E) $ is a partition in $ m $ subset of $ V = U_1 \sqcup ... \sqcup U_m $ such that for every edge $ \beta \in E $ we have $ \beta \not \subseteq U_i $ for all $ i = 1, ... , m $
+\end{deff}
+
+A hypergraph $ H $ is $ m $-colourable if there exists a proper $ m $-colouring
+ \pause
+
+
+\begin{deff} \label{def:cover}
+A hypergraph $ H = (V,E) $ is said \textit{$ c $-coverable} if there exists a partition in $ c $ subset of $ V = U_1 \sqcup ... \sqcup U_c $ such that every $ U_i $ is a \textbf{vertex cover}, which means  that for all $ \beta \in E $ we have $ \beta \cap U_i \neq \emptyset $.
+\end{deff}
+\end{frame}
+
+\begin{frame}{Cover ideal}
+\begin{deff}
+Given an hypergraph $ H = (V,E) $ we define equivalently the \textbf{cover ideal} as:
+\begin{equation*}
+J(H) := \left\langle x_{j_1} \cdots x_{j_r} \,|\, \{ x_{j_1} , ... , x_{j_r}\} \text{ is a vertex cover of } H \right\rangle  = \bigcap_{\beta \in E} \p_\beta
+\end{equation*}
+\end{deff}
+Where for every hyperedge $ \beta = \{ x_{i_1} , ... , x_{i_r}\} \in E  $ then $ \p_\beta $ is the prime ideal $ \left\langle  x_{i_1} , ... , x_{i_r} \right\rangle  $
+\end{frame}
+
+
+\begin{frame}{Coverability and containment}
+For a hypergraph $ H = (V,B) $ we define $ \tau (H) $ as $ \min_{\beta \in B} \{ |\beta |\}$, so we obtain:
+\begin{teo}[Theorem 4.8 of \cite{Bal21Steiner}] \label{teo:col:cont}
+Let $ H = (V,B) $ be a hypergraph, if $ H $ is not $ d $-coverable then $ J(H)^{(\tau(H))} \not \subseteq J(H)^d $
+\end{teo}
+For example for Steiner Systems we have:
+\begin{prop}[Proposition 4.9 of \cite{Bal21Steiner}]
+If $ v>3 $ and $ S = (V,B) $ is a Steiner Triple System $ S(2,3,v) $, then $ J(S)^{(3)}  \not \subseteq J(S)^2$
+\end{prop}
+\end{frame}
+
+\begin{frame}{Colourability and containment}
+\begin{teo} \label{teo:borin1}
+	Consider a simple hypergraph $H = (V,B)$, if we indicate $\tau = \tau (H)$ and the cover ideal $ J = J(H)$,  then for all $ q < |V|$ if $ H $ is not $ q $-colourable then we have: 
+%	\begin{enumerate}
+%	\item $ \mm_V^{q-1} \in J(H)^{( \tau (q-1) )} $
+%	\item 
+$ J^{( \tau(q-1) )} \not \subseteq J^q $
+%	\end{enumerate}
+\end{teo}
+\end{frame}
+
+\begin{frame}
+The proof rely on the two results:
+\begin{teo}[Theorem 3.2 of \cite{Fran10Colourings}] \label{teo:col:chi}
+Let $ H = (V,E) $ be a simple hypergraph on $ V = \{ x_1 , ... , x_v\} $, then for all $ d >0 $ we have $ (x_1 \cdots x_v)^{d-1} \in J(H)^d $ if and only if $ d \geq \chi(H) $, where $ \chi(H) $ is the minimum integer $ c $ such that $ H $ is $ c $-colourable
+\end{teo}
+\begin{prop}\label{teo:sym_radical}
+If $ I $ is a radical ideal in a polynomial ring we have:
+\begin{equation}
+		I^{(m)} = \bigcap_{\p \in \Ass(R/I) } \p^m
+	\end{equation}
+\end{prop}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Bibliografia}
+			\printbibliography[heading=none, notcategory=fullcited]	
+\end{frame}
+
 \end{document}
