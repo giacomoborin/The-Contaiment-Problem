@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[dvipsnames]{beamer}
 \setbeamercovered{dynamic}
 \usetheme[math]{beunitn}
 
@@ -116,7 +116,7 @@
 \\the particular case for Steiner systems}
 \author{Giacomo Borin}
 \institute{Università di Trento}
-\date{19th july 2021}
+\date{20th july 2021}
 
 \begin{document}
 \begin{frame}
@@ -125,7 +125,7 @@
 
 \begin{frame}[fragile]{Abstract}
 In this presentation we view a brief introduction to the \textbf{Containment Problem}, an open problem in Algebraic Geometry and Commutative Algebra.\\
-Later we will see some connections with Combinatorics and Graph Theory, in particular for Steiner Systems, mainly inspired by the article: \\
+Later we will see some connections with the colouration of an hypergraph (from Combinatorics and Graph Theory), in particular for Steiner Systems, mainly inspired by the article: \\
 \begin{exampleblock}{}
 %\citetitle{Bal21Steiner} \citeauthor{Bal21Steiner}
 \fullcite{Bal21Steiner}.
@@ -188,9 +188,9 @@ Given an ideal $ I $ in a Noetherian ring $ R $ the $ m $-th symbolic power of $
 	\end{equation*}
 \pause
 \begin{itemize}
-\item $ I^m R_\p \cap R = \{ r \in R \text{ such that exists } s \in R \setminus \p \text{ with } sr \in I^n\} $
-\item No easy set of generators
+\item $ I^m R_\p \cap R = \{ r \in R \text{ such that exists } s \in R \setminus \p \text{ with } sr \in I^n\} $ is the minimal $ \p $-primary ideal that contains $ I^m $
 \item Clear primary decomposition
+\item No easy set of generators
 \item Wonderful geometric interpretation
 \end{itemize}
 \end{frame}
@@ -254,6 +254,8 @@ An example of a non trivial use of the previous theorem on a reduced subscheme c
 	\begin{ex}\label{es:P2points}
 	Consider a finite set of points $ Z $ in $ \PP^2 $, since the subscheme has dimension $ 0 $ the ideal has big height $ 2 $, so we have $ \cont{2m}{m} $ for $ I = I(Z) $. So this implies that all $ F $ with multiplicity $ \geq 2m $ on $ Z $ stays in $ I(Z)^m $. 
 	\end{ex}
+	
+%For $ m=2 $ we get $ \cont{4}{2} $
 \end{frame}
 
 \subsection{Open questions}
@@ -265,8 +267,19 @@ Let $ I $ be a saturated ideal of a reduced finite set of points in $ \PP^2 $, d
 	\[ \cont{3}{2} \]
 hold?
 \end{alertblock}
-\begin{conj}[Harbourne]\label{conj:harb}
+\pause
+\begin{conj}[Harbourne, 2009]\label{conj:harb}
 		Given a non-zero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m > 0 $:
+		\[
+		\cont{hm - h +1}{m}
+		\]
+	\end{conj}
+\end{frame}
+
+\begin{frame}{Asymptotic conjecture}
+Harbourne Conjecture was proven to be false for several ideal and arbitrary $ m>0 $, but there are not counterexample for:
+\begin{conj}[Stable Harbourne, 2013]\label{conj:stabharb}
+		Given a non-zero, proper, homogeneous, radical ideal $ I \subset k[x_0 , ... , x_n] $ with big height $ h $, than for all $ m \gg 0 $:
 		\[
 		\cont{hm - h +1}{m}
 		\]
@@ -290,12 +303,14 @@ A \textbf{Steiner system} $ (V,B) $ of type $ S(t,n,v) $ is an \textit{hypergrap
 
 \begin{center}
 \begin{tikzpicture}
-  \draw (30:1)  -- (210:2)
-        (150:1) -- (330:2)
-        (270:1) -- (90:2)
-        (90:2)  -- (210:2) -- (330:2) -- cycle
-        (0:0)   circle (1);
-  \fill (0:0)   circle(3pt)
+  \draw[color = blue] (30:1)  -- (210:2);
+  \draw[color = green] (150:1) -- (330:2);
+  \draw[color = purple] (270:1) -- (90:2);
+  \draw[color = red] (90:2)  -- (210:2);
+  \draw[color = magenta] (210:2) -- (330:2);
+  \draw[color = orange] (90:2)  -- (330:2);
+  \draw[color = Goldenrod] (0:0)   circle (1);
+  \fill[color = OliveGreen] (0:0)   circle(3pt)
         (30:1)  circle(3pt)
         (90:2)  circle(3pt)
         (150:1) circle(3pt)
@@ -310,21 +325,76 @@ A \textbf{Steiner system} $ (V,B) $ of type $ S(t,n,v) $ is an \textit{hypergrap
 
 \begin{frame}{Colourability}
 \begin{deff}
-An $ m $-colouring of the hypergraph $ H = (V,E) $ is a partition in $ m $ subset of $ V = U_1 \sqcup ... \sqcup U_m $ such that for every edge $ \beta \in E $ we have $ \beta \not \subseteq U_i $ for all $ i = 1, ... , m $
+An $ m $-colouring of the hypergraph $ H = (V,E) $ is a partition in $ m $ subset of $ V = U_1 \sqcup ... \sqcup U_m $ such that for every edge $ \beta \in E $ we have $ \beta \not \subseteq U_i $ for all $ i = 1, ... , m $. A hypergraph $ H $ is $ m $-colourable if there exists a proper $ m $-colouring.
 \end{deff}
 
-A hypergraph $ H $ is $ m $-colourable if there exists a proper $ m $-colouring
- \pause
+
+
+
+\begin{figure}
+
+\begin{tikzpicture}
+
+  \draw (30:1)  -- (210:2)
+        (150:1) -- (330:2)
+        (270:1) -- (90:2)
+        (90:2)  -- (210:2) -- (330:2) -- cycle
+        (0:0)   circle (1);
+  \fill[color = Violet] (0:0)   circle(3pt) ; 
+  \fill[color = Violet] (30:1)  circle(3pt);
+  \fill[color = Salmon]     (90:2)  circle(3pt);
+   \fill[color = Salmon]     (150:1) circle(3pt);
+   \fill[color = PineGreen]     (210:2) circle(3pt);
+   \fill[color = PineGreen]     (270:1) circle(3pt);
+   \fill[color = Violet]     (330:2) circle(3pt);
+\end{tikzpicture}
+\caption{A 3-colouring for the Fano Plane}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Coverability}
 
 
 \begin{deff} \label{def:cover}
 A hypergraph $ H = (V,E) $ is said \textit{$ c $-coverable} if there exists a partition in $ c $ subset of $ V = U_1 \sqcup ... \sqcup U_c $ such that every $ U_i $ is a \textbf{vertex cover}, which means  that for all $ \beta \in E $ we have $ \beta \cap U_i \neq \emptyset $.
 \end{deff}
+\begin{figure}
+
+\begin{tikzpicture}
+  \draw[color = red] (30:1)  -- (210:2);
+  \draw      (150:1) -- (330:2)
+        (270:1) -- (90:2)
+        (90:2)  -- (210:2) -- (330:2) -- cycle
+        (0:0)   circle (1);
+  \fill[color = Violet] (0:0)   circle(3pt) ; 
+  \fill[color = Violet] (30:1)  circle(3pt);
+  \fill[color = Salmon]     (90:2)  circle(3pt);
+   \fill[color = Salmon]     (150:1) circle(3pt);
+   \fill[color = Violet]     (210:2) circle(3pt);
+   \fill[color = Violet]     (270:1) circle(3pt);
+   \fill[color = Salmon]     (330:2) circle(3pt);
+\end{tikzpicture}
+\caption{Steiner System $S(2,3,v)$ for $ v>3 $ are not $ 2 $-coverable}
+\end{figure}
 \end{frame}
 
+%\begin{tikzpicture}
+%  \draw (0,0)  -- (3,0) -- (3,3) -- (0,3) -- cycle;
+%
+%  \fill[color = Violet] (0,0)   circle(3pt) ; 
+%  \fill[color = Violet] (0,3)  circle(3pt);
+%  \fill[color = Salmon]     (3,3)  circle(3pt);
+%   \fill[color = Salmon]     (3,0) circle(3pt);
+%   \fill[color = Violet]     (0,1.5) circle(3pt);
+%   \fill[color = Violet]     (1.5,1.5) circle(3pt);
+%   \fill[color = Salmon]     (1.5,0) circle(3pt);
+%\end{tikzpicture}
+
 \begin{frame}{Cover ideal}
+For an hypergraph $ H = (V,E) $ with $ V = \{ x_1, ... ,x_v\} $ consider the polynomial ring $ k[V] = k[x_1, ... ,x_v] $:
 \begin{deff}
-Given an hypergraph $ H = (V,E) $ we define equivalently the \textbf{cover ideal} as:
+The \textbf{cover ideal} of the hypergraph $ H $ in $ k[V] $ is:
 \begin{equation*}
 J(H) := \left\langle x_{j_1} \cdots x_{j_r} \,|\, \{ x_{j_1} , ... , x_{j_r}\} \text{ is a vertex cover of } H \right\rangle  = \bigcap_{\beta \in E} \p_\beta
 \end{equation*}
@@ -336,7 +406,8 @@ Where for every hyperedge $ \beta = \{ x_{i_1} , ... , x_{i_r}\} \in E  $ then $
 \begin{frame}{Coverability and containment}
 For a hypergraph $ H = (V,B) $ we define $ \tau (H) $ as $ \min_{\beta \in B} \{ |\beta |\}$, so we obtain:
 \begin{teo}[Theorem 4.8 of \cite{Bal21Steiner}] \label{teo:col:cont}
-Let $ H = (V,B) $ be a hypergraph, if $ H $ is not $ d $-coverable then $ J(H)^{(\tau(H))} \not \subseteq J(H)^d $
+Let $ H = (V,B) $ be a hypergraph, if $ H $ is not $ d $-coverable then 
+\[ J(H)^{(\tau(H))} \not \subseteq J(H)^d \]
 \end{teo}
 For example for Steiner Systems we have:
 \begin{prop}[Proposition 4.9 of \cite{Bal21Steiner}]
@@ -346,11 +417,11 @@ If $ v>3 $ and $ S = (V,B) $ is a Steiner Triple System $ S(2,3,v) $, then $ J(S
 
 \begin{frame}{Colourability and containment}
 \begin{teo} \label{teo:borin1}
-	Consider a simple hypergraph $H = (V,B)$, if we indicate $\tau = \tau (H)$ and the cover ideal $ J = J(H)$,  then for all $ q < |V|$ if $ H $ is not $ q $-colourable then we have: 
+	Consider a simple hypergraph $H = (V,B)$, if we indicate $\tau = \tau (H)$ and the cover ideal $ J = J(H)$,  then for all $ q \leq |V|$ if $ H $ is not $ q $-colourable then we have: 
 %	\begin{enumerate}
 %	\item $ \mm_V^{q-1} \in J(H)^{( \tau (q-1) )} $
 %	\item 
-$ J^{( \tau(q-1) )} \not \subseteq J^q $
+ \[J^{( \tau(q-1) )} \not \subseteq J^q \]
 %	\end{enumerate}
 \end{teo}
 \end{frame}
