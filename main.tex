@@ -254,7 +254,7 @@ Now I will recall some of the principal result on this topics, contained in \cit
 \begin{deff}
 	An ideal $ \A $ in a ring $ R $ is said primary if $ R/\A$ is different from zero and all its zero divisors are nilpotent, otherwise we can express this as:
 	\begin{equation*}
-		fg \in \aa \Longrightarrow f \in \A \text{ or } g^n \in \A \text{ for some } n >0
+		fg \in \A \Longrightarrow f \in \A \text{ or } g^n \in \A \text{ for some } n >0
 	\end{equation*}
 \end{deff}
 
@@ -369,8 +369,9 @@ In particular if $ \phi : R \to R_{\p_i} = S^{-1} R$ is the canonical injection 
 	\end{prop}
 	\begin{proof}\quad \\
 		\textit{Primary}: If $ xy \in  \p^{(n)}$ with $ x \not \in  \p^{(n)}$ we have that exists $ s \not \in \p $ with $ sxy \in \p^n $. Suppose that $ sy \not \in \p $, so $ (sy)x \in \p^n $ and then $ x \in \p^{(n)} $ that is absurd, so $ sy \in \p \Rightarrow (sy)^n \in \p^n \Rightarrow s^n y^n \in \p^n$. Since $ \p $ is prime $ s^n \not \in \p $ and so $ y^n \in \p^{(n)} $. \\
-		\textit{$\p$-primary}: In fact $ \p^{(n)} \subset \p $ and so $  \rad  (\p^{(n)} )\subset \rad (\p) = \p$. Also if $ x \in \p $ we have $ x^n \in \p^n \subset \p^{(n)}  $ and so $ x \in \p^{(n)}  $.\\
+		\textit{$\p$-primary}: In fact $ \p^{(n)} \subset \p $ and so $  \rad  (\p^{(n)} )\subset \rad (\p) = \p$. Also if $ x \in \p $ we have $ x^n \in \p^n \subset \p^{(n)}  $ and so $ x \in \rad (\p^{(n)})  $.\\
 		\textit{Minimal}: If $ \q $ is $ \p $-primary and contains $ \p^n $, then for $ r \in \p^{(n)}  $ there exists $ s \not \in \p \supset \q $ with $ sr \in \p^{(n)}  \subset \q $, and so since $ s \not \in \q  $ exists $ k $ such that $ r^k \in \q $. If $ k=1 $ we have finished otherwise we terminate by induction using $ r r^{k-1} \in \q $.
+		%and if we assume by absurd that $ r \not \in  $
 	\end{proof}
 	Using the same example from Remark \ref{rem:power_primary} we can observe that necessary $ p^2 \neq \p^{(2)}  $ since the first one isn't primary. 
 	
